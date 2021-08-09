@@ -1,20 +1,25 @@
 import { NavLink } from "react-router-dom";
 import "./HomePage.css";
+import { ReactComponent as IconArrow } from "../images/icon_arrow.svg";
 
 export default function HomePage() {
   return (
     <nav className="navigation">
       <NavLink className="navigation__item" to="/analyse">
-        Analyse
+        <p>Analyse</p>
+        <IconArrow />
       </NavLink>
       <NavLink className="navigation__item" to="/collection">
-        Collection
+        <p>Collection</p>
+        <IconArrow />
       </NavLink>
       <NavLink className="navigation__item" to="/playlists">
-        Playlists
+        <p>Playlists</p>
+        <IconArrow />
       </NavLink>
       <NavLink className="navigation__item" to="/project-info">
-        Project Info
+        <p>Project Info</p>
+        <IconArrow />
       </NavLink>
     </nav>
   );
