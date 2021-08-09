@@ -1,8 +1,9 @@
 import { Switch, Route, Link } from "react-router-dom";
+import "./Header.css";
 
 export default function Header() {
   return (
-    <header>
+    <header className="header">
       <Switch>
         <Route path="/analyse">
           <p>Analyse</p>
