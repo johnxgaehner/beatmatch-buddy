@@ -16,10 +16,12 @@
   transition: 0.3s;
 }
 
-.navigation__item:hover {
-  padding: 0 1.5rem;
-}
-
 .navigation__item:last-child {
   border-bottom: none;
+}
+
+@media (hover: hover) {
+  .navigation__item:hover {
+    padding: 0 1.5rem;
+  }
 }

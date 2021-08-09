@@ -1,12 +1,11 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div className="app">
+    <div className="App">
       <Header />
       <main>
         <Switch>

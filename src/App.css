@@ -1,6 +1,5 @@
-.app {
+.App {
   display: grid;
   grid-template-rows: 63px auto;
-  height: 100vh;
   padding: 1rem;
 }
