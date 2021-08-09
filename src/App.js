@@ -2,12 +2,13 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
+import Div100vh from "react-div-100vh";
 
 function App() {
   return (
-    <div className="App">
+    <Div100vh className="App">
       <Header />
-      <main>
+      <main className="main">
         <Switch>
           <Route path="/analyse">Analyse</Route>
           <Route path="/collection">Collection</Route>
@@ -18,7 +19,7 @@ function App() {
           </Route>
         </Switch>
       </main>
-    </div>
+    </Div100vh>
   );
 }
 
