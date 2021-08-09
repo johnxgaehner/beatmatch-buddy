@@ -1,4 +1,5 @@
 import "./App.css";
+import { Switch, Route, NavLink } from "react-router-dom";
 
 import Header from "./components/Header";
 
@@ -7,14 +8,20 @@ function App() {
     <div className="App">
       <Header />
       <main>
-        <nav>
-          <ul>
-            <li>Analyse</li>
-            <li>Collection</li>
-            <li>Playlists</li>
-            <li>Project Info</li>
-          </ul>
-        </nav>
+        <Switch>
+          <Route path="/analyse">Analyse</Route>
+          <Route path="/collection">Collection</Route>
+          <Route path="/playlists">Playlists</Route>
+          <Route path="/project-info">Project Info</Route>
+          <Route path="/">
+            <nav>
+              <NavLink to="/analyse">Analyse</NavLink>
+              <NavLink to="/collection">Collection</NavLink>
+              <NavLink to="/playlists">Playlists</NavLink>
+              <NavLink to="/project-info">Project Info</NavLink>
+            </nav>
+          </Route>
+        </Switch>
       </main>
     </div>
   );
