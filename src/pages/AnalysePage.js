@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toast";
 import "./AnalysePage.css";
 import { ReactComponent as IconRecDot } from "../assets/icon_recording_dot.svg";
 
@@ -55,7 +56,16 @@ export default function AnalysePage() {
 
     localStorage.setItem("savedTracks", JSON.stringify(savedTracks));
     setBpm("");
+    toast("Track was saved!", {
+      border: "1px solid black",
+      backgroundColor: "#323131",
+      color: "#ffffff",
+    });
 
+    resetForm();
+  }
+
+  function resetForm() {
     setResult({
       bpm: "",
       trackTitle: "",
@@ -66,10 +76,15 @@ export default function AnalysePage() {
 
   return (
     <section className="AnalysePage">
-      <div onClick={tapTempo} className="AnalysePage__row">
+      <ToastContainer delay={3000} position="bottom-center" />
+      <div
+        onClick={tapTempo}
+        className="AnalysePage__row AnalysePage__tap-tempo-row"
+      >
         <p>TAP HERE (MIN 4 TIMES)</p>
         <IconRecDot />
       </div>
+
       <form onSubmit={handleSubmit}>
         <div className="AnalysePage__row">{renderBPM()}</div>
         <div className="AnalysePage__row">
@@ -80,8 +95,10 @@ export default function AnalysePage() {
             name="trackTitle"
             id="trackTitle"
             placeholder="ENTER TRACK"
+            required
           />
         </div>
+
         <div className="AnalysePage__row">
           <input
             onChange={handleOnChange}
@@ -90,8 +107,10 @@ export default function AnalysePage() {
             name="artist"
             id="artist"
             placeholder="ENTER ARTIST"
+            required
           />
         </div>
+
         <div className="AnalysePage__row">
           <input
             onChange={handleOnChange}
@@ -100,11 +119,12 @@ export default function AnalysePage() {
             name="recordTitle"
             id="recordTitle"
             placeholder="ENTER RECORD"
+            required
           />
         </div>
         <div className="AnalysePage__row">
           <button type="submit">SUBMIT</button>
-          <button type="reset">CANCEL</button>
+          <button onClick={resetForm}>CANCEL</button>
         </div>
       </form>
     </section>

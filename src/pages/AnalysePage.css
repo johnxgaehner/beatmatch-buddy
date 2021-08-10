@@ -16,6 +16,11 @@
   transition: 0.3s;
 }
 
+.AnalysePage__tap-tempo-row:active {
+  background-color: black;
+  color: white;
+}
+
 .AnalysePage__row:last-child {
   border-bottom: none;
 }
@@ -26,11 +31,6 @@
 
 .AnalysePage__row button {
   all: unset;
-}
-
-.AnalysePage__row:active {
-  background-color: black;
-  color: white;
 }
 
 .AnalysePage__row p::selection {
