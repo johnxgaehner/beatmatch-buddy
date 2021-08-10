@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./AnalysePage.css";
+import { ReactComponent as IconRecDot } from "../assets/icon_recording_dot.svg";
 
 export default function AnalysePage() {
-  const [BPM, setBpm] = useState("tap to start");
+  const [BPM, setBpm] = useState("");
 
   let lastTapSeconds = 0;
   let beatCounter = [];
@@ -16,30 +17,60 @@ export default function AnalysePage() {
     lastTapSeconds = tapSeconds;
     beatCounter.push(bpm);
 
-    console.log(beatCounter);
-    console.log("average", average);
-    console.log("bpm", bpm);
-
     average *= count;
     average += Math.floor(bpm);
     count++;
     average /= count;
 
-    if (beatCounter.length >= 8) {
+    if (beatCounter.length >= 4) {
       setBpm(average.toFixed(1));
     }
   }
 
   function renderBPM() {
-    return <p>{BPM}</p>;
+    return BPM ? <p>{Math.floor(BPM)}BPM</p> : <p>BPM WILL APPEAR HERE</p>;
   }
 
   return (
-    <div>
-      <section onClick={tapTempo} className="AnalysePage">
-        <div className="BPM">TAP</div>
-        {renderBPM()}
-      </section>
-    </div>
+    <section className="AnalysePage">
+      <div onClick={tapTempo} className="AnalysePage__row">
+        <p>TAP HERE (MIN 4 TIMES)</p>
+        <IconRecDot />
+      </div>
+      <form>
+        <div className="AnalysePage__row">
+          {renderBPM()}
+          <p>SAVE?</p>
+        </div>
+        <div className="AnalysePage__row">
+          <input
+            type="text"
+            name="track-title"
+            id="track-title"
+            placeholder="ENTER TRACK"
+          />
+        </div>
+        <div className="AnalysePage__row">
+          <input
+            type="text"
+            name="artist"
+            id="artist"
+            placeholder="ENTER ARTIST"
+          />
+        </div>
+        <div className="AnalysePage__row">
+          <input
+            type="text"
+            name="record-title"
+            id="record-title"
+            placeholder="ENTER RECORD"
+          />
+        </div>
+        <div className="AnalysePage__row">
+          <button type="submit">SUBMIT</button>
+          <button type="reset">CANCEL</button>
+        </div>
+      </form>
+    </section>
   );
 }
