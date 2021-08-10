@@ -28,6 +28,15 @@
   all: unset;
 }
 
+.AnalysePage__row:active {
+  background-color: black;
+  color: white;
+}
+
+.AnalysePage__row p::selection {
+  background: none;
+}
+
 /* @media (hover: hover) {
   .AnalysePage__row:hover {
     padding: 0 1.5rem;

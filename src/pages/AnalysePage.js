@@ -71,10 +71,7 @@ export default function AnalysePage() {
         <IconRecDot />
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="AnalysePage__row">
-          {renderBPM()}
-          <p>SAVE?</p>
-        </div>
+        <div className="AnalysePage__row">{renderBPM()}</div>
         <div className="AnalysePage__row">
           <input
             onChange={handleOnChange}
