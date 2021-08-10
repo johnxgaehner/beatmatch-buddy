@@ -31,27 +31,53 @@ export default function AnalysePage() {
     return BPM ? <p>{Math.floor(BPM)}BPM</p> : <p>BPM WILL APPEAR HERE</p>;
   }
 
+  const [result, setResult] = useState({
+    bpm: "",
+    trackTitle: "",
+    artist: "",
+    recordTitle: "",
+  });
+
+  function handleOnChange(event) {
+    console.log(result);
+    const key = event.target.name;
+    const input = event.target.value;
+
+    const newResult = { ...result, bpm: BPM, [key]: input };
+    setResult(newResult);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    console.log("submitted");
+  }
+
   return (
     <section className="AnalysePage">
       <div onClick={tapTempo} className="AnalysePage__row">
         <p>TAP HERE (MIN 4 TIMES)</p>
         <IconRecDot />
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="AnalysePage__row">
           {renderBPM()}
           <p>SAVE?</p>
         </div>
         <div className="AnalysePage__row">
           <input
+            onChange={handleOnChange}
+            value={result.trackTitle}
             type="text"
-            name="track-title"
-            id="track-title"
+            name="trackTitle"
+            id="trackTitle"
             placeholder="ENTER TRACK"
           />
         </div>
         <div className="AnalysePage__row">
           <input
+            onChange={handleOnChange}
+            value={result.artist}
             type="text"
             name="artist"
             id="artist"
@@ -60,9 +86,11 @@ export default function AnalysePage() {
         </div>
         <div className="AnalysePage__row">
           <input
+            onChange={handleOnChange}
+            value={result.recordTitle}
             type="text"
-            name="record-title"
-            id="record-title"
+            name="recordTitle"
+            id="recordTitle"
             placeholder="ENTER RECORD"
           />
         </div>
