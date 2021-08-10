@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import Div100vh from "react-div-100vh";
+import AnalysePage from "./pages/AnalysePage";
 
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
       <Header />
       <main className="main">
         <Switch>
-          <Route path="/analyse">Analyse</Route>
+          <Route path="/analyse">
+            <AnalysePage />
+          </Route>
           <Route path="/collection">Collection</Route>
           <Route path="/playlists">Playlists</Route>
           <Route path="/project-info">Project Info</Route>
