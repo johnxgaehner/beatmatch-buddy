@@ -23,12 +23,12 @@ export default function AnalysePage() {
     average /= count;
 
     if (beatCounter.length >= 4) {
-      setBpm(average.toFixed(1));
+      setBpm(Math.floor(average));
     }
   }
 
   function renderBPM() {
-    return BPM ? <p>{Math.floor(BPM)}BPM</p> : <p>BPM WILL APPEAR HERE</p>;
+    return BPM ? <p>{BPM}BPM</p> : <p>BPM WILL APPEAR HERE</p>;
   }
 
   const [result, setResult] = useState({
@@ -50,7 +50,15 @@ export default function AnalysePage() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    console.log("submitted");
+    localStorage.setItem("savedTracks", JSON.stringify(result));
+    setBpm("");
+
+    setResult({
+      bpm: "",
+      trackTitle: "",
+      artist: "",
+      recordTitle: "",
+    });
   }
 
   return (
