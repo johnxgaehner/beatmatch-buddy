@@ -14,15 +14,19 @@ export default function AnalysePage() {
     const bpm = (1 / ((tapSeconds - lastTapSeconds) / 1000)) * 60;
 
     lastTapSeconds = tapSeconds;
-    beatCounter.push(Math.floor(bpm));
+    beatCounter.push(bpm);
+
+    console.log(beatCounter);
+    console.log("average", average);
+    console.log("bpm", bpm);
 
     average *= count;
     average += Math.floor(bpm);
     count++;
     average /= count;
 
-    if (beatCounter.length >= 4) {
-      setBpm(average);
+    if (beatCounter.length >= 8) {
+      setBpm(average.toFixed(1));
     }
   }
 
@@ -31,9 +35,11 @@ export default function AnalysePage() {
   }
 
   return (
-    <section onClick={tapTempo} className="AnalysePage">
-      <div className="BPM">TAP</div>
-      {renderBPM()}
-    </section>
+    <div>
+      <section onClick={tapTempo} className="AnalysePage">
+        <div className="BPM">TAP</div>
+        {renderBPM()}
+      </section>
+    </div>
   );
 }
