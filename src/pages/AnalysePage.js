@@ -5,10 +5,10 @@ import "./AnalysePage.css";
 
 export default function AnalysePage() {
   const [BPM, setBpm] = useState("");
-  const [result, setResult] = useState({
+  const [newTrack, setNewTrack] = useState({
     bpm: "",
     trackTitle: "",
-    artist: "",
+    artistName: "",
     recordTitle: "",
   });
 
@@ -16,20 +16,19 @@ export default function AnalysePage() {
     const key = event.target.name;
     const input = event.target.value;
 
-    const newResult = { ...result, bpm: BPM, [key]: input };
-    setResult(newResult);
+    const newTrackData = { ...newTrack, bpm: BPM, [key]: input };
+    setNewTrack(newTrackData);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
     const savedTracks = JSON.parse(localStorage.getItem("savedTracks")) || [];
-    savedTracks.push(result);
+    savedTracks.push(newTrack);
 
     localStorage.setItem("savedTracks", JSON.stringify(savedTracks));
-    setBpm("");
-    toast("Track was saved!", {
-      border: "1px solid black",
+
+    toast("TRACK SAVED!", {
       backgroundColor: "#323131",
       color: "#ffffff",
     });
@@ -38,10 +37,11 @@ export default function AnalysePage() {
   }
 
   function resetForm() {
-    setResult({
+    setBpm("");
+    setNewTrack({
       bpm: "",
       trackTitle: "",
-      artist: "",
+      artistName: "",
       recordTitle: "",
     });
   }
@@ -54,7 +54,7 @@ export default function AnalysePage() {
         <div className="AnalysePage__row">
           <input
             onChange={handleOnChange}
-            value={result.trackTitle}
+            value={newTrack.trackTitle}
             type="text"
             name="trackTitle"
             id="trackTitle"
@@ -66,10 +66,10 @@ export default function AnalysePage() {
         <div className="AnalysePage__row">
           <input
             onChange={handleOnChange}
-            value={result.artist}
+            value={newTrack.artistName}
             type="text"
-            name="artist"
-            id="artist"
+            name="artistName"
+            id="artistName"
             placeholder="ENTER ARTIST"
             required
           />
@@ -78,7 +78,7 @@ export default function AnalysePage() {
         <div className="AnalysePage__row">
           <input
             onChange={handleOnChange}
-            value={result.recordTitle}
+            value={newTrack.recordTitle}
             type="text"
             name="recordTitle"
             id="recordTitle"
@@ -88,7 +88,9 @@ export default function AnalysePage() {
         </div>
         <div className="AnalysePage__row">
           <button type="submit">SUBMIT</button>
-          <button onClick={resetForm}>CANCEL</button>
+          <button type="reset" onClick={resetForm}>
+            CANCEL
+          </button>
         </div>
       </form>
     </section>
