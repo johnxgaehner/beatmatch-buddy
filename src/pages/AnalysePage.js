@@ -50,7 +50,10 @@ export default function AnalysePage() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    localStorage.setItem("savedTracks", JSON.stringify(result));
+    const savedTracks = JSON.parse(localStorage.getItem("savedTracks")) || [];
+    savedTracks.push(result);
+
+    localStorage.setItem("savedTracks", JSON.stringify(savedTracks));
     setBpm("");
 
     setResult({
