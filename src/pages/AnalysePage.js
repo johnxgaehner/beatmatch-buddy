@@ -26,11 +26,8 @@ export default function AnalysePage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-
     saveInLocalStorage("savedTracks", newTrack);
-
     showToastSaved("TRACK SAVED");
-
     resetForm();
   }
 
