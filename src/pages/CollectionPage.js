@@ -1,7 +1,25 @@
+import { useEffect, useState } from "react";
 import CollectionItem from "../components/CollectionItem";
 import "./CollectionPage.css";
 
 export default function CollectionPage() {
+  const [items, setItems] = useState();
+
+  useEffect(() => {
+    const savedTracks = JSON.parse(localStorage.getItem("savedTracks"));
+    setItems(savedTracks);
+    console.log(savedTracks);
+  }, []);
+
+  function renderCollectionItems() {
+    if (items) {
+      const collectionItems = items.map((track, index) => {
+        return <CollectionItem key={track.id} data={track} />;
+      });
+      return collectionItems;
+    }
+  }
+
   return (
     <section className="CollectionPage">
       <div className="CollectionPage__SearchFilter">
@@ -30,22 +48,7 @@ export default function CollectionPage() {
           />
         </div>
       </div>
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
-      <CollectionItem />
+      {renderCollectionItems()}
     </section>
   );
 }
