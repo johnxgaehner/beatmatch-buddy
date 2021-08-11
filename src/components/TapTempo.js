@@ -1,6 +1,6 @@
 import { ReactComponent as IconRecDot } from "../assets/icon_recording_dot.svg";
 
-export default function TapTempo({ BPM, setBpm }) {
+export default function TapTempo({ BPM, setBPM }) {
   let lastTapSeconds = 0;
   let beatCounter = [];
   let average = 0;
@@ -19,7 +19,7 @@ export default function TapTempo({ BPM, setBpm }) {
     average /= count;
 
     if (beatCounter.length >= 4) {
-      setBpm(Math.floor(average));
+      setBPM(Math.floor(average));
     }
   }
 

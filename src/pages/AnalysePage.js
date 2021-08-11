@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toast";
+import { v4 as uuidv4 } from "uuid";
 import TapTempo from "../components/TapTempo";
 import "./AnalysePage.css";
 
 export default function AnalysePage() {
-  const [BPM, setBpm] = useState("");
+  const [BPM, setBPM] = useState("");
   const [newTrack, setNewTrack] = useState({
+    id: "",
     bpm: "",
     trackTitle: "",
     artistName: "",
@@ -16,7 +18,7 @@ export default function AnalysePage() {
     const key = event.target.name;
     const input = event.target.value;
 
-    const newTrackData = { ...newTrack, bpm: BPM, [key]: input };
+    const newTrackData = { ...newTrack, id: uuidv4(), bpm: BPM, [key]: input };
     setNewTrack(newTrackData);
   }
 
@@ -37,8 +39,9 @@ export default function AnalysePage() {
   }
 
   function resetForm() {
-    setBpm("");
+    setBPM("");
     setNewTrack({
+      id: "",
       bpm: "",
       trackTitle: "",
       artistName: "",
@@ -49,7 +52,7 @@ export default function AnalysePage() {
   return (
     <section className="AnalysePage">
       <ToastContainer delay={3000} position="bottom-center" />
-      <TapTempo BPM={BPM} setBpm={setBpm} />
+      <TapTempo BPM={BPM} setBPM={setBPM} />
       <form onSubmit={handleSubmit}>
         <div className="AnalysePage__row">
           <input
