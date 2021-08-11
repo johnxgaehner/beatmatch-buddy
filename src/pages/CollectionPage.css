@@ -1,0 +1,65 @@
+.CollectionPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.CollectionPage__SearchFilter {
+  padding: 0 1rem;
+  height: 42px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.CollectionPage__SearchFilter input {
+  all: unset;
+}
+
+.CollectionPage__TempoFilter {
+  padding: 0 1rem;
+  height: 42px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.CollectionPage__TempoFilterSection {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.CollectionPage__TempoFilterSection input {
+  all: unset;
+  width: 30px;
+  text-align: right;
+}
+
+.CollectionPage__CollectionItem {
+  padding: 0 1rem;
+  height: 84px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.CollectionPage__CollectionItem--left {
+  display: flex;
+  gap: 1rem;
+}
+
+.CollectionPage__CollectionItem img {
+  height: 66px;
+}
+
+.CollectionPage__CollectionItem ul li {
+  all: unset;
+  display: flex;
+  font-size: 0.8rem;
+}
