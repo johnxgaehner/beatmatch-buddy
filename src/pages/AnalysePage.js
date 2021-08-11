@@ -2,6 +2,8 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toast";
 import { v4 as uuidv4 } from "uuid";
 import TapTempo from "../components/TapTempo";
+import saveInLocalStorage from "../services/saveInLocalStorage";
+
 import "./AnalysePage.css";
 
 export default function AnalysePage() {
@@ -17,7 +19,6 @@ export default function AnalysePage() {
   function handleOnChange(event) {
     const key = event.target.name;
     const input = event.target.value;
-
     const newTrackData = { ...newTrack, id: uuidv4(), bpm: BPM, [key]: input };
     setNewTrack(newTrackData);
   }
@@ -25,10 +26,7 @@ export default function AnalysePage() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    const savedTracks = JSON.parse(localStorage.getItem("savedTracks")) || [];
-    savedTracks.push(newTrack);
-
-    localStorage.setItem("savedTracks", JSON.stringify(savedTracks));
+    saveInLocalStorage("savedTracks", newTrack);
 
     toast("TRACK SAVED!", {
       backgroundColor: "#323131",
