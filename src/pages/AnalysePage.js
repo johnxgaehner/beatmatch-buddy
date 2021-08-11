@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toast";
+
 import { v4 as uuidv4 } from "uuid";
 import TapTempo from "../components/TapTempo";
 import saveInLocalStorage from "../services/saveInLocalStorage";
+import showToastSaved from "../services/showToastSaved";
 
 import "./AnalysePage.css";
 
@@ -28,10 +29,7 @@ export default function AnalysePage() {
 
     saveInLocalStorage("savedTracks", newTrack);
 
-    toast("TRACK SAVED!", {
-      backgroundColor: "#323131",
-      color: "#ffffff",
-    });
+    showToastSaved("TRACK SAVED");
 
     resetForm();
   }
@@ -49,7 +47,6 @@ export default function AnalysePage() {
 
   return (
     <section className="AnalysePage">
-      <ToastContainer delay={3000} position="bottom-center" />
       <TapTempo BPM={BPM} setBPM={setBPM} />
       <form onSubmit={handleSubmit}>
         <div className="AnalysePage__row">
