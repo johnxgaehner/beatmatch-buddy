@@ -1,0 +1,35 @@
+.AnalysePage {
+  display: flex;
+  flex-direction: column;
+}
+
+.AnalysePage__row {
+  padding: 0 1rem;
+  height: 42px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.AnalysePage__tap-tempo-row:active {
+  background-color: black;
+  color: white;
+}
+
+.AnalysePage__row:last-child {
+  border-bottom: none;
+}
+
+.AnalysePage__row input {
+  all: unset;
+}
+
+.AnalysePage__row button {
+  all: unset;
+}
+
+.AnalysePage__row p::selection {
+  background: none;
+}
