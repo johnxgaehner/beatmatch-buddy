@@ -52,7 +52,7 @@ export default function CollectionPage() {
           {renderCollectionItems()}
         </>
       ) : (
-        <div className="CollectionPage__Empty-Collection">
+        <div className="CollectionPage__EmptyCollection">
           YOUR COLLECTION IS EMPTY
         </div>
       )}
