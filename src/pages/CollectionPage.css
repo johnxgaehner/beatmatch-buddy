@@ -3,6 +3,14 @@
   flex-direction: column;
 }
 
+.CollectionPage__Empty-Collection {
+  padding: 0 1rem;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .CollectionPage__SearchFilter {
   padding: 0 1rem;
   height: 42px;
@@ -10,7 +18,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  text-transform: uppercase;
 }
 
 .CollectionPage__SearchFilter input {
@@ -25,7 +32,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  text-transform: uppercase;
 }
 
 .CollectionPage__TempoFilterSection {

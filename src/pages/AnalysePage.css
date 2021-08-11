@@ -10,7 +10,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  text-transform: uppercase;
 }
 
 .AnalysePage__tap-tempo-row:active {
