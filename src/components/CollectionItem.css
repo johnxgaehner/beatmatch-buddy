@@ -1,0 +1,25 @@
+.CollectionItem {
+  padding: 0 1rem;
+  height: 84px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.CollectionItem--left {
+  display: flex;
+  gap: 1rem;
+}
+
+.CollectionItem img {
+  height: 66px;
+}
+
+.CollectionItem ul li {
+  all: unset;
+  display: flex;
+  font-size: 0.9rem;
+  line-height: 0.9rem;
+}

@@ -1,6 +1,5 @@
+import CollectionItem from "../components/CollectionItem";
 import "./CollectionPage.css";
-import placeholder from "../images/artwork_placeholder.png";
-import { ReactComponent as IconPlus } from "../assets/icon_plus.svg";
 
 export default function CollectionPage() {
   return (
@@ -31,20 +30,22 @@ export default function CollectionPage() {
           />
         </div>
       </div>
-      <div className="CollectionPage__CollectionItem">
-        <div className="CollectionPage__CollectionItem--left">
-          <img src={placeholder} alt="artwork" />
-          <div>
-            <ul>
-              <li>SMUDGE</li>
-              <li>EDEN BURNS</li>
-              <li>BIG BEAT MANIFESTO</li>
-              <li>130BPM</li>
-            </ul>
-          </div>
-        </div>
-        <IconPlus />
-      </div>
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
+      <CollectionItem />
     </section>
   );
 }
