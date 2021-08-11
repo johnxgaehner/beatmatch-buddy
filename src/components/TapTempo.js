@@ -29,11 +29,7 @@ export default function TapTempo({ BPM, setBPM }) {
   }
 
   function renderBPM() {
-    return beatCounter.current.length >= 2 ? (
-      <p>{BPM}BPM</p>
-    ) : (
-      <p>BPM WILL APPEAR HERE</p>
-    );
+    return !BPM || isNaN(BPM) ? <p>BPM WILL APPEAR HERE</p> : <p>{BPM}BPM</p>;
   }
 
   return (
