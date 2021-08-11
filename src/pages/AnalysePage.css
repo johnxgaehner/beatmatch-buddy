@@ -36,9 +36,3 @@
 .AnalysePage__row p::selection {
   background: none;
 }
-
-/* @media (hover: hover) {
-  .AnalysePage__row:hover {
-    padding: 0 1.5rem;
-  }
-} */
