@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CollectionFilterSection from "../components/CollectionFilterSection";
 import CollectionItem from "../components/CollectionItem";
 import "./CollectionPage.css";
 
@@ -28,7 +29,10 @@ export default function CollectionPage() {
       });
       // search by bpm
       const tempoFilteredItems = searchFilteredItems.filter((element) => {
-        if (+element.bpm > +minTempoFilter && +element.bpm < +maxTempoFilter) {
+        if (
+          +element.bpm >= +minTempoFilter &&
+          +element.bpm <= +maxTempoFilter
+        ) {
           return true;
         }
         return false;
@@ -57,37 +61,11 @@ export default function CollectionPage() {
     <section className="CollectionPage">
       {collection ? (
         <>
-          <div className="CollectionPage__SearchFilter">
-            <input
-              onChange={handleSearchInput}
-              type="text"
-              name="SearchFilter"
-              id="SearchFilter"
-              placeholder="SEARCH:"
-            />
-          </div>
-          <div className="CollectionPage__TempoFilter">
-            <p>TEMPO:</p>
-            <div className="CollectionPage__TempoFilterSection">
-              <input
-                onChange={handleMinTempoInput}
-                type="text"
-                name="TempoFilter__min"
-                id="TempoFilter__min"
-                maxLength="3"
-                placeholder="MIN"
-              />
-              <p>-</p>
-              <input
-                onChange={handleMaxTempoInput}
-                type="text"
-                name="TempoFilter__max"
-                id="TempoFilter__max"
-                maxLength="3"
-                placeholder="MAX"
-              />
-            </div>
-          </div>
+          <CollectionFilterSection
+            handleSearchInput={handleSearchInput}
+            handleMinTempoInput={handleMinTempoInput}
+            handleMaxTempoInput={handleMaxTempoInput}
+          />
           {renderCollectionItems()}
         </>
       ) : (
