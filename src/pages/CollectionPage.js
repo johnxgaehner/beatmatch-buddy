@@ -30,7 +30,10 @@ export default function CollectionPage() {
       // search by bpm
       const tempoFilteredItems = searchFilteredItems.filter((element) => {
         if (minTempoFilter || maxTempoFilter) {
-          if (
+          // in case user deletes old value and leaves an empty string
+          if (maxTempoFilter === "") {
+            return +element.bpm >= +minTempoFilter;
+          } else if (
             +element.bpm >= +minTempoFilter &&
             +element.bpm <= +maxTempoFilter
           ) {
@@ -57,10 +60,6 @@ export default function CollectionPage() {
   }
 
   function handleMaxTempoInput(event) {
-    console.log(event.target.value);
-    if (event.target.value === "") {
-      setMaxTempoFilter(999);
-    }
     setMaxTempoFilter(event.target.value);
   }
 
