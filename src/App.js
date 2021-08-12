@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import Div100vh from "react-div-100vh";
 import { ToastContainer } from "react-toast";
 import AnalysePage from "./pages/AnalysePage";
+import CollectionPage from "./pages/CollectionPage";
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
           <Route path="/analyse">
             <AnalysePage />
           </Route>
-          <Route path="/collection">Collection</Route>
+          <Route path="/collection">
+            <CollectionPage />
+          </Route>
           <Route path="/playlists">Playlists</Route>
           <Route path="/project-info">Project Info</Route>
           <Route path="/">
