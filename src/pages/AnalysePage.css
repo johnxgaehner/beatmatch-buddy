@@ -26,6 +26,10 @@
   width: 100%;
 }
 
+.AnalysePage__row input:focus {
+  color: var(--color-accent-01);
+}
+
 .AnalysePage__row button {
   all: unset;
 }
