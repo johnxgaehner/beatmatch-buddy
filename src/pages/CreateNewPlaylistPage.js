@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function CreateNewPlaylistPage() {
   const [newPlaylist, setNewPlaylist] = useState({
+    id: "",
     playlistName: "",
     playlistDescription: "",
   });
@@ -26,6 +27,7 @@ export default function CreateNewPlaylistPage() {
 
   function resetForm() {
     setNewPlaylist({
+      id: "",
       playlistName: "",
       playlistDescription: "",
     });
