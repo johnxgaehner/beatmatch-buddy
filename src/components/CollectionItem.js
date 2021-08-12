@@ -6,7 +6,7 @@ export default function CollectionItem({ data }) {
   return (
     <div className="CollectionItem">
       <div className="CollectionItem--left">
-        <img src={placeholder} alt="artwork" />
+        <img src={placeholder} alt={`${data.trackTitle} artwork`} />
         <div>
           <ul>
             <li>{data.trackTitle}</li>
