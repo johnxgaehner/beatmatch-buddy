@@ -74,7 +74,8 @@ export default function CollectionPage() {
                 type="text"
                 name="TempoFilter__min"
                 id="TempoFilter__min"
-                placeholder="128"
+                maxLength="3"
+                placeholder="MIN"
               />
               <p>-</p>
               <input
@@ -82,7 +83,8 @@ export default function CollectionPage() {
                 type="text"
                 name="TempoFilter__max"
                 id="TempoFilter__max"
-                placeholder="132"
+                maxLength="3"
+                placeholder="MAX"
               />
             </div>
           </div>
