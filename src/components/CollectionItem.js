@@ -16,7 +16,7 @@ export default function CollectionItem({ data }) {
           </ul>
         </div>
       </div>
-      <IconPlus />
+      <IconPlus className="CollectionItem__AddIcon" />
     </div>
   );
 }
