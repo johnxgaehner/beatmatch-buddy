@@ -5,15 +5,17 @@ import "./CollectionPage.css";
 export default function CollectionPage() {
   const [collection, setCollection] = useState();
   const [searchFilter, setSearchFilter] = useState("");
+  const [minTempoFilter, setMinTempoFilter] = useState(0);
+  const [maxTempoFilter, setMaxTempoFilter] = useState(999);
 
   useEffect(() => {
     const storedTracks = JSON.parse(localStorage.getItem("savedTracks"));
     setCollection(storedTracks);
   }, []);
 
-  // CAN I MAKE THIS MORE BEAUTIFUL?!
   function renderCollectionItems() {
     if (collection) {
+      // search by artist, title & record
       const searchFilteredItems = collection.filter((element) => {
         if (
           element.trackTitle.toUpperCase().includes(searchFilter) ||
@@ -22,11 +24,17 @@ export default function CollectionPage() {
         ) {
           return true;
         }
-
         return false;
       });
-
-      const collectionItems = searchFilteredItems.map((track) => {
+      // search by bpm
+      const tempoFilteredItems = searchFilteredItems.filter((element) => {
+        if (+element.bpm > +minTempoFilter && +element.bpm < +maxTempoFilter) {
+          return true;
+        }
+        return false;
+      });
+      // render filtered collection items
+      const collectionItems = tempoFilteredItems.map((track) => {
         return <CollectionItem key={track.id} data={track} />;
       });
       return collectionItems;
@@ -35,6 +43,14 @@ export default function CollectionPage() {
 
   function handleSearchInput(event) {
     setSearchFilter(event.target.value.toUpperCase());
+  }
+
+  function handleMinTempoInput(event) {
+    setMinTempoFilter(event.target.value);
+  }
+
+  function handleMaxTempoInput(event) {
+    setMaxTempoFilter(event.target.value);
   }
 
   return (
@@ -54,6 +70,7 @@ export default function CollectionPage() {
             <p>TEMPO:</p>
             <div className="CollectionPage__TempoFilterSection">
               <input
+                onChange={handleMinTempoInput}
                 type="text"
                 name="TempoFilter__min"
                 id="TempoFilter__min"
@@ -61,6 +78,7 @@ export default function CollectionPage() {
               />
               <p>-</p>
               <input
+                onChange={handleMaxTempoInput}
                 type="text"
                 name="TempoFilter__max"
                 id="TempoFilter__max"
