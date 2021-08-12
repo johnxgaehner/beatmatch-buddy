@@ -1,18 +1,17 @@
 .PlaylistsPage__CreateNewPlaylist {
   padding: 0 1rem;
-  height: 42px;
+  min-height: 42px;
   border-bottom: 1px solid black;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  color: black;
+  color: var(--color-accent-01);
   text-decoration: none;
   transition: 0.3s;
 }
 
 .PlaylistsPage__PlaylistItem {
   padding: 0 1rem;
-  height: 42px;
+  min-height: 42px;
   border-bottom: 1px solid black;
   display: flex;
   align-items: center;
