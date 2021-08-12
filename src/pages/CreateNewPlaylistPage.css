@@ -1,0 +1,26 @@
+.CreateNewPlaylistPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.CNPP__row {
+  padding: 0 1rem;
+  height: 42px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.CNPP__row:last-child {
+  border-bottom: none;
+}
+
+.CNPP__row input {
+  all: unset;
+  width: 100%;
+}
+
+.CNPP__row button {
+  all: unset;
+}
