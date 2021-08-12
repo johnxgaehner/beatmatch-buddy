@@ -29,13 +29,16 @@ export default function CollectionPage() {
       });
       // search by bpm
       const tempoFilteredItems = searchFilteredItems.filter((element) => {
-        if (
-          +element.bpm >= +minTempoFilter &&
-          +element.bpm <= +maxTempoFilter
-        ) {
-          return true;
+        if (minTempoFilter || maxTempoFilter) {
+          if (
+            +element.bpm >= +minTempoFilter &&
+            +element.bpm <= +maxTempoFilter
+          ) {
+            return true;
+          }
+          return false;
         }
-        return false;
+        return true;
       });
       // render filtered collection items
       const collectionItems = tempoFilteredItems.map((track) => {
@@ -54,6 +57,10 @@ export default function CollectionPage() {
   }
 
   function handleMaxTempoInput(event) {
+    console.log(event.target.value);
+    if (event.target.value === "") {
+      setMaxTempoFilter(999);
+    }
     setMaxTempoFilter(event.target.value);
   }
 
