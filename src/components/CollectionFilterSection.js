@@ -38,6 +38,7 @@ export default function CollectionFilterSection({
             id="TempoFilter__min"
             maxLength="3"
             placeholder="MIN"
+            inputMode="numeric"
           />
           <p>-</p>
           <input
@@ -47,6 +48,7 @@ export default function CollectionFilterSection({
             id="TempoFilter__max"
             maxLength="3"
             placeholder="MAX"
+            inputMode="numeric"
           />
         </div>
       </div>
