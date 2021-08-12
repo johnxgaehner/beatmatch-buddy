@@ -18,30 +18,15 @@ export default function CollectionPage() {
     if (collection) {
       // search by artist, title & record
       const searchFilteredItems = collection.filter((element) => {
-        if (
+        return (
           element.trackTitle.toUpperCase().includes(searchFilter) ||
           element.artistName.toUpperCase().includes(searchFilter) ||
           element.recordTitle.toUpperCase().includes(searchFilter)
-        ) {
-          return true;
-        }
-        return false;
+        );
       });
-      // search by bpm
+      // filter by bpm
       const tempoFilteredItems = searchFilteredItems.filter((element) => {
-        if (minTempoFilter || maxTempoFilter) {
-          // in case user deletes old value and leaves an empty string
-          if (maxTempoFilter === "") {
-            return +element.bpm >= +minTempoFilter;
-          } else if (
-            +element.bpm >= +minTempoFilter &&
-            +element.bpm <= +maxTempoFilter
-          ) {
-            return true;
-          }
-          return false;
-        }
-        return true;
+        return +element.bpm >= minTempoFilter && +element.bpm <= maxTempoFilter;
       });
       // render filtered collection items
       const collectionItems = tempoFilteredItems.map((track) => {
@@ -56,11 +41,14 @@ export default function CollectionPage() {
   }
 
   function handleMinTempoInput(event) {
-    setMinTempoFilter(event.target.value);
+    setMinTempoFilter(+event.target.value);
   }
 
   function handleMaxTempoInput(event) {
-    setMaxTempoFilter(event.target.value);
+    if (event.target.value === "") {
+      return setMaxTempoFilter(999);
+    }
+    setMaxTempoFilter(+event.target.value);
   }
 
   return (
