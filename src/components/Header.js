@@ -29,6 +29,12 @@ export default function Header() {
             <p>Menu</p>
           </Link>
         </Route>
+        <Route path="/create-new-playlist">
+          <p>Create New Playlist</p>
+          <Link to="/playlists">
+            <p>Return</p>
+          </Link>
+        </Route>
         <Route path="/">
           <p>Home</p>
           <Link to="/">

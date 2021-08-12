@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 export default function PlaylistsPage() {
   return (
     <section className="PlaylistsPage">
-      <Link className="PlaylistsPage__CreateNewPlaylist">
+      <Link
+        to="/create-new-playlist"
+        className="PlaylistsPage__CreateNewPlaylist"
+      >
         <p>CREATE NEW PLAYLIST</p>
       </Link>
       <Link className="PlaylistsPage__PlaylistItem">
