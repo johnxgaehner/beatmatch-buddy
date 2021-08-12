@@ -4,19 +4,37 @@ import "./CollectionPage.css";
 
 export default function CollectionPage() {
   const [collection, setCollection] = useState();
+  const [searchFilter, setSearchFilter] = useState("");
 
   useEffect(() => {
     const storedTracks = JSON.parse(localStorage.getItem("savedTracks"));
     setCollection(storedTracks);
   }, []);
 
+  // CAN I MAKE THIS MORE BEAUTIFUL?!
   function renderCollectionItems() {
     if (collection) {
-      const collectionItems = collection.map((track) => {
+      const searchFilteredItems = collection.filter((element) => {
+        if (
+          element.trackTitle.toUpperCase().includes(searchFilter) ||
+          element.artistName.toUpperCase().includes(searchFilter) ||
+          element.recordTitle.toUpperCase().includes(searchFilter)
+        ) {
+          return true;
+        }
+
+        return false;
+      });
+
+      const collectionItems = searchFilteredItems.map((track) => {
         return <CollectionItem key={track.id} data={track} />;
       });
       return collectionItems;
     }
+  }
+
+  function handleSearchInput(event) {
+    setSearchFilter(event.target.value.toUpperCase());
   }
 
   return (
@@ -25,6 +43,7 @@ export default function CollectionPage() {
         <>
           <div className="CollectionPage__SearchFilter">
             <input
+              onChange={handleSearchInput}
               type="text"
               name="SearchFilter"
               id="SearchFilter"
