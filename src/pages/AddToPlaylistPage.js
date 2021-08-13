@@ -6,19 +6,18 @@ import "./AddToPlaylistPage.css";
 export default function AddToPlaylistPage() {
   const { id } = useParams();
   const [playlists, setPlaylists] = useState();
+  const [update, setUpdate] = useState(true);
 
   useEffect(() => {
     const storedPlaylists = JSON.parse(localStorage.getItem("savedPlaylists"));
     setPlaylists(storedPlaylists);
-  }, []);
+  }, [update]);
 
   function onAddToPlaylistClick(clickedPlaylistId) {
-    // get the clicked playlist object
     const clickedPlaylistInArray = playlists.filter((playlist) => {
       return playlist.id === clickedPlaylistId;
     });
     const clickedPlaylist = clickedPlaylistInArray[0];
-    // remove clicked playlist from all playlists array
     const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
       return playlist.id !== clickedPlaylistId;
     });
@@ -28,7 +27,6 @@ export default function AddToPlaylistPage() {
       trackIds: [...clickedPlaylist.trackIds, id],
     };
 
-    // concatenate everything
     const patchedPlaylistCollection = [
       ...playlistsWithoutClickedPlaylist,
       patchedPlaylist,
@@ -37,6 +35,7 @@ export default function AddToPlaylistPage() {
       "savedPlaylists",
       JSON.stringify(patchedPlaylistCollection)
     );
+    setUpdate(!update);
   }
 
   function renderAddToPlaylistItems() {
@@ -47,6 +46,7 @@ export default function AddToPlaylistPage() {
             onAddToPlaylistClick={onAddToPlaylistClick}
             key={playlist.id}
             data={playlist}
+            trackId={id}
           />
         );
       });
