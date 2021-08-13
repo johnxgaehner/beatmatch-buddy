@@ -11,6 +11,12 @@ export default function Header() {
             <p>Menu</p>
           </Link>
         </Route>
+        <Route path="/collection/add-to-playlist/:id">
+          <p>Add To Playlist</p>
+          <Link to="/collection">
+            <p>Return</p>
+          </Link>
+        </Route>
         <Route path="/collection">
           <p>Collection</p>
           <Link to="/">
