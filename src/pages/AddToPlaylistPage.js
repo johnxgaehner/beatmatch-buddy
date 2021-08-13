@@ -17,24 +17,34 @@ export default function AddToPlaylistPage() {
     const clickedPlaylistInArray = playlists.filter((playlist) => {
       return playlist.id === clickedPlaylistId;
     });
+
     const clickedPlaylist = clickedPlaylistInArray[0];
+
     const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
       return playlist.id !== clickedPlaylistId;
     });
 
+    const patchedTrackIds = [...clickedPlaylist.trackIds];
+
+    !patchedTrackIds.includes(id)
+      ? patchedTrackIds.push(id)
+      : patchedTrackIds.splice(patchedTrackIds.indexOf(id), 1);
+
     const patchedPlaylist = {
       ...clickedPlaylist,
-      trackIds: [...clickedPlaylist.trackIds, id],
+      trackIds: patchedTrackIds,
     };
 
     const patchedPlaylistCollection = [
       ...playlistsWithoutClickedPlaylist,
       patchedPlaylist,
     ];
+
     localStorage.setItem(
       "savedPlaylists",
       JSON.stringify(patchedPlaylistCollection)
     );
+
     setUpdate(!update);
   }
 
