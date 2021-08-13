@@ -13,11 +13,16 @@ export default function PlaylistsPage() {
 
   function renderPlaylistItems() {
     if (playlists) {
-      const playlistItems = playlists.map((track) => {
-        return <PlaylistItem />;
+      const playlistItems = playlists.map((playlist) => {
+        return <PlaylistItem key={playlist.id} data={playlist} />;
       });
       return playlistItems;
     }
+    return (
+      <div className="PlaylistsPage__NoPlaylists">
+        NO PLAYLIST CREATED YET...
+      </div>
+    );
   }
 
   return (
