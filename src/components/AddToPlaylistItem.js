@@ -3,7 +3,7 @@ import "./AddToPlaylistItem.css";
 
 export default function PlaylistItem({ data, onAddToPlaylistClick }) {
   function handleButtonClick() {
-    onAddToPlaylistClick();
+    onAddToPlaylistClick(data.id);
   }
 
   return (

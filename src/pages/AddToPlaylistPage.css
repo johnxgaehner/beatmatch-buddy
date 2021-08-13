@@ -9,10 +9,9 @@
   transition: 0.3s;
 }
 
-.ATTP__NoPlaylists {
+.ATPP__NoPlaylists {
   padding: 0 1rem;
   min-height: 42px;
-  border-bottom: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,7 +22,7 @@
 
 @media (hover: hover) {
   .ATPP__CreateNewPlaylist:hover,
-  .ATTP__NoPlaylists:hover {
+  .ATPP__NoPlaylists:hover {
     padding: 0 1.5rem;
   }
 }

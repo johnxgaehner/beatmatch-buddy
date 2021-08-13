@@ -12,8 +12,27 @@ export default function AddToPlaylistPage() {
     setPlaylists(storedPlaylists);
   }, []);
 
-  function onAddToPlaylistClick() {
-    console.log(id);
+  function onAddToPlaylistClick(clickedPlaylistId) {
+    // get the clicked playlist object
+    const clickedPlaylistInArray = playlists.filter((playlist) => {
+      return playlist.id === clickedPlaylistId;
+    });
+    const clickedPlaylist = clickedPlaylistInArray[0];
+    // remove clicked playlist from all playlists array
+    const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
+      return playlist.id !== clickedPlaylistId;
+    });
+    // add track to playlist
+    const patchedPlaylist = { ...clickedPlaylist, trackIds: [..., id] };
+    // concatenate everything
+    const patchedPlaylistCollection = [
+      ...playlistsWithoutClickedPlaylist,
+      patchedPlaylist,
+    ];
+    localStorage.setItem(
+      "savedPlaylists",
+      JSON.stringify(patchedPlaylistCollection)
+    );
   }
 
   function renderAddToPlaylistItems() {
@@ -29,11 +48,7 @@ export default function AddToPlaylistPage() {
       });
       return playlistItems;
     }
-    return (
-      <div className="PlaylistsPage__NoPlaylists">
-        NO PLAYLIST CREATED YET...
-      </div>
-    );
+    return <div className="ATPP__NoPlaylists">NO PLAYLIST CREATED YET...</div>;
   }
 
   return (
@@ -42,7 +57,6 @@ export default function AddToPlaylistPage() {
         <p>CREATE NEW PLAYLIST</p>
       </Link>
       {renderAddToPlaylistItems()}
-      {id}
     </section>
   );
 }
