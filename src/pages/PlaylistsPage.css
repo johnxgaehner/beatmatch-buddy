@@ -9,7 +9,7 @@
   transition: 0.3s;
 }
 
-.PlaylistsPage__PlaylistItem {
+.PlaylistsPage__NoPlaylists {
   padding: 0 1rem;
   min-height: 42px;
   border-bottom: 1px solid black;
@@ -21,13 +21,9 @@
   transition: 0.3s;
 }
 
-.PlaylistsPage__PlaylistItem:last-child {
-  border-bottom: none;
-}
-
 @media (hover: hover) {
   .PlaylistsPage__CreateNewPlaylist:hover,
-  .PlaylistsPage__PlaylistItem:hover {
+  .PlaylistsPage__NoPlaylists:hover {
     padding: 0 1.5rem;
   }
 }
