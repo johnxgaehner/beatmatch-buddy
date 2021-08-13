@@ -10,14 +10,9 @@ export default function TapTempo({ BPM, setBPM }) {
     tapTiming.current = Date.now();
     const bpm = (1 / ((tapTiming.current - lastTapTiming.current) / 1000)) * 60;
     lastTapTiming.current = tapTiming.current;
-
     beatCounter.current.push(bpm);
-    console.log(beatCounter.current);
-
     const currentBPM = average(beatCounter.current);
     setBPM(currentBPM.toFixed(0));
-
-    console.log(BPM);
   }
 
   function average(array) {

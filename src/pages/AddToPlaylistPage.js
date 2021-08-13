@@ -22,8 +22,12 @@ export default function AddToPlaylistPage() {
     const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
       return playlist.id !== clickedPlaylistId;
     });
-    // add track to playlist
-    const patchedPlaylist = { ...clickedPlaylist, trackIds: [..., id] };
+
+    const patchedPlaylist = {
+      ...clickedPlaylist,
+      trackIds: [...clickedPlaylist.trackIds, id],
+    };
+
     // concatenate everything
     const patchedPlaylistCollection = [
       ...playlistsWithoutClickedPlaylist,
