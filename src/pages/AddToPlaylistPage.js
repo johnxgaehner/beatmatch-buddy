@@ -12,10 +12,20 @@ export default function AddToPlaylistPage() {
     setPlaylists(storedPlaylists);
   }, []);
 
-  function renderPlaylistItems() {
+  function onAddToPlaylistClick() {
+    console.log(id);
+  }
+
+  function renderAddToPlaylistItems() {
     if (playlists) {
       const playlistItems = playlists.map((playlist) => {
-        return <AddToPlaylistItem key={playlist.id} data={playlist} />;
+        return (
+          <AddToPlaylistItem
+            onAddToPlaylistClick={onAddToPlaylistClick}
+            key={playlist.id}
+            data={playlist}
+          />
+        );
       });
       return playlistItems;
     }
@@ -31,7 +41,7 @@ export default function AddToPlaylistPage() {
       <Link to="/create-new-playlist" className="ATPP__CreateNewPlaylist">
         <p>CREATE NEW PLAYLIST</p>
       </Link>
-      {renderPlaylistItems()}
+      {renderAddToPlaylistItems()}
       {id}
     </section>
   );

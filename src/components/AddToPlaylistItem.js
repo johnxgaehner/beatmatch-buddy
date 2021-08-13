@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
 import { ReactComponent as IconSelectionEmpty } from "../assets/icon_selection_empty.svg";
 import "./AddToPlaylistItem.css";
 
-export default function PlaylistItem({ data }) {
+export default function PlaylistItem({ data, onAddToPlaylistClick }) {
+  function handleButtonClick() {
+    onAddToPlaylistClick();
+  }
+
   return (
-    <Link className="AddToPlaylistItem">
+    <div className="AddToPlaylistItem" onClick={handleButtonClick}>
       <IconSelectionEmpty />
       <p>{data.playlistName}</p>
-    </Link>
+    </div>
   );
 }

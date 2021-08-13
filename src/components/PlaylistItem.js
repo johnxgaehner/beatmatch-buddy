@@ -4,7 +4,7 @@ import "./PlaylistItem.css";
 
 export default function PlaylistItem({ data }) {
   return (
-    <Link className="PlaylistsPage__PlaylistItem">
+    <Link to="/" className="PlaylistsPage__PlaylistItem">
       <p>{data.playlistName}</p>
       <IconArrow />
     </Link>
