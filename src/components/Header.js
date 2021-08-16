@@ -6,37 +6,43 @@ export default function Header() {
     <header className="Header">
       <Switch>
         <Route path="/analyse">
-          <p>Analyse</p>
+          <h1>Analyse</h1>
           <Link to="/">
             <p>Menu</p>
           </Link>
         </Route>
+        <Route path="/collection/add-to-playlist/:id">
+          <h1>Add To Playlist</h1>
+          <Link to="/collection">
+            <p>Return</p>
+          </Link>
+        </Route>
         <Route path="/collection">
-          <p>Collection</p>
+          <h1>Collection</h1>
           <Link to="/">
             <p>Menu</p>
           </Link>
         </Route>
         <Route path="/playlists">
-          <p>Playlists</p>
+          <h1>Playlists</h1>
           <Link to="/">
             <p>Menu</p>
           </Link>
         </Route>
         <Route path="/project-info">
-          <p>Project Info</p>
+          <h1>Project Info</h1>
           <Link to="/">
             <p>Menu</p>
           </Link>
         </Route>
         <Route path="/create-new-playlist">
-          <p>Create New Playlist</p>
+          <h1>Create New Playlist</h1>
           <Link to="/playlists">
             <p>Return</p>
           </Link>
         </Route>
         <Route path="/">
-          <p>Home</p>
+          <h1>Home</h1>
           <Link to="/">
             <p>Menu</p>
           </Link>
