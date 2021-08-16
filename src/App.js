@@ -9,6 +9,7 @@ import CollectionPage from "./pages/CollectionPage";
 import PlaylistsPage from "./pages/PlaylistsPage";
 import CreateNewPlaylistPage from "./pages/CreateNewPlaylistPage";
 import AddToPlaylistPage from "./pages/AddToPlaylistPage";
+import ProjectInfoPage from "./pages/ProjectInfoPage";
 
 function App() {
   return (
@@ -30,7 +31,9 @@ function App() {
           <Route path="/playlists">
             <PlaylistsPage />
           </Route>
-          <Route path="/project-info">Project Info</Route>
+          <Route path="/project-info">
+            <ProjectInfoPage />
+          </Route>
           <Route path="/create-new-playlist">
             <CreateNewPlaylistPage />
           </Route>
