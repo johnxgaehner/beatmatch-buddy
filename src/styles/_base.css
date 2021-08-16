@@ -1,0 +1,59 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+input {
+  all: unset;
+  width: 100%;
+}
+
+input:focus {
+  color: var(--color-accent-01);
+}
+
+button {
+  all: unset;
+}
+
+button:focus {
+  color: var(--color-accent-01);
+}
+
+.Row--flat {
+  padding: 0 1rem;
+  min-height: 42px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+  text-decoration: none;
+  color: black;
+}
+
+.Row--flat:last-child {
+  border-bottom: none;
+}
+
+.--space-between {
+  justify-content: space-between;
+}
+
+.--accented {
+  color: var(--color-accent-01);
+}
+
+@media (hover: hover) {
+  .Row--flat:hover,
+  .Row--high:hover {
+    padding: 0 1.5rem;
+  }
+}

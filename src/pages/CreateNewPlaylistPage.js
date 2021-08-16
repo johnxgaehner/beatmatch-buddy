@@ -44,7 +44,7 @@ export default function CreateNewPlaylistPage() {
   return (
     <section className="CreateNewPlaylistPage">
       <form onSubmit={handleSubmit}>
-        <div className="CNPP__row">
+        <div className="Row--flat">
           <input
             onChange={handleOnChange}
             value={newPlaylist.playlistName}
@@ -55,7 +55,7 @@ export default function CreateNewPlaylistPage() {
             required
           />
         </div>
-        <div className="CNPP__row">
+        <div className="Row--flat">
           <input
             onChange={handleOnChange}
             value={newPlaylist.playlistDescription}
@@ -66,7 +66,7 @@ export default function CreateNewPlaylistPage() {
             required
           />
         </div>
-        <div className="CNPP__row">
+        <div className="Row--flat --space-between">
           <button type="submit">SUBMIT</button>
           <button type="reset" onClick={resetForm}>
             CANCEL

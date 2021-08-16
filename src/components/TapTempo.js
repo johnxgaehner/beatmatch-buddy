@@ -28,14 +28,11 @@ export default function TapTempo({ BPM, setBPM, beatCounter }) {
 
   return (
     <>
-      <div
-        onClick={tapTempo}
-        className="AnalysePage__row AnalysePage__tap-tempo-row"
-      >
+      <div onClick={tapTempo} className="Row--flat TapTempo-Row">
         <p>TAP HERE</p>
         <IconRecDot />
       </div>
-      <div className="AnalysePage__row">{renderBPM()}</div>
+      <div className="Row--flat">{renderBPM()}</div>
     </>
   );
 }

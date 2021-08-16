@@ -48,7 +48,7 @@ export default function AnalysePage() {
     <section className="AnalysePage">
       <TapTempo BPM={BPM} setBPM={setBPM} beatCounter={beatCounter} />
       <form onSubmit={handleSubmit}>
-        <div className="AnalysePage__row">
+        <div className="Row--flat">
           <input
             onChange={handleOnChange}
             value={newTrack.trackTitle}
@@ -60,7 +60,7 @@ export default function AnalysePage() {
           />
         </div>
 
-        <div className="AnalysePage__row">
+        <div className="Row--flat">
           <input
             onChange={handleOnChange}
             value={newTrack.artistName}
@@ -72,7 +72,7 @@ export default function AnalysePage() {
           />
         </div>
 
-        <div className="AnalysePage__row">
+        <div className="Row--flat">
           <input
             onChange={handleOnChange}
             value={newTrack.recordTitle}
@@ -83,7 +83,7 @@ export default function AnalysePage() {
             required
           />
         </div>
-        <div className="AnalysePage__row">
+        <div className="Row--flat">
           <button type="submit">SUBMIT</button>
           <button type="reset" onClick={resetForm}>
             RESET

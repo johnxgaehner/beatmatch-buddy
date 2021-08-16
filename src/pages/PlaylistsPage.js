@@ -1,4 +1,3 @@
-import "./PlaylistsPage.css";
 import { Link } from "react-router-dom";
 import PlaylistItem from "../components/PlaylistItem";
 import { useState, useEffect } from "react";
@@ -22,19 +21,12 @@ export default function PlaylistsPage() {
       });
       return playlistItems;
     }
-    return (
-      <div className="PlaylistsPage__NoPlaylists">
-        NO PLAYLIST CREATED YET...
-      </div>
-    );
+    return <div className="Row--flat">NO PLAYLIST CREATED YET...</div>;
   }
 
   return (
     <section className="PlaylistsPage">
-      <Link
-        to="/create-new-playlist"
-        className="PlaylistsPage__CreateNewPlaylist"
-      >
+      <Link to="/create-new-playlist" className="Row--flat --accented">
         <p>CREATE NEW PLAYLIST</p>
       </Link>
       {renderPlaylistItems()}

@@ -66,12 +66,12 @@ export default function AddToPlaylistPage() {
       });
       return playlistItems;
     }
-    return <div className="ATPP__NoPlaylists">NO PLAYLIST CREATED YET...</div>;
+    return <div className="Row--flat">NO PLAYLIST CREATED YET...</div>;
   }
 
   return (
     <section className="AddToPlaylistPage">
-      <Link to="/create-new-playlist" className="ATPP__CreateNewPlaylist">
+      <Link to="/create-new-playlist" className="Row--flat --accented">
         <p>CREATE NEW PLAYLIST</p>
       </Link>
       {renderAddToPlaylistItems()}
