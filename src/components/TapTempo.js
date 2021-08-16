@@ -1,10 +1,9 @@
 import { useRef } from "react";
 import { ReactComponent as IconRecDot } from "../assets/icon_recording_dot.svg";
 
-export default function TapTempo({ BPM, setBPM }) {
+export default function TapTempo({ BPM, setBPM, beatCounter }) {
   let lastTapTiming = useRef(0);
   let tapTiming = useRef(0);
-  const beatCounter = useRef([]);
 
   function tapTempo() {
     tapTiming.current = Date.now();
@@ -13,6 +12,7 @@ export default function TapTempo({ BPM, setBPM }) {
     beatCounter.current.push(bpm);
     const currentBPM = average(beatCounter.current);
     setBPM(currentBPM.toFixed(0));
+    console.log(beatCounter);
   }
 
   function average(array) {
