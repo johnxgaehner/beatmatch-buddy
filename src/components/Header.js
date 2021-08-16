@@ -1,7 +1,9 @@
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, useHistory } from "react-router-dom";
 import "./Header.css";
 
 export default function Header() {
+  const history = useHistory();
+
   return (
     <header className="Header">
       <Switch>
@@ -13,9 +15,9 @@ export default function Header() {
         </Route>
         <Route path="/collection/add-to-playlist/:id">
           <h1>Add To Playlist</h1>
-          <Link to="/collection">
-            <p>Return</p>
-          </Link>
+          <p onClick={history.goBack} className="Header__ReturnLink">
+            Return
+          </p>
         </Route>
         <Route path="/collection">
           <h1>Collection</h1>
@@ -37,9 +39,9 @@ export default function Header() {
         </Route>
         <Route path="/create-new-playlist">
           <h1>Create New Playlist</h1>
-          <Link to="/playlists">
-            <p>Return</p>
-          </Link>
+          <p onClick={history.goBack} className="Header__ReturnLink">
+            Return
+          </p>
         </Route>
         <Route path="/">
           <h1>Home</h1>
