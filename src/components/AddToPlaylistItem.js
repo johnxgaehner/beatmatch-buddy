@@ -8,7 +8,7 @@ export default function PlaylistItem({ data, trackId, onAddToPlaylistClick }) {
   }
 
   return (
-    <div className="AddToPlaylistItem" onClick={handleButtonClick}>
+    <div className="Row--flat AddToPlaylistItem" onClick={handleButtonClick}>
       {data.trackIds.includes(trackId) ? (
         <IconSelectionFilled />
       ) : (

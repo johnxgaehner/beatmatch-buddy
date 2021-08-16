@@ -1,10 +1,9 @@
 import { useRef } from "react";
 import { ReactComponent as IconRecDot } from "../assets/icon_recording_dot.svg";
 
-export default function TapTempo({ BPM, setBPM }) {
+export default function TapTempo({ BPM, setBPM, beatCounter }) {
   let lastTapTiming = useRef(0);
   let tapTiming = useRef(0);
-  const beatCounter = useRef([]);
 
   function tapTempo() {
     tapTiming.current = Date.now();
@@ -29,14 +28,11 @@ export default function TapTempo({ BPM, setBPM }) {
 
   return (
     <>
-      <div
-        onClick={tapTempo}
-        className="AnalysePage__row AnalysePage__tap-tempo-row"
-      >
+      <div onClick={tapTempo} className="Row--flat TapTempo-Row">
         <p>TAP HERE</p>
         <IconRecDot />
       </div>
-      <div className="AnalysePage__row">{renderBPM()}</div>
+      <div className="Row--flat">{renderBPM()}</div>
     </>
   );
 }

@@ -19,7 +19,7 @@ export default function CollectionFilterSection({
 
   return (
     <>
-      <div className="CollectionPage__SearchFilter">
+      <div className="Row--flat">
         <input
           onChange={handleSearch}
           type="text"
@@ -28,7 +28,7 @@ export default function CollectionFilterSection({
           placeholder="SEARCH:"
         />
       </div>
-      <div className="CollectionPage__TempoFilter">
+      <div className="Row--flat --space-between">
         <label htmlFor="TempoFilter__min">TEMPO:</label>
         <div className="CollectionPage__TempoFilterSection">
           <input

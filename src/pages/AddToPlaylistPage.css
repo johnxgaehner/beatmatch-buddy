@@ -19,10 +19,3 @@
   text-decoration: none;
   transition: 0.3s;
 }
-
-@media (hover: hover) {
-  .ATPP__CreateNewPlaylist:hover,
-  .ATPP__NoPlaylists:hover {
-    padding: 0 1.5rem;
-  }
-}

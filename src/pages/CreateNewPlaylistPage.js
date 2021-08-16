@@ -3,13 +3,17 @@ import "./CreateNewPlaylistPage.css";
 import saveInLocalStorage from "../services/saveInLocalStorage";
 import showToastSaved from "../services/showToastSaved";
 import { v4 as uuidv4 } from "uuid";
+import { useHistory } from "react-router-dom";
 
 export default function CreateNewPlaylistPage() {
+  const history = useHistory();
+
   const [newPlaylist, setNewPlaylist] = useState({
     id: "",
     playlistName: "",
     playlistDescription: "",
     trackIds: "",
+    createdAt: new Date(),
   });
 
   function handleOnChange(event) {
@@ -24,6 +28,7 @@ export default function CreateNewPlaylistPage() {
     saveInLocalStorage("savedPlaylists", newPlaylist);
     showToastSaved("PLAYLIST SAVED");
     resetForm();
+    history.goBack();
   }
 
   function resetForm() {
@@ -32,13 +37,14 @@ export default function CreateNewPlaylistPage() {
       playlistName: "",
       playlistDescription: "",
       trackIds: "",
+      createdAt: "",
     });
   }
 
   return (
     <section className="CreateNewPlaylistPage">
       <form onSubmit={handleSubmit}>
-        <div className="CNPP__row">
+        <div className="Row--flat">
           <input
             onChange={handleOnChange}
             value={newPlaylist.playlistName}
@@ -49,7 +55,7 @@ export default function CreateNewPlaylistPage() {
             required
           />
         </div>
-        <div className="CNPP__row">
+        <div className="Row--flat">
           <input
             onChange={handleOnChange}
             value={newPlaylist.playlistDescription}
@@ -60,7 +66,7 @@ export default function CreateNewPlaylistPage() {
             required
           />
         </div>
-        <div className="CNPP__row">
+        <div className="Row--flat --space-between">
           <button type="submit">SUBMIT</button>
           <button type="reset" onClick={resetForm}>
             CANCEL

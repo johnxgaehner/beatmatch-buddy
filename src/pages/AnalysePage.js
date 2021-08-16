@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 import TapTempo from "../components/TapTempo";
@@ -8,6 +8,7 @@ import showToastSaved from "../services/showToastSaved";
 import "./AnalysePage.css";
 
 export default function AnalysePage() {
+  let beatCounter = useRef([]);
   const [BPM, setBPM] = useState("");
   const [newTrack, setNewTrack] = useState({
     id: "",
@@ -32,6 +33,7 @@ export default function AnalysePage() {
   }
 
   function resetForm() {
+    beatCounter.current = [];
     setBPM("");
     setNewTrack({
       id: "",
@@ -44,9 +46,9 @@ export default function AnalysePage() {
 
   return (
     <section className="AnalysePage">
-      <TapTempo BPM={BPM} setBPM={setBPM} />
+      <TapTempo BPM={BPM} setBPM={setBPM} beatCounter={beatCounter} />
       <form onSubmit={handleSubmit}>
-        <div className="AnalysePage__row">
+        <div className="Row--flat">
           <input
             onChange={handleOnChange}
             value={newTrack.trackTitle}
@@ -58,7 +60,7 @@ export default function AnalysePage() {
           />
         </div>
 
-        <div className="AnalysePage__row">
+        <div className="Row--flat">
           <input
             onChange={handleOnChange}
             value={newTrack.artistName}
@@ -70,7 +72,7 @@ export default function AnalysePage() {
           />
         </div>
 
-        <div className="AnalysePage__row">
+        <div className="Row--flat">
           <input
             onChange={handleOnChange}
             value={newTrack.recordTitle}
@@ -81,10 +83,10 @@ export default function AnalysePage() {
             required
           />
         </div>
-        <div className="AnalysePage__row">
+        <div className="Row--flat">
           <button type="submit">SUBMIT</button>
           <button type="reset" onClick={resetForm}>
-            CANCEL
+            RESET
           </button>
         </div>
       </form>

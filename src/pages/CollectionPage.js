@@ -16,7 +16,6 @@ export default function CollectionPage() {
 
   function renderCollectionItems() {
     if (collection) {
-      // search by artist, title & record
       const searchFilteredItems = collection.filter((element) => {
         return (
           element.trackTitle.toUpperCase().includes(searchFilter) ||
@@ -24,11 +23,9 @@ export default function CollectionPage() {
           element.recordTitle.toUpperCase().includes(searchFilter)
         );
       });
-      // filter by bpm
       const tempoFilteredItems = searchFilteredItems.filter((element) => {
         return +element.bpm >= minTempoFilter && +element.bpm <= maxTempoFilter;
       });
-      // render filtered collection items
       const collectionItems = tempoFilteredItems.map((track) => {
         return <CollectionItem key={track.id} data={track} />;
       });
@@ -63,9 +60,7 @@ export default function CollectionPage() {
           {renderCollectionItems()}
         </>
       ) : (
-        <div className="CollectionPage__EmptyCollection">
-          YOUR COLLECTION IS EMPTY
-        </div>
+        <div className="Row--flat">YOUR COLLECTION IS EMPTY</div>
       )}
     </section>
   );
