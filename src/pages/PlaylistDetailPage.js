@@ -14,5 +14,21 @@ export default function PlaylistDetailPage() {
     setPlaylists(savedPlaylists);
   }, []);
 
-  return <p>{playlistId}</p>;
+  function renderTracks() {
+    if (tracks && playlists) {
+      const requestedPlaylist = playlists.filter((playlist) => {
+        return playlist.id === playlistId;
+      });
+      const includedTracks = tracks.filter((track) => {
+        return requestedPlaylist[0].trackIds.includes(track.id);
+      });
+      const trackItems = includedTracks.map((track) => {
+        return <p>{track.id}</p>;
+      });
+      return trackItems;
+    }
+    return "loading";
+  }
+
+  return <>{renderTracks()}</>;
 }
