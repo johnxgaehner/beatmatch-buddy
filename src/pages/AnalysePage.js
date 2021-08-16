@@ -86,7 +86,7 @@ export default function AnalysePage() {
         <div className="AnalysePage__row">
           <button type="submit">SUBMIT</button>
           <button type="reset" onClick={resetForm}>
-            CANCEL
+            RESET
           </button>
         </div>
       </form>
