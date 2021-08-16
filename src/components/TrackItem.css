@@ -14,12 +14,12 @@
 .TrackItem--left {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .TrackItem__Index {
-  font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-style: italic;
 }
 
 .TrackItem ul li {

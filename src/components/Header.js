@@ -32,7 +32,7 @@ export default function Header() {
           </Link>
         </Route>
         <Route path="/playlist/:playlistId">
-          <h1>Playlist Name</h1>
+          <h1>(Playlist Name Placeholder)</h1>
           <p onClick={history.goBack} className="Header__ReturnLink">
             Return
           </p>

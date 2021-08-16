@@ -16,7 +16,6 @@ export default function PlaylistDetailPage() {
     });
     setTracks(savedTracks);
     setPlaylist(requestedPlaylist);
-    console.log(requestedPlaylist);
   }, [playlistId]);
 
   function renderTracks() {
