@@ -27,13 +27,12 @@ function App() {
           <Route path="/collection">
             <CollectionPage />
           </Route>
-          <Route path="/playlist/:playlistId">
-            <PlaylistDetailPage />
-          </Route>
           <Route path="/playlists">
             <PlaylistsPage />
           </Route>
-
+          <Route path="/playlist/:playlistId">
+            <PlaylistDetailPage />
+          </Route>
           <Route path="/project-info">Project Info</Route>
           <Route path="/create-new-playlist">
             <CreateNewPlaylistPage />

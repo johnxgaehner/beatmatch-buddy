@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import TrackItem from "../components/TrackItem";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
@@ -22,12 +23,12 @@ export default function PlaylistDetailPage() {
       const includedTracks = tracks.filter((track) => {
         return requestedPlaylist[0].trackIds.includes(track.id);
       });
-      const trackItems = includedTracks.map((track) => {
-        return <p>{track.id}</p>;
+      const trackItems = includedTracks.map((track, index) => {
+        return <TrackItem key={track.id} index={index} data={track} />;
       });
       return trackItems;
     }
-    return "loading";
+    return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
   }
 
   return <>{renderTracks()}</>;
