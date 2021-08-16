@@ -43,9 +43,6 @@ export default function Header() {
         </Route>
         <Route path="/">
           <h1>Home</h1>
-          <Link to="/">
-            <p>Menu</p>
-          </Link>
         </Route>
       </Switch>
     </header>
