@@ -14,7 +14,7 @@ export default function TrackItem({ data, index }) {
           <li>{data.trackTitle}</li>
           <li>{data.artistName}</li>
           <li>{data.recordTitle}</li>
-          <li>{data.bpm}</li>
+          <li>{data.bpm}BPM</li>
         </ul>
       </div>
       <IconMinus className="TrackItem__MinusIcon" />
