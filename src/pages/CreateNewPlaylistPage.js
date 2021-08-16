@@ -3,8 +3,11 @@ import "./CreateNewPlaylistPage.css";
 import saveInLocalStorage from "../services/saveInLocalStorage";
 import showToastSaved from "../services/showToastSaved";
 import { v4 as uuidv4 } from "uuid";
+import { useHistory } from "react-router-dom";
 
 export default function CreateNewPlaylistPage() {
+  const history = useHistory();
+
   const [newPlaylist, setNewPlaylist] = useState({
     id: "",
     playlistName: "",
@@ -24,6 +27,7 @@ export default function CreateNewPlaylistPage() {
     saveInLocalStorage("savedPlaylists", newPlaylist);
     showToastSaved("PLAYLIST SAVED");
     resetForm();
+    history.goBack();
   }
 
   function resetForm() {
