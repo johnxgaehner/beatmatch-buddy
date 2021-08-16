@@ -28,7 +28,10 @@ export default function TapTempo({ BPM, setBPM, beatCounter }) {
 
   return (
     <>
-      <div onClick={tapTempo} className="Row--flat TapTempo-Row">
+      <div
+        onClick={tapTempo}
+        className="Row--flat --space-between TapTempo-Row"
+      >
         <p>TAP HERE</p>
         <IconRecDot />
       </div>

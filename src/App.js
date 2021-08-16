@@ -10,6 +10,7 @@ import PlaylistsPage from "./pages/PlaylistsPage";
 import CreateNewPlaylistPage from "./pages/CreateNewPlaylistPage";
 import AddToPlaylistPage from "./pages/AddToPlaylistPage";
 import ProjectInfoPage from "./pages/ProjectInfoPage";
+import PlaylistDetailPage from "./pages/PlaylistDetailPage";
 
 function App() {
   return (
@@ -27,12 +28,14 @@ function App() {
           <Route path="/collection">
             <CollectionPage />
           </Route>
-
           <Route path="/playlists">
             <PlaylistsPage />
           </Route>
           <Route path="/project-info">
             <ProjectInfoPage />
+          </Route>
+          <Route path="/playlist/:playlistId">
+            <PlaylistDetailPage />
           </Route>
           <Route path="/create-new-playlist">
             <CreateNewPlaylistPage />

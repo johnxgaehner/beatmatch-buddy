@@ -1,0 +1,34 @@
+.TrackItem {
+  padding: 0.5rem 1rem;
+  min-height: 84px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TrackItem:last-child {
+  border-bottom: none;
+}
+
+.TrackItem--left {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.TrackItem__Index {
+  font-size: 2rem;
+  font-style: italic;
+}
+
+.TrackItem ul li {
+  all: unset;
+  display: flex;
+  font-size: 0.9rem;
+  line-height: 0.9rem;
+}
+
+.TrackItem__MinusIcon {
+  flex-shrink: 0;
+}

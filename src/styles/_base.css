@@ -51,9 +51,9 @@ button:focus {
   color: var(--color-accent-01);
 }
 
-@media (hover: hover) {
+/* @media (hover: hover) {
   .Row--flat:hover,
   .Row--high:hover {
     padding: 0 1.5rem;
   }
-}
+} */
