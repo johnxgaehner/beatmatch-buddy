@@ -8,7 +8,11 @@ export default function PlaylistsPage() {
 
   useEffect(() => {
     const storedPlaylists = JSON.parse(localStorage.getItem("savedPlaylists"));
-    setPlaylists(storedPlaylists);
+    setPlaylists(
+      storedPlaylists.sort(function (a, b) {
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      })
+    );
   }, []);
 
   function renderPlaylistItems() {

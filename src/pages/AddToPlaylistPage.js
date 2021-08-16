@@ -10,7 +10,11 @@ export default function AddToPlaylistPage() {
 
   useEffect(() => {
     const storedPlaylists = JSON.parse(localStorage.getItem("savedPlaylists"));
-    setPlaylists(storedPlaylists);
+    setPlaylists(
+      storedPlaylists.sort(function (a, b) {
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      })
+    );
   }, [update]);
 
   function onAddToPlaylistClick(clickedPlaylistId) {

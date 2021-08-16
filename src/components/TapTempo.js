@@ -12,7 +12,6 @@ export default function TapTempo({ BPM, setBPM, beatCounter }) {
     beatCounter.current.push(bpm);
     const currentBPM = average(beatCounter.current);
     setBPM(currentBPM.toFixed(0));
-    console.log(beatCounter);
   }
 
   function average(array) {

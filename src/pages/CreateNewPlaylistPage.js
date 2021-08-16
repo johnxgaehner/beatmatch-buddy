@@ -13,6 +13,7 @@ export default function CreateNewPlaylistPage() {
     playlistName: "",
     playlistDescription: "",
     trackIds: "",
+    createdAt: new Date(),
   });
 
   function handleOnChange(event) {
@@ -36,6 +37,7 @@ export default function CreateNewPlaylistPage() {
       playlistName: "",
       playlistDescription: "",
       trackIds: "",
+      createdAt: "",
     });
   }
 
