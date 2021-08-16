@@ -31,12 +31,19 @@ export default function Header() {
             <p>Menu</p>
           </Link>
         </Route>
+        <Route path="/playlist/:playlistId">
+          <h1>Playlist Name</h1>
+          <p onClick={history.goBack} className="Header__ReturnLink">
+            Return
+          </p>
+        </Route>
         <Route path="/project-info">
           <h1>Project Info</h1>
           <Link to="/">
             <p>Menu</p>
           </Link>
         </Route>
+
         <Route path="/create-new-playlist">
           <h1>Create New Playlist</h1>
           <p onClick={history.goBack} className="Header__ReturnLink">
