@@ -29,26 +29,28 @@ export default function PlaylistDetailPage() {
 
   function renderTracks() {
     if (tracks && playlist) {
-      const includedTracks = playlist[0].trackIds.map((trackId) => {
-        const found = tracks.find((element) => element.id === trackId);
-        return found;
-      });
-
-      if (includedTracks.length === 0) {
+      if (playlist[0].trackIds.length === 0) {
         return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
+      } else {
+        console.log(tracks);
+        console.log(playlist);
+        const includedTracks = playlist[0].trackIds.map((trackId) => {
+          const found = tracks.find((element) => element.id === trackId);
+          return found;
+        });
+        const trackItems = includedTracks.map((track, index) => {
+          return (
+            <TrackItem
+              key={track.id}
+              index={index}
+              data={track}
+              editMode={editMode}
+              onRemoveClick={onRemoveClick}
+            />
+          );
+        });
+        return trackItems;
       }
-      const trackItems = includedTracks.map((track, index) => {
-        return (
-          <TrackItem
-            key={track.id}
-            index={index}
-            data={track}
-            editMode={editMode}
-            onRemoveClick={onRemoveClick}
-          />
-        );
-      });
-      return trackItems;
     }
   }
 
