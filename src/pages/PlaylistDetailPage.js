@@ -8,6 +8,8 @@ export default function PlaylistDetailPage() {
   const [tracks, setTracks] = useState();
   const [playlist, setPlaylist] = useState();
 
+  const [editMode, setEditMode] = useState(false);
+
   useEffect(() => {
     const savedTracks = JSON.parse(localStorage.getItem("savedTracks"));
     const savedPlaylists = JSON.parse(localStorage.getItem("savedPlaylists"));
@@ -27,10 +29,22 @@ export default function PlaylistDetailPage() {
         return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
       }
       const trackItems = includedTracks.map((track, index) => {
-        return <TrackItem key={track.id} index={index} data={track} />;
+        return (
+          <TrackItem
+            key={track.id}
+            index={index}
+            data={track}
+            editMode={editMode}
+          />
+        );
       });
       return trackItems;
     }
+  }
+
+  function handleEditButton() {
+    setEditMode(!editMode);
+    console.log(editMode);
   }
 
   return (
@@ -40,7 +54,9 @@ export default function PlaylistDetailPage() {
       </div>
       <div className="Row--flat --accented --space-between">
         <button>Add Songs</button>
-        <button>Edit List</button>
+        <button onClick={handleEditButton}>
+          {!editMode ? "Edit List" : "Done"}
+        </button>
       </div>
       {renderTracks()}
     </section>
