@@ -17,13 +17,14 @@ export default function PlaylistsPage() {
   }, []);
 
   function renderPlaylistItems() {
-    if (playlists) {
-      const playlistItems = playlists.map((playlist) => {
-        return <PlaylistItem key={playlist.id} data={playlist} />;
-      });
-      return playlistItems;
+    console.log(playlists);
+    if (!playlists || playlists.length === 0) {
+      return <div className="Row--flat">NO PLAYLIST CREATED YET...</div>;
     }
-    return <div className="Row--flat">NO PLAYLIST CREATED YET...</div>;
+    const playlistItems = playlists.map((playlist) => {
+      return <PlaylistItem key={playlist.id} data={playlist} />;
+    });
+    return playlistItems;
   }
 
   return (
