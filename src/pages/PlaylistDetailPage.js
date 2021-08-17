@@ -6,9 +6,11 @@ export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
 
   const [tracks, setTracks] = useState();
+  const [playlists, setPlaylists] = useState();
   const [playlist, setPlaylist] = useState();
 
   const [editMode, setEditMode] = useState(false);
+  const [update, setUpdate] = useState(true);
 
   useEffect(() => {
     const savedTracks = JSON.parse(localStorage.getItem("savedTracks"));
@@ -17,8 +19,9 @@ export default function PlaylistDetailPage() {
       return playlist.id === playlistId;
     });
     setTracks(savedTracks);
+    setPlaylists(savedPlaylists);
     setPlaylist(requestedPlaylist);
-  }, [playlistId]);
+  }, [playlistId, update]);
 
   function renderTracks() {
     if (tracks && playlist) {
@@ -35,6 +38,7 @@ export default function PlaylistDetailPage() {
             index={index}
             data={track}
             editMode={editMode}
+            onRemoveClick={onRemoveClick}
           />
         );
       });
@@ -44,7 +48,32 @@ export default function PlaylistDetailPage() {
 
   function handleEditButton() {
     setEditMode(!editMode);
-    console.log(editMode);
+  }
+
+  function onRemoveClick(trackId) {
+    console.log(playlist);
+    const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
+      return playlist.id !== playlistId;
+    });
+    console.log(playlistsWithoutClickedPlaylist);
+
+    const newTrackIds = [...playlist[0].trackIds];
+    newTrackIds.splice(newTrackIds.indexOf(trackId), 1);
+
+    const patchedPlaylist = { ...playlist[0], trackIds: newTrackIds };
+
+    const patchedPlaylistCollection = [
+      ...playlistsWithoutClickedPlaylist,
+      patchedPlaylist,
+    ];
+
+    localStorage.setItem(
+      "savedPlaylists",
+      JSON.stringify(patchedPlaylistCollection)
+    );
+
+    console.log(patchedPlaylist);
+    setUpdate(!update);
   }
 
   return (

@@ -4,7 +4,11 @@ import { ReactComponent as IconGrab } from "../assets/icon_grab.svg";
 
 import "./TrackItem.css";
 
-export default function TrackItem({ data, index, editMode }) {
+export default function TrackItem({ data, index, editMode, onRemoveClick }) {
+  function handleRemoveClick() {
+    onRemoveClick(data.id);
+  }
+
   return !editMode ? (
     <div className="TrackItem">
       <div className="TrackItem--left">
@@ -25,7 +29,7 @@ export default function TrackItem({ data, index, editMode }) {
   ) : (
     <div className="TrackItem">
       <div className="TrackItem--left">
-        <IconMinusCircle />
+        <IconMinusCircle onClick={handleRemoveClick} />
         <ul>
           <li>{data.trackTitle}</li>
           <li>{data.artistName}</li>
