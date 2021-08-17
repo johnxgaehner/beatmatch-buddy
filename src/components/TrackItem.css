@@ -1,5 +1,5 @@
 .TrackItem {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0rem 0.5rem 1rem;
   min-height: 84px;
   border-bottom: 1px solid black;
   display: flex;
@@ -14,12 +14,17 @@
 .TrackItem--left {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .TrackItem__Index {
   font-size: 2rem;
   font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
 }
 
 .TrackItem ul li {
@@ -33,8 +38,19 @@
   flex-shrink: 0;
 }
 
-.TrackItem_IconMinusCircle {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+.TrackItem__IconMinusCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 50px;
+}
+
+.TrackItem__DragArea {
+  padding-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 60px;
+  width: 50px;
 }

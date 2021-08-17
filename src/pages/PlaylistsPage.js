@@ -17,7 +17,6 @@ export default function PlaylistsPage() {
   }, []);
 
   function renderPlaylistItems() {
-    console.log(playlists);
     if (!playlists || playlists.length === 0) {
       return <div className="Row--flat">NO PLAYLIST CREATED YET...</div>;
     }

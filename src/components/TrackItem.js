@@ -1,4 +1,5 @@
 import { ReactComponent as IconGrab } from "../assets/icon_grab.svg";
+import { ReactComponent as IconMinusCircle } from "../assets/icon_minus-circle.svg";
 
 import "./TrackItem.css";
 import { Draggable } from "react-beautiful-dnd";
@@ -29,16 +30,16 @@ export default function TrackItem({ data, index, editMode, onRemoveClick }) {
       {(provided) => (
         <li
           {...provided.draggableProps}
-          {...provided.dragHandleProps}
           ref={provided.innerRef}
           className="TrackItem"
         >
           <div className="TrackItem--left">
-            <p onClick={handleRemoveClick}>DEL</p>
-            {/* <IconMinusCircle
+            <div
               onClick={handleRemoveClick}
-              className="TrackItem_IconMinusCircle"
-            /> */}
+              className="TrackItem__IconMinusCircle"
+            >
+              <IconMinusCircle />
+            </div>
             <ul>
               <li>{data.trackTitle}</li>
               <li>{data.artistName}</li>
@@ -46,7 +47,9 @@ export default function TrackItem({ data, index, editMode, onRemoveClick }) {
               <li>{data.bpm}BPM</li>
             </ul>
           </div>
-          <IconGrab />
+          <div {...provided.dragHandleProps} className="TrackItem__DragArea">
+            <IconGrab />
+          </div>
         </li>
       )}
     </Draggable>
