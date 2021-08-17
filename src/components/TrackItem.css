@@ -14,7 +14,7 @@
 .TrackItem--left {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1.5rem;
 }
 
 .TrackItem__Index {
@@ -31,4 +31,10 @@
 
 .TrackItem__MinusIcon {
   flex-shrink: 0;
+}
+
+.TrackItem_IconMinusCircle {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }

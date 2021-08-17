@@ -1,4 +1,3 @@
-import { ReactComponent as IconMinusCircle } from "../assets/icon_minus-cirle.svg";
 import { ReactComponent as IconGrab } from "../assets/icon_grab.svg";
 
 import "./TrackItem.css";
@@ -35,7 +34,11 @@ export default function TrackItem({ data, index, editMode, onRemoveClick }) {
           className="TrackItem"
         >
           <div className="TrackItem--left">
-            <IconMinusCircle onClick={handleRemoveClick} />
+            <p onClick={handleRemoveClick}>DEL</p>
+            {/* <IconMinusCircle
+              onClick={handleRemoveClick}
+              className="TrackItem_IconMinusCircle"
+            /> */}
             <ul>
               <li>{data.trackTitle}</li>
               <li>{data.artistName}</li>

@@ -54,10 +54,6 @@ export default function PlaylistDetailPage() {
     setEditMode(!editMode);
   }
 
-  function handleAddButton() {
-    console.log(playlist[0].trackIds);
-  }
-
   function onRemoveClick(trackId) {
     const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
       return playlist.id !== playlistId;
@@ -82,15 +78,15 @@ export default function PlaylistDetailPage() {
   }
 
   function handleOnDragEnd(result) {
-    const items = [...playlist[0].trackIds];
-    const [reorderedItems] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItems);
+    const trackOrder = [...playlist[0].trackIds];
+    const [reorderedTracks] = trackOrder.splice(result.source.index, 1);
+    trackOrder.splice(result.destination.index, 0, reorderedTracks);
 
     const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
       return playlist.id !== playlistId;
     });
 
-    const patchedPlaylist = { ...playlist[0], trackIds: items };
+    const patchedPlaylist = { ...playlist[0], trackIds: trackOrder };
 
     const patchedPlaylistCollection = [
       ...playlistsWithoutClickedPlaylist,
@@ -111,7 +107,7 @@ export default function PlaylistDetailPage() {
         {playlist ? playlist[0].playlistDescription : "loading description"}
       </div>
       <div className="Row--flat --accented --space-between">
-        <button onClick={handleAddButton}>Add Songs</button>
+        <button>(Add Songs)</button>
         <button onClick={handleEditButton}>
           {!editMode ? "Edit List" : "Done"}
         </button>
