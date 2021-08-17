@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import "./PlaylistDetailPage.css";
 
 import TrackItem from "../components/TrackItem";
 
@@ -10,9 +11,10 @@ export default function PlaylistDetailPage() {
   const [tracks, setTracks] = useState();
   const [playlists, setPlaylists] = useState();
   const [playlist, setPlaylist] = useState();
-
   const [editMode, setEditMode] = useState(false);
   const [update, setUpdate] = useState(true);
+
+  const history = useHistory();
 
   useEffect(() => {
     const savedTracks = JSON.parse(localStorage.getItem("savedTracks"));
@@ -47,6 +49,22 @@ export default function PlaylistDetailPage() {
         );
       });
       return trackItems;
+    }
+  }
+
+  function handleDeleteButton() {
+    const confirmBox = window.confirm(
+      "Do you really want to delete this playlist?"
+    );
+    if (confirmBox === true) {
+      const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
+        return playlist.id !== playlistId;
+      });
+      localStorage.setItem(
+        "savedPlaylists",
+        JSON.stringify(playlistsWithoutClickedPlaylist)
+      );
+      history.goBack();
     }
   }
 
@@ -107,7 +125,13 @@ export default function PlaylistDetailPage() {
         {playlist ? playlist[0].playlistDescription : "loading description"}
       </div>
       <div className="Row--flat --accented --space-between">
-        <button>(Add Songs)</button>
+        {!editMode ? (
+          <button>(Add Songs)</button>
+        ) : (
+          <button onClick={handleDeleteButton} className="PDP__DeleteButton">
+            Delete Playlist
+          </button>
+        )}
         <button onClick={handleEditButton}>
           {!editMode ? "Edit List" : "Done"}
         </button>
