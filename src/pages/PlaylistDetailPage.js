@@ -138,7 +138,11 @@ export default function PlaylistDetailPage() {
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="tracks">
           {(provided) => (
-            <ul {...provided.droppableProps} ref={provided.innerRef}>
+            <ul
+              className="DND__List"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
               {renderTracks()}
               {provided.placeholder}
             </ul>
