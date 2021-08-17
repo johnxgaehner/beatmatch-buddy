@@ -36,7 +36,11 @@ export default function PlaylistDetailPage() {
   return (
     <section>
       <div className="Row--flat --accented">
-        {playlist ? playlist[0].playlistDescription : "no"}
+        {playlist ? playlist[0].playlistDescription : "loading description"}
+      </div>
+      <div className="Row--flat --accented --space-between">
+        <button>Add Songs</button>
+        <button>Edit List</button>
       </div>
       {renderTracks()}
     </section>
