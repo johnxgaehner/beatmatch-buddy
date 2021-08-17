@@ -1,8 +1,8 @@
 import { ReactComponent as IconMinusCircle } from "../assets/icon_minus-cirle.svg";
 import { ReactComponent as IconGrab } from "../assets/icon_grab.svg";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import "./TrackItem.css";
+import { Draggable } from "react-beautiful-dnd";
 
 export default function TrackItem({ data, index, editMode, onRemoveClick }) {
   function handleRemoveClick() {
@@ -10,7 +10,7 @@ export default function TrackItem({ data, index, editMode, onRemoveClick }) {
   }
 
   return !editMode ? (
-    <div className="TrackItem">
+    <li className="TrackItem">
       <div className="TrackItem--left">
         {index < 10 ? (
           <p className="TrackItem__Index">{`#0${index + 1}`}</p>
@@ -24,19 +24,28 @@ export default function TrackItem({ data, index, editMode, onRemoveClick }) {
           <li>{data.bpm}BPM</li>
         </ul>
       </div>
-    </div>
+    </li>
   ) : (
-    <div className="TrackItem">
-      <div className="TrackItem--left">
-        <IconMinusCircle onClick={handleRemoveClick} />
-        <ul>
-          <li>{data.trackTitle}</li>
-          <li>{data.artistName}</li>
-          <li>{data.recordTitle}</li>
-          <li>{data.bpm}BPM</li>
-        </ul>
-      </div>
-      <IconGrab />
-    </div>
+    <Draggable draggableId={data.id} index={index}>
+      {(provided) => (
+        <li
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+          className="TrackItem"
+        >
+          <div className="TrackItem--left">
+            <IconMinusCircle onClick={handleRemoveClick} />
+            <ul>
+              <li>{data.trackTitle}</li>
+              <li>{data.artistName}</li>
+              <li>{data.recordTitle}</li>
+              <li>{data.bpm}BPM</li>
+            </ul>
+          </div>
+          <IconGrab />
+        </li>
+      )}
+    </Draggable>
   );
 }

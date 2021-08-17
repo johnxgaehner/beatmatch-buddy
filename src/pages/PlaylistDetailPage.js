@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useParams } from "react-router-dom";
+
 import TrackItem from "../components/TrackItem";
 
 export default function PlaylistDetailPage() {
@@ -25,9 +27,11 @@ export default function PlaylistDetailPage() {
 
   function renderTracks() {
     if (tracks && playlist) {
-      const includedTracks = tracks.filter((track) => {
-        return playlist[0].trackIds.includes(track.id);
+      const includedTracks = playlist[0].trackIds.map((trackId) => {
+        const found = tracks.find((element) => element.id === trackId);
+        return found;
       });
+
       if (includedTracks.length === 0) {
         return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
       }
@@ -48,6 +52,10 @@ export default function PlaylistDetailPage() {
 
   function handleEditButton() {
     setEditMode(!editMode);
+  }
+
+  function handleAddButton() {
+    console.log(playlist[0].trackIds);
   }
 
   function onRemoveClick(trackId) {
@@ -73,18 +81,51 @@ export default function PlaylistDetailPage() {
     setUpdate(!update);
   }
 
+  function handleOnDragEnd(result) {
+    const items = [...playlist[0].trackIds];
+    const [reorderedItems] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItems);
+
+    const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
+      return playlist.id !== playlistId;
+    });
+
+    const patchedPlaylist = { ...playlist[0], trackIds: items };
+
+    const patchedPlaylistCollection = [
+      ...playlistsWithoutClickedPlaylist,
+      patchedPlaylist,
+    ];
+
+    localStorage.setItem(
+      "savedPlaylists",
+      JSON.stringify(patchedPlaylistCollection)
+    );
+
+    setUpdate(!update);
+  }
+
   return (
     <section>
       <div className="Row--flat --accented">
         {playlist ? playlist[0].playlistDescription : "loading description"}
       </div>
       <div className="Row--flat --accented --space-between">
-        <button>Add Songs</button>
+        <button onClick={handleAddButton}>Add Songs</button>
         <button onClick={handleEditButton}>
           {!editMode ? "Edit List" : "Done"}
         </button>
       </div>
-      {renderTracks()}
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="tracks">
+          {(provided) => (
+            <ul {...provided.droppableProps} ref={provided.innerRef}>
+              {renderTracks()}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
     </section>
   );
 }
