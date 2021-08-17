@@ -51,11 +51,9 @@ export default function PlaylistDetailPage() {
   }
 
   function onRemoveClick(trackId) {
-    console.log(playlist);
     const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
       return playlist.id !== playlistId;
     });
-    console.log(playlistsWithoutClickedPlaylist);
 
     const newTrackIds = [...playlist[0].trackIds];
     newTrackIds.splice(newTrackIds.indexOf(trackId), 1);
@@ -72,7 +70,6 @@ export default function PlaylistDetailPage() {
       JSON.stringify(patchedPlaylistCollection)
     );
 
-    console.log(patchedPlaylist);
     setUpdate(!update);
   }
 
