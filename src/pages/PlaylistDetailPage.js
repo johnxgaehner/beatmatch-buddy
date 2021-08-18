@@ -12,7 +12,7 @@ import "./PlaylistDetailPage.css";
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
 
-  const [tracks, setTracks] = useLocalStorage("savedTracks", []);
+  const [tracks] = useLocalStorage("savedTracks", []);
   const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
 
   const [playlist, setPlaylist] = useState();

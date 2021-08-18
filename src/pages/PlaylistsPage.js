@@ -3,7 +3,7 @@ import PlaylistItem from "../components/PlaylistItem";
 import useLocalStorage from "../services/useLocalStorage";
 
 export default function PlaylistsPage() {
-  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
+  const [playlists] = useLocalStorage("savedPlaylists", []);
 
   function renderPlaylistItems() {
     if (playlists && playlists.length > 0) {

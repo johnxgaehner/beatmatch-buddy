@@ -5,7 +5,7 @@ import useLocalStorage from "../services/useLocalStorage";
 import "./CollectionPage.css";
 
 export default function CollectionPage() {
-  const [collection, setCollection] = useLocalStorage("savedTracks", []);
+  const [collection] = useLocalStorage("savedTracks", []);
   const [searchFilter, setSearchFilter] = useState("");
   const [minTempoFilter, setMinTempoFilter] = useState(0);
   const [maxTempoFilter, setMaxTempoFilter] = useState(999);
