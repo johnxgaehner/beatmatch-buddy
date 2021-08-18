@@ -4,9 +4,14 @@ import { ReactComponent as IconMinusCircle } from "../assets/icon_minus-circle.s
 import "./TrackItem.css";
 import { Draggable } from "react-beautiful-dnd";
 
-export default function TrackItem({ data, index, editMode, onRemoveClick }) {
+export default function TrackItem({
+  trackInfo,
+  index,
+  editMode,
+  onRemoveClick,
+}) {
   function handleRemoveClick() {
-    onRemoveClick(data.id);
+    onRemoveClick(trackInfo.id);
   }
 
   return !editMode ? (
@@ -18,15 +23,15 @@ export default function TrackItem({ data, index, editMode, onRemoveClick }) {
           <p className="TrackItem__Index">{`#${index + 1}`}</p>
         )}
         <ul>
-          <li>{data.trackTitle}</li>
-          <li>{data.artistName}</li>
-          <li>{data.recordTitle}</li>
-          <li>{data.bpm}BPM</li>
+          <li>{trackInfo.trackTitle}</li>
+          <li>{trackInfo.artistName}</li>
+          <li>{trackInfo.recordTitle}</li>
+          <li>{trackInfo.bpm}BPM</li>
         </ul>
       </div>
     </li>
   ) : (
-    <Draggable draggableId={data.id} index={index}>
+    <Draggable draggableId={trackInfo.id} index={index}>
       {(provided) => (
         <li
           {...provided.draggableProps}
@@ -41,10 +46,10 @@ export default function TrackItem({ data, index, editMode, onRemoveClick }) {
               <IconMinusCircle />
             </div>
             <ul>
-              <li>{data.trackTitle}</li>
-              <li>{data.artistName}</li>
-              <li>{data.recordTitle}</li>
-              <li>{data.bpm}BPM</li>
+              <li>{trackInfo.trackTitle}</li>
+              <li>{trackInfo.artistName}</li>
+              <li>{trackInfo.recordTitle}</li>
+              <li>{trackInfo.bpm}BPM</li>
             </ul>
           </div>
           <div {...provided.dragHandleProps} className="TrackItem__DragArea">

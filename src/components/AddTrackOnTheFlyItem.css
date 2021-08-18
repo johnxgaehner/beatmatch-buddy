@@ -1,0 +1,19 @@
+.AddTrackOnTheFlyItem {
+  padding: 0.5rem 1rem;
+  min-height: 84px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.AddTrackOnTheFlyItem:last-child {
+  border-bottom: none;
+}
+
+.AddTrackOnTheFlyItem ul li {
+  all: unset;
+  display: flex;
+  font-size: 0.9rem;
+  line-height: 0.9rem;
+}
