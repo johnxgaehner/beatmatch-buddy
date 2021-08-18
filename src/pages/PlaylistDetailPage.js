@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import "./PlaylistDetailPage.css";
 
 import TrackItem from "../components/TrackItem";
+import AddTrackOnTheFlyItem from "../components/AddTrackOnTheFlyItem";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
@@ -52,6 +53,13 @@ export default function PlaylistDetailPage() {
       });
       return trackItems;
     }
+  }
+
+  function renderCollection() {
+    const addTrackOnTheFlyItems = tracks.map((track) => {
+      return <AddTrackOnTheFlyItem />;
+    });
+    return addTrackOnTheFlyItems;
   }
 
   function handleDeleteButton() {
@@ -161,7 +169,7 @@ export default function PlaylistDetailPage() {
           </Droppable>
         </DragDropContext>
       ) : (
-        "list of tracks"
+        renderCollection()
       )}
     </section>
   );
