@@ -5,13 +5,13 @@ import useLocalStorage from "../services/useLocalStorage";
 import "./CollectionPage.css";
 
 export default function CollectionPage() {
-  const [collection, setCollection] = useLocalStorage("savedTracks", "[]");
+  const [collection, setCollection] = useLocalStorage("savedTracks", []);
   const [searchFilter, setSearchFilter] = useState("");
   const [minTempoFilter, setMinTempoFilter] = useState(0);
   const [maxTempoFilter, setMaxTempoFilter] = useState(999);
 
   function renderCollectionItems() {
-    if (collection) {
+    if (collection && collection.length > 0) {
       const searchFilteredItems = collection.filter((element) => {
         return (
           element.trackTitle.toUpperCase().includes(searchFilter) ||
@@ -25,7 +25,10 @@ export default function CollectionPage() {
       const collectionItems = tempoFilteredItems.map((track) => {
         return <CollectionItem key={track.id} data={track} />;
       });
-      return collectionItems;
+      if (collectionItems.length > 0) {
+        return collectionItems;
+      }
+      return <div className="Row--flat">There's No Matching Track...</div>;
     }
   }
 
@@ -46,7 +49,7 @@ export default function CollectionPage() {
 
   return (
     <section className="CollectionPage">
-      {collection ? (
+      {collection.length > 0 ? (
         <>
           <CollectionFilterSection
             handleSearchInput={handleSearchInput}

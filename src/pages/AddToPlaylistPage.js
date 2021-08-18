@@ -5,10 +5,10 @@ import "./AddToPlaylistPage.css";
 
 export default function AddToPlaylistPage() {
   const { id } = useParams();
-  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", "[]");
+  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
 
   function renderAddToPlaylistItems() {
-    if (playlists) {
+    if (playlists && playlists.length > 0) {
       const playlistItems = playlists
         .sort(function (a, b) {
           return new Date(a.createdAt) - new Date(b.createdAt);

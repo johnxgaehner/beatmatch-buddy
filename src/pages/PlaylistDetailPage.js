@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useHistory, useParams } from "react-router-dom";
 
@@ -11,22 +12,22 @@ import "./PlaylistDetailPage.css";
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
 
-  const [tracks, setTracks] = useLocalStorage("savedTracks", "[]");
-  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", "[]");
+  const [tracks, setTracks] = useLocalStorage("savedTracks", []);
+  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
 
-  const [playlist, setPlaylist] = useState(getRequestedPlaylist());
+  const [playlist, setPlaylist] = useState();
 
   const [editMode, setEditMode] = useState(false);
   const [addTracks, setAddTracks] = useState(false);
 
   const history = useHistory();
 
-  function getRequestedPlaylist() {
+  useEffect(() => {
     const requestedPlaylist = playlists.filter((playlist) => {
       return playlist.id === playlistId;
     });
-    return requestedPlaylist;
-  }
+    setPlaylist(requestedPlaylist);
+  }, [playlists, playlistId]);
 
   function renderTracks() {
     if (tracks && playlist) {
