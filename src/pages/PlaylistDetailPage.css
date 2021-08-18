@@ -1,3 +1,10 @@
 .PDP__DeleteButton {
   color: var(--color-alert-01);
 }
+
+.PDP__PlaylistName {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  font-style: italic;
+}

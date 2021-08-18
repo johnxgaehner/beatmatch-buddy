@@ -152,9 +152,16 @@ export default function PlaylistDetailPage() {
 
   return (
     <section>
-      <div className="Row--flat --accented">
-        {playlist ? playlist[0].playlistDescription : "loading description"}
-      </div>
+      {playlist ? (
+        <>
+          <h1 className="PDP__PlaylistName">{playlist[0].playlistName}</h1>
+          <div className="Row--flat --accented">
+            {playlist[0].playlistDescription}
+          </div>
+        </>
+      ) : (
+        <p>loading description</p>
+      )}
 
       <div className="Row--flat --accented --space-between">
         {!editMode ? (
