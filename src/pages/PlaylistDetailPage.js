@@ -11,7 +11,10 @@ export default function PlaylistDetailPage() {
   const [tracks, setTracks] = useState();
   const [playlists, setPlaylists] = useState();
   const [playlist, setPlaylist] = useState();
+
   const [editMode, setEditMode] = useState(false);
+  const [addTracks, setAddTracks] = useState(false);
+
   const [update, setUpdate] = useState(true);
 
   const history = useHistory();
@@ -71,6 +74,10 @@ export default function PlaylistDetailPage() {
     setEditMode(!editMode);
   }
 
+  function handleAddButton() {
+    setAddTracks(!addTracks);
+  }
+
   function onRemoveClick(trackId) {
     const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
       return playlist.id !== playlistId;
@@ -125,7 +132,9 @@ export default function PlaylistDetailPage() {
       </div>
       <div className="Row--flat --accented --space-between">
         {!editMode ? (
-          <button>(Add Songs)</button>
+          <button onClick={handleAddButton}>
+            {!addTracks ? "Add Tracks" : "Done"}
+          </button>
         ) : (
           <button onClick={handleDeleteButton} className="PDP__DeleteButton">
             Delete Playlist
@@ -135,20 +144,25 @@ export default function PlaylistDetailPage() {
           {!editMode ? "Edit List" : "Done"}
         </button>
       </div>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId="tracks">
-          {(provided) => (
-            <ul
-              className="DND__List"
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {renderTracks()}
-              {provided.placeholder}
-            </ul>
-          )}
-        </Droppable>
-      </DragDropContext>
+
+      {!addTracks ? (
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId="tracks">
+            {(provided) => (
+              <ul
+                className="DND__List"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {renderTracks()}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
+      ) : (
+        "list of tracks"
+      )}
     </section>
   );
 }
