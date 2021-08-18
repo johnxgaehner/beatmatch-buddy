@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CollectionFilterSection from "../components/CollectionFilterSection";
 import CollectionItem from "../components/CollectionItem";
+import useLocalStorage from "../services/useLocalStorage";
 import "./CollectionPage.css";
 
 export default function CollectionPage() {
-  const [collection, setCollection] = useState();
+  const [collection, setCollection] = useLocalStorage("savedTracks", "[]");
   const [searchFilter, setSearchFilter] = useState("");
   const [minTempoFilter, setMinTempoFilter] = useState(0);
   const [maxTempoFilter, setMaxTempoFilter] = useState(999);
-
-  useEffect(() => {
-    const storedTracks = JSON.parse(localStorage.getItem("savedTracks"));
-    setCollection(storedTracks);
-  }, []);
 
   function renderCollectionItems() {
     if (collection) {
