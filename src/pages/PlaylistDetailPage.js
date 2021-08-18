@@ -47,7 +47,7 @@ export default function PlaylistDetailPage() {
           <TrackItem
             key={track.id}
             index={index}
-            data={track}
+            trackInfo={track}
             editMode={editMode}
             onRemoveClick={onRemoveClick}
           />
@@ -89,7 +89,7 @@ export default function PlaylistDetailPage() {
       return (
         <AddTrackOnTheFlyItem
           key={track.id}
-          data={track}
+          trackInfo={track}
           playlist={playlist[0]}
           onAddToPlaylistClick={onAddToPlaylistClick}
         />

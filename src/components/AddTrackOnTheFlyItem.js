@@ -3,27 +3,27 @@ import { ReactComponent as IconSelectionFilled } from "../assets/icon_selection_
 import "./AddTrackOnTheFlyItem.css";
 
 export default function AddTrackOnTheFlyItem({
-  data,
+  trackInfo,
   playlist,
   onAddToPlaylistClick,
 }) {
   function handleOnAddToPlaylistClick() {
-    onAddToPlaylistClick(data.id);
+    onAddToPlaylistClick(trackInfo.id);
   }
   return (
     <div className="AddTrackOnTheFlyItem">
       <div onClick={handleOnAddToPlaylistClick}>
-        {playlist.trackIds.includes(data.id) ? (
+        {playlist.trackIds.includes(trackInfo.id) ? (
           <IconSelectionFilled />
         ) : (
           <IconSelectionEmpty />
         )}
       </div>
       <ul>
-        <li>{data.trackTitle}</li>
-        <li>{data.artistName}</li>
-        <li>{data.recordTitle}</li>
-        <li>{data.bpm}BPM</li>
+        <li>{trackInfo.trackTitle}</li>
+        <li>{trackInfo.artistName}</li>
+        <li>{trackInfo.recordTitle}</li>
+        <li>{trackInfo.bpm}BPM</li>
       </ul>
     </div>
   );
