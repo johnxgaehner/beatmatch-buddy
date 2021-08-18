@@ -1,23 +1,32 @@
-import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import AddToPlaylistItem from "../components/AddToPlaylistItem";
+import useLocalStorage from "../services/useLocalStorage";
 import "./AddToPlaylistPage.css";
 
 export default function AddToPlaylistPage() {
   const { id } = useParams();
-  const [playlists, setPlaylists] = useState();
-  const [update, setUpdate] = useState(true);
+  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
 
-  useEffect(() => {
-    const storedPlaylists = JSON.parse(localStorage.getItem("savedPlaylists"));
-    storedPlaylists
-      ? setPlaylists(
-          storedPlaylists.sort(function (a, b) {
-            return new Date(a.createdAt) - new Date(b.createdAt);
-          })
-        )
-      : setPlaylists(storedPlaylists);
-  }, [update]);
+  function renderAddToPlaylistItems() {
+    if (playlists && playlists.length > 0) {
+      const playlistItems = playlists
+        .sort(function (a, b) {
+          return new Date(a.createdAt) - new Date(b.createdAt);
+        })
+        .map((playlist) => {
+          return (
+            <AddToPlaylistItem
+              onAddToPlaylistClick={onAddToPlaylistClick}
+              key={playlist.id}
+              data={playlist}
+              trackId={id}
+            />
+          );
+        });
+      return playlistItems;
+    }
+    return <div className="Row--flat">NO PLAYLIST CREATED YET...</div>;
+  }
 
   function onAddToPlaylistClick(clickedPlaylistId) {
     const clickedPlaylistInArray = playlists.filter((playlist) => {
@@ -46,29 +55,7 @@ export default function AddToPlaylistPage() {
       patchedPlaylist,
     ];
 
-    localStorage.setItem(
-      "savedPlaylists",
-      JSON.stringify(patchedPlaylistCollection)
-    );
-
-    setUpdate(!update);
-  }
-
-  function renderAddToPlaylistItems() {
-    if (playlists) {
-      const playlistItems = playlists.map((playlist) => {
-        return (
-          <AddToPlaylistItem
-            onAddToPlaylistClick={onAddToPlaylistClick}
-            key={playlist.id}
-            data={playlist}
-            trackId={id}
-          />
-        );
-      });
-      return playlistItems;
-    }
-    return <div className="Row--flat">NO PLAYLIST CREATED YET...</div>;
+    setPlaylists(patchedPlaylistCollection);
   }
 
   return (

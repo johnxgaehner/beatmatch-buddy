@@ -1,37 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useHistory, useParams } from "react-router-dom";
 
 import AddTrackOnTheFlyItem from "../components/AddTrackOnTheFlyItem";
 import TrackItem from "../components/TrackItem";
+import useLocalStorage from "../services/useLocalStorage";
 
 import "./PlaylistDetailPage.css";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
 
-  const [tracks, setTracks] = useState();
-  const [playlists, setPlaylists] = useState();
+  const [tracks] = useLocalStorage("savedTracks", []);
+  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
+
   const [playlist, setPlaylist] = useState();
 
   const [editMode, setEditMode] = useState(false);
   const [addTracks, setAddTracks] = useState(false);
 
-  const [update, setUpdate] = useState(true);
-
   const history = useHistory();
 
-  // --- ON FIRST RENDER
   useEffect(() => {
-    const savedTracks = JSON.parse(localStorage.getItem("savedTracks"));
-    const savedPlaylists = JSON.parse(localStorage.getItem("savedPlaylists"));
-    const requestedPlaylist = savedPlaylists.filter((playlist) => {
+    const requestedPlaylist = playlists.filter((playlist) => {
       return playlist.id === playlistId;
     });
-    setTracks(savedTracks);
-    setPlaylists(savedPlaylists);
     setPlaylist(requestedPlaylist);
-  }, [playlistId, update]);
+  }, [playlists, playlistId]);
 
   function renderTracks() {
     if (tracks && playlist) {
@@ -66,10 +62,7 @@ export default function PlaylistDetailPage() {
       const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
         return playlist.id !== playlistId;
       });
-      localStorage.setItem(
-        "savedPlaylists",
-        JSON.stringify(playlistsWithoutClickedPlaylist)
-      );
+      setPlaylists(playlistsWithoutClickedPlaylist);
       history.goBack();
     }
   }
@@ -116,12 +109,7 @@ export default function PlaylistDetailPage() {
       patchedPlaylist,
     ];
 
-    localStorage.setItem(
-      "savedPlaylists",
-      JSON.stringify(patchedPlaylistCollection)
-    );
-
-    setUpdate(!update);
+    setPlaylists(patchedPlaylistCollection);
   }
 
   // --- EDIT MODE
@@ -140,12 +128,7 @@ export default function PlaylistDetailPage() {
       patchedPlaylist,
     ];
 
-    localStorage.setItem(
-      "savedPlaylists",
-      JSON.stringify(patchedPlaylistCollection)
-    );
-
-    setUpdate(!update);
+    setPlaylists(patchedPlaylistCollection);
   }
 
   function handleOnDragEnd(result) {
@@ -164,12 +147,7 @@ export default function PlaylistDetailPage() {
       patchedPlaylist,
     ];
 
-    localStorage.setItem(
-      "savedPlaylists",
-      JSON.stringify(patchedPlaylistCollection)
-    );
-
-    setUpdate(!update);
+    setPlaylists(patchedPlaylistCollection);
   }
 
   return (
