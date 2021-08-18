@@ -1,20 +1,9 @@
 import { Link } from "react-router-dom";
 import PlaylistItem from "../components/PlaylistItem";
-import { useState, useEffect } from "react";
+import useLocalStorage from "../services/useLocalStorage";
 
 export default function PlaylistsPage() {
-  const [playlists, setPlaylists] = useState();
-
-  useEffect(() => {
-    const storedPlaylists = JSON.parse(localStorage.getItem("savedPlaylists"));
-    storedPlaylists
-      ? setPlaylists(
-          storedPlaylists.sort(function (a, b) {
-            return new Date(a.createdAt) - new Date(b.createdAt);
-          })
-        )
-      : setPlaylists(storedPlaylists);
-  }, []);
+  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", "[]");
 
   function renderPlaylistItems() {
     if (!playlists || playlists.length === 0) {
