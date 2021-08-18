@@ -57,9 +57,42 @@ export default function PlaylistDetailPage() {
 
   function renderCollection() {
     const addTrackOnTheFlyItems = tracks.map((track) => {
-      return <AddTrackOnTheFlyItem key={track.id} data={track} />;
+      return (
+        <AddTrackOnTheFlyItem
+          key={track.id}
+          data={track}
+          playlist={playlist[0]}
+          onAddToPlaylistClick={onAddToPlaylistClick}
+        />
+      );
     });
     return addTrackOnTheFlyItems;
+  }
+
+  function onAddToPlaylistClick(clickedTrackId) {
+    const patchedTrackIds = [...playlist[0].trackIds];
+
+    !patchedTrackIds.includes(clickedTrackId)
+      ? patchedTrackIds.push(clickedTrackId)
+      : patchedTrackIds.splice(patchedTrackIds.indexOf(clickedTrackId), 1);
+
+    const patchedPlaylist = { ...playlist[0], trackIds: patchedTrackIds };
+
+    const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
+      return playlist.id !== playlistId;
+    });
+
+    const patchedPlaylistCollection = [
+      ...playlistsWithoutClickedPlaylist,
+      patchedPlaylist,
+    ];
+
+    localStorage.setItem(
+      "savedPlaylists",
+      JSON.stringify(patchedPlaylistCollection)
+    );
+
+    setUpdate(!update);
   }
 
   function handleDeleteButton() {
