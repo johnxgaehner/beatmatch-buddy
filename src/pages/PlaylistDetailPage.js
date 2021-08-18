@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useHistory, useParams } from "react-router-dom";
-import "./PlaylistDetailPage.css";
 
-import TrackItem from "../components/TrackItem";
 import AddTrackOnTheFlyItem from "../components/AddTrackOnTheFlyItem";
+import TrackItem from "../components/TrackItem";
+
+import "./PlaylistDetailPage.css";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
@@ -20,6 +21,7 @@ export default function PlaylistDetailPage() {
 
   const history = useHistory();
 
+  // --- ON FIRST RENDER
   useEffect(() => {
     const savedTracks = JSON.parse(localStorage.getItem("savedTracks"));
     const savedPlaylists = JSON.parse(localStorage.getItem("savedPlaylists"));
@@ -55,6 +57,33 @@ export default function PlaylistDetailPage() {
     }
   }
 
+  // --- DELETE PLAYLIST
+  function handleDeleteButton() {
+    const confirmBox = window.confirm(
+      "Do you really want to delete this playlist?"
+    );
+    if (confirmBox === true) {
+      const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
+        return playlist.id !== playlistId;
+      });
+      localStorage.setItem(
+        "savedPlaylists",
+        JSON.stringify(playlistsWithoutClickedPlaylist)
+      );
+      history.goBack();
+    }
+  }
+
+  // --- ENTER EDIT MODES
+  function handleEditButton() {
+    setEditMode(!editMode);
+  }
+
+  function handleAddButton() {
+    setAddTracks(!addTracks);
+  }
+
+  // --- ADD TRACKS MODE
   function renderCollection() {
     const addTrackOnTheFlyItems = tracks.map((track) => {
       return (
@@ -95,30 +124,7 @@ export default function PlaylistDetailPage() {
     setUpdate(!update);
   }
 
-  function handleDeleteButton() {
-    const confirmBox = window.confirm(
-      "Do you really want to delete this playlist?"
-    );
-    if (confirmBox === true) {
-      const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
-        return playlist.id !== playlistId;
-      });
-      localStorage.setItem(
-        "savedPlaylists",
-        JSON.stringify(playlistsWithoutClickedPlaylist)
-      );
-      history.goBack();
-    }
-  }
-
-  function handleEditButton() {
-    setEditMode(!editMode);
-  }
-
-  function handleAddButton() {
-    setAddTracks(!addTracks);
-  }
-
+  // --- EDIT MODE
   function onRemoveClick(trackId) {
     const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
       return playlist.id !== playlistId;
