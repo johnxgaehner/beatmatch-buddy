@@ -1,15 +1,15 @@
 import { ReactComponent as IconSelectionEmpty } from "../assets/icon_selection_empty.svg";
 import "./AddTrackOnTheFlyItem.css";
 
-export default function AddTrackOnTheFlyItem() {
+export default function AddTrackOnTheFlyItem({ data }) {
   return (
     <div className="AddTrackOnTheFlyItem">
       <IconSelectionEmpty />
       <ul>
-        <li>Smudge</li>
-        <li>Eden Burns</li>
-        <li>Big Beat Manifesto</li>
-        <li>130BPM</li>
+        <li>{data.trackTitle}</li>
+        <li>{data.artistName}</li>
+        <li>{data.recordTitle}</li>
+        <li>{data.bpm}BPM</li>
       </ul>
     </div>
   );

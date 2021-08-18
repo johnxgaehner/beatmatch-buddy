@@ -57,7 +57,7 @@ export default function PlaylistDetailPage() {
 
   function renderCollection() {
     const addTrackOnTheFlyItems = tracks.map((track) => {
-      return <AddTrackOnTheFlyItem />;
+      return <AddTrackOnTheFlyItem key={track.id} data={track} />;
     });
     return addTrackOnTheFlyItems;
   }
