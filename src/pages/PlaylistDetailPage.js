@@ -171,6 +171,7 @@ export default function PlaylistDetailPage() {
       <div className="Row--flat --accented">
         {playlist ? playlist[0].playlistDescription : "loading description"}
       </div>
+
       <div className="Row--flat --accented --space-between">
         {!editMode ? (
           <button onClick={handleAddButton}>
@@ -181,9 +182,12 @@ export default function PlaylistDetailPage() {
             Delete Playlist
           </button>
         )}
-        <button onClick={handleEditButton}>
-          {!editMode ? "Edit List" : "Done"}
-        </button>
+
+        {!addTracks && (
+          <button onClick={handleEditButton}>
+            {!editMode ? "Edit List" : "Done"}
+          </button>
+        )}
       </div>
 
       {!addTracks ? (
