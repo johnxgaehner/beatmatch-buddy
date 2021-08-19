@@ -27,8 +27,24 @@ export default function AnalysePage() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (
+      newTrack.trackTitle.trim() === "" ||
+      newTrack.artistName.trim() === "" ||
+      newTrack.recordTitle.trim() === ""
+    ) {
+      alert("Please write more than just a few spaces.");
+      setNewTrack({
+        ...newTrack,
+        trackTitle: "",
+        artistName: "",
+        recordTitle: "",
+      });
+      return;
+    }
+
     saveInLocalStorage("savedTracks", newTrack);
-    showToastSaved("TRACK SAVED");
+    showToastSaved("SAVED IN YOUR COLLECTION!");
     resetForm();
   }
 
@@ -56,6 +72,7 @@ export default function AnalysePage() {
             name="trackTitle"
             id="trackTitle"
             placeholder="ENTER TRACK"
+            maxLength="28"
             required
           />
         </div>
@@ -68,6 +85,7 @@ export default function AnalysePage() {
             name="artistName"
             id="artistName"
             placeholder="ENTER ARTIST"
+            maxLength="28"
             required
           />
         </div>
@@ -80,6 +98,7 @@ export default function AnalysePage() {
             name="recordTitle"
             id="recordTitle"
             placeholder="ENTER RECORD"
+            maxLength="28"
             required
           />
         </div>

@@ -22,6 +22,9 @@
   display: flex;
   font-size: 0.9rem;
   line-height: 0.9rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .TrackItem__Index {

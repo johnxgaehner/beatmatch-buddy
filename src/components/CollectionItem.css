@@ -28,6 +28,11 @@
   line-height: 0.9rem;
 }
 
+.CollectionItem__RecordPlaceholder {
+  height: 55px;
+  flex-shrink: 0;
+}
+
 .CollectionItem__AddIcon {
   flex-shrink: 0;
 }
