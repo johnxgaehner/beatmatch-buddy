@@ -113,6 +113,23 @@ export default function PlaylistDetailPage() {
   }
 
   // --- EDIT MODE
+
+  function handlePlaylistNameChange(event) {
+    const input = event.target;
+    const value = input.value;
+    const key = input.name;
+    const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
+      return playlist.id !== playlistId;
+    });
+    const patchedPlaylist = { ...playlist[0], [key]: value };
+    const patchedPlaylistCollection = [
+      ...playlistsWithoutClickedPlaylist,
+      patchedPlaylist,
+    ];
+
+    setPlaylists(patchedPlaylistCollection);
+  }
+
   function onRemoveClick(trackId) {
     const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
       return playlist.id !== playlistId;
@@ -153,14 +170,35 @@ export default function PlaylistDetailPage() {
   return (
     <section>
       {playlist ? (
-        <>
-          <h1 className="PDP__PlaylistName">{playlist[0].playlistName}</h1>
-          <div className="Row--flat --accented">
-            {playlist[0].playlistDescription}
-          </div>
-        </>
+        !editMode ? (
+          <>
+            <h1 className="PDP__PlaylistName">{playlist[0].playlistName}</h1>
+            <div className="Row--flat --accented">
+              {playlist[0].playlistDescription}
+            </div>
+          </>
+        ) : (
+          <>
+            <input
+              onChange={handlePlaylistNameChange}
+              name="playlistName"
+              id="playlistName"
+              className="PDP__PlaylistName"
+              type="text"
+              placeholder={playlist[0].playlistName}
+            />
+            <input
+              onChange={handlePlaylistNameChange}
+              name="playlistDescription"
+              id="playlistDescription"
+              className="Row--flat --accented"
+              type="text"
+              placeholder={playlist[0].playlistDescription}
+            />
+          </>
+        )
       ) : (
-        <p>loading description</p>
+        <p>loading...</p>
       )}
 
       <div className="Row--flat --accented --space-between">
