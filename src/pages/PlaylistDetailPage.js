@@ -149,22 +149,24 @@ export default function PlaylistDetailPage() {
   }
 
   function handleOnDragEnd(result) {
-    const trackOrder = [...playlist[0].trackIds];
-    const [reorderedTracks] = trackOrder.splice(result.source.index, 1);
-    trackOrder.splice(result.destination.index, 0, reorderedTracks);
+    if (result.destination) {
+      const trackOrder = [...playlist[0].trackIds];
+      const [reorderedTracks] = trackOrder.splice(result.source.index, 1);
+      trackOrder.splice(result.destination.index, 0, reorderedTracks);
 
-    const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
-      return playlist.id !== playlistId;
-    });
+      const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
+        return playlist.id !== playlistId;
+      });
 
-    const patchedPlaylist = { ...playlist[0], trackIds: trackOrder };
+      const patchedPlaylist = { ...playlist[0], trackIds: trackOrder };
 
-    const patchedPlaylistCollection = [
-      ...playlistsWithoutClickedPlaylist,
-      patchedPlaylist,
-    ];
+      const patchedPlaylistCollection = [
+        ...playlistsWithoutClickedPlaylist,
+        patchedPlaylist,
+      ];
 
-    setPlaylists(patchedPlaylistCollection);
+      setPlaylists(patchedPlaylistCollection);
+    }
   }
 
   return (
