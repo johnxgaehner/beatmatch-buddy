@@ -15,24 +15,18 @@
   left: 2rem;
   font-style: italic;
   opacity: 0.6;
+  width: 320px;
 }
 .PDP__PlaylistName--edit:focus {
   opacity: 1;
   color: black;
 }
 
-.PDP__PlaylistNameChangeInput {
-  padding: 0 1rem;
-  height: 41px;
-  border-bottom: 1px solid black;
-  display: flex;
-  align-items: center;
-  transition: 0.3s;
-  text-decoration: none;
-  color: var(--color-accent-01);
+.PDP__PlaylistDescriptionChangeInput {
   opacity: 0.6;
+  color: var(--color-accent-01);
 }
 
-.PDP__PlaylistNameChangeInput:focus {
+.PDP__PlaylistDescriptionChangeInput:focus {
   opacity: 1;
 }

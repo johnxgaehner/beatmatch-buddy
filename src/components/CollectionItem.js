@@ -1,5 +1,5 @@
 import "./CollectionItem.css";
-import { ReactComponent as IconPlus } from "../assets/icon_plus.svg";
+import { ReactComponent as IconPlusCircle } from "../assets/icon_plus-circle.svg";
 import { ReactComponent as RecordPlaceholder } from "../assets/record_placeholder.svg";
 import { Link } from "react-router-dom";
 
@@ -18,7 +18,7 @@ export default function CollectionItem({ data }) {
         </div>
       </div>
       <Link to={`/collection/add-to-playlist/${data.id}`}>
-        <IconPlus className="CollectionItem__AddIcon" />
+        <IconPlusCircle className="CollectionItem__AddIcon" />
       </Link>
     </div>
   );

@@ -103,10 +103,10 @@ export default function AnalysePage() {
           />
         </div>
         <div className="Row--flat --space-between">
-          <button type="submit">SUBMIT</button>
           <button type="reset" onClick={resetForm}>
             RESET
           </button>
+          <button type="submit">SUBMIT</button>
         </div>
       </form>
     </section>

@@ -19,3 +19,14 @@
   text-decoration: none;
   transition: 0.3s;
 }
+
+.ATPP__DeleteTrack {
+  color: var(--color-alert-01);
+  padding: 0 1rem;
+  min-height: 42px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: 0.3s;
+}

@@ -32,7 +32,7 @@ export default function PlaylistDetailPage() {
 
   function renderTracks() {
     if (tracks && playlist) {
-      if (playlist.trackIds.length === 0) {
+      if (playlist.trackIds.length === 0 || tracks.length === 0) {
         return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
       }
       const includedTracks = playlist.trackIds.map((trackId) => {
@@ -59,7 +59,7 @@ export default function PlaylistDetailPage() {
     const confirmBox = window.confirm(
       "Do you really want to delete this playlist?"
     );
-    if (confirmBox === true) {
+    if (confirmBox) {
       const playlistsWithoutCurrentPlaylist = playlists.filter((playlist) => {
         return playlist.id !== playlistId;
       });
@@ -79,6 +79,9 @@ export default function PlaylistDetailPage() {
 
   // --- ADD TRACKS MODE
   function renderCollection() {
+    if (tracks.length === 0) {
+      return <div className="Row--flat">YOUR COLLECTION IS EMPTY...</div>;
+    }
     const addTrackOnTheFlyItems = tracks.map((track) => {
       return (
         <AddTrackOnTheFlyItem
@@ -170,24 +173,28 @@ export default function PlaylistDetailPage() {
         </>
       ) : (
         <>
-          <input
-            onChange={handlePlaylistNameChange}
-            name="playlistName"
-            id="playlistName"
-            className="PDP__PlaylistName--edit"
-            type="text"
-            placeholder={playlist.playlistName}
-            value={playlist.playlistName}
-          />
-          <input
-            onChange={handlePlaylistNameChange}
-            name="playlistDescription"
-            id="playlistDescription"
-            className="PDP__PlaylistNameChangeInput"
-            type="text"
-            placeholder={playlist.playlistDescription}
-            value={playlist.playlistDescription}
-          />
+          <div>
+            <input
+              onChange={handlePlaylistNameChange}
+              name="playlistName"
+              id="playlistName"
+              className="PDP__PlaylistName--edit"
+              type="text"
+              placeholder={playlist.playlistName}
+              value={playlist.playlistName}
+            />
+          </div>
+          <div className="Row--flat">
+            <input
+              onChange={handlePlaylistNameChange}
+              name="playlistDescription"
+              id="playlistDescription"
+              className="PDP__PlaylistDescriptionChangeInput"
+              type="text"
+              placeholder={playlist.playlistDescription}
+              value={playlist.playlistDescription}
+            />
+          </div>
         </>
       )}
 
