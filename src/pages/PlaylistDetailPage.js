@@ -183,17 +183,19 @@ export default function PlaylistDetailPage() {
               onChange={handlePlaylistNameChange}
               name="playlistName"
               id="playlistName"
-              className="PDP__PlaylistName"
+              className="PDP__PlaylistName--edit"
               type="text"
               placeholder={playlist[0].playlistName}
+              value={playlist[0].playlistName}
             />
             <input
               onChange={handlePlaylistNameChange}
               name="playlistDescription"
               id="playlistDescription"
-              className="Row--flat --accented"
+              className="PDP__PlaylistNameChangeInput"
               type="text"
               placeholder={playlist[0].playlistDescription}
+              value={playlist[0].playlistDescription}
             />
           </>
         )
