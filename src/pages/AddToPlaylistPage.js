@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import AddToPlaylistItem from "../components/AddToPlaylistItem";
 import updatePlaylists from "../services/updatePlaylists";
 import useLocalStorage from "../services/useLocalStorage";
@@ -8,6 +8,9 @@ import "./AddToPlaylistPage.css";
 export default function AddToPlaylistPage() {
   const { id } = useParams();
   const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
+  const [tracks, setTracks] = useLocalStorage("savedTracks", []);
+
+  const history = useHistory();
 
   function renderAddToPlaylistItems() {
     if (playlists && playlists.length > 0) {
@@ -56,11 +59,29 @@ export default function AddToPlaylistPage() {
     setPlaylists(updatedPlaylists);
   }
 
+  function onDeleteTrackClick() {
+    const confirmBox = window.confirm(
+      "Do you really want to delete this track?"
+    );
+    if (confirmBox === true) {
+      const collection = [...tracks];
+      const patchedCollection = collection.filter((track) => {
+        return track.id !== id;
+      });
+      setTracks(patchedCollection);
+      history.goBack();
+    }
+  }
+
   return (
     <section className="AddToPlaylistPage">
+      <div onClick={onDeleteTrackClick} className="ATPP__DeleteTrack">
+        <p>DELETE TRACK</p>
+      </div>
       <Link to="/create-new-playlist" className="Row--flat --accented">
         <p>CREATE NEW PLAYLIST</p>
       </Link>
+
       {renderAddToPlaylistItems()}
     </section>
   );
