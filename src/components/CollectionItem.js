@@ -1,13 +1,13 @@
 import "./CollectionItem.css";
-import placeholder from "../images/artwork_placeholder.png";
 import { ReactComponent as IconPlus } from "../assets/icon_plus.svg";
+import { ReactComponent as RecordPlaceholder } from "../assets/record_placeholder.svg";
 import { Link } from "react-router-dom";
 
 export default function CollectionItem({ data }) {
   return (
     <div className="CollectionItem">
       <div className="CollectionItem--left">
-        <img src={placeholder} alt={`${data.trackTitle} artwork`} />
+        <RecordPlaceholder className="CollectionItem__RecordPlaceholder" />
         <div>
           <ul>
             <li>{data.trackTitle}</li>

@@ -44,7 +44,7 @@ export default function AnalysePage() {
     }
 
     saveInLocalStorage("savedTracks", newTrack);
-    showToastSaved("TRACK SAVED");
+    showToastSaved("SAVED IN YOUR COLLECTION!");
     resetForm();
   }
 
