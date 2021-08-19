@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 import AddTrackOnTheFlyItem from "../components/AddTrackOnTheFlyItem";
 import TrackItem from "../components/TrackItem";
+import updatePlaylists from "../services/updatePlaylists";
 import useLocalStorage from "../services/useLocalStorage";
 
 import "./PlaylistDetailPage.css";
@@ -23,7 +24,7 @@ export default function PlaylistDetailPage() {
   const history = useHistory();
 
   useEffect(() => {
-    const requestedPlaylist = playlists.filter((playlist) => {
+    const requestedPlaylist = playlists.find((playlist) => {
       return playlist.id === playlistId;
     });
     setPlaylist(requestedPlaylist);
@@ -31,10 +32,10 @@ export default function PlaylistDetailPage() {
 
   function renderTracks() {
     if (tracks && playlist) {
-      if (playlist[0].trackIds.length === 0) {
+      if (playlist.trackIds.length === 0) {
         return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
       }
-      const includedTracks = playlist[0].trackIds.map((trackId) => {
+      const includedTracks = playlist.trackIds.map((trackId) => {
         const found = tracks.find((element) => element.id === trackId);
         return found;
       });
@@ -59,10 +60,10 @@ export default function PlaylistDetailPage() {
       "Do you really want to delete this playlist?"
     );
     if (confirmBox === true) {
-      const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
+      const playlistsWithoutCurrentPlaylist = playlists.filter((playlist) => {
         return playlist.id !== playlistId;
       });
-      setPlaylists(playlistsWithoutClickedPlaylist);
+      setPlaylists(playlistsWithoutCurrentPlaylist);
       history.goBack();
     }
   }
@@ -83,7 +84,7 @@ export default function PlaylistDetailPage() {
         <AddTrackOnTheFlyItem
           key={track.id}
           trackInfo={track}
-          playlist={playlist[0]}
+          playlist={playlist}
           onAddToPlaylistClick={onAddToPlaylistClick}
         />
       );
@@ -92,75 +93,102 @@ export default function PlaylistDetailPage() {
   }
 
   function onAddToPlaylistClick(clickedTrackId) {
-    const patchedTrackIds = [...playlist[0].trackIds];
+    const patchedTrackIds = [...playlist.trackIds];
 
     !patchedTrackIds.includes(clickedTrackId)
       ? patchedTrackIds.push(clickedTrackId)
       : patchedTrackIds.splice(patchedTrackIds.indexOf(clickedTrackId), 1);
 
-    const patchedPlaylist = { ...playlist[0], trackIds: patchedTrackIds };
+    const patchedPlaylist = { ...playlist, trackIds: patchedTrackIds };
 
-    const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
-      return playlist.id !== playlistId;
-    });
-
-    const patchedPlaylistCollection = [
-      ...playlistsWithoutClickedPlaylist,
-      patchedPlaylist,
-    ];
-
-    setPlaylists(patchedPlaylistCollection);
+    const updatedPlaylists = updatePlaylists(
+      playlists,
+      playlistId,
+      patchedPlaylist
+    );
+    setPlaylists(updatedPlaylists);
   }
 
   // --- EDIT MODE
-  function onRemoveClick(trackId) {
-    const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
-      return playlist.id !== playlistId;
-    });
 
-    const newTrackIds = [...playlist[0].trackIds];
+  function handlePlaylistNameChange(event) {
+    const input = event.target;
+    const value = input.value;
+    const key = input.name;
+
+    const patchedPlaylist = { ...playlist, [key]: value };
+
+    const updatedPlaylists = updatePlaylists(
+      playlists,
+      playlistId,
+      patchedPlaylist
+    );
+    setPlaylists(updatedPlaylists);
+  }
+
+  function onRemoveClick(trackId) {
+    const newTrackIds = [...playlist.trackIds];
     newTrackIds.splice(newTrackIds.indexOf(trackId), 1);
 
-    const patchedPlaylist = { ...playlist[0], trackIds: newTrackIds };
+    const patchedPlaylist = { ...playlist, trackIds: newTrackIds };
 
-    const patchedPlaylistCollection = [
-      ...playlistsWithoutClickedPlaylist,
-      patchedPlaylist,
-    ];
-
-    setPlaylists(patchedPlaylistCollection);
+    const updatedPlaylists = updatePlaylists(
+      playlists,
+      playlistId,
+      patchedPlaylist
+    );
+    setPlaylists(updatedPlaylists);
   }
 
   function handleOnDragEnd(result) {
-    const trackOrder = [...playlist[0].trackIds];
-    const [reorderedTracks] = trackOrder.splice(result.source.index, 1);
-    trackOrder.splice(result.destination.index, 0, reorderedTracks);
+    if (result.destination) {
+      const trackOrder = [...playlist.trackIds];
+      const [reorderedTracks] = trackOrder.splice(result.source.index, 1);
+      trackOrder.splice(result.destination.index, 0, reorderedTracks);
 
-    const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
-      return playlist.id !== playlistId;
-    });
+      const patchedPlaylist = { ...playlist, trackIds: trackOrder };
 
-    const patchedPlaylist = { ...playlist[0], trackIds: trackOrder };
-
-    const patchedPlaylistCollection = [
-      ...playlistsWithoutClickedPlaylist,
-      patchedPlaylist,
-    ];
-
-    setPlaylists(patchedPlaylistCollection);
+      const updatedPlaylists = updatePlaylists(
+        playlists,
+        playlistId,
+        patchedPlaylist
+      );
+      setPlaylists(updatedPlaylists);
+    }
   }
 
   return (
     <section>
-      {playlist ? (
+      {!playlist || playlist === [] ? (
+        <p>loading...</p>
+      ) : !editMode ? (
         <>
-          <h1 className="PDP__PlaylistName">{playlist[0].playlistName}</h1>
+          <h1 className="PDP__PlaylistName">{playlist.playlistName}</h1>
           <div className="Row--flat --accented">
-            {playlist[0].playlistDescription}
+            {playlist.playlistDescription}
           </div>
         </>
       ) : (
-        <p>loading description</p>
+        <>
+          <input
+            onChange={handlePlaylistNameChange}
+            name="playlistName"
+            id="playlistName"
+            className="PDP__PlaylistName--edit"
+            type="text"
+            placeholder={playlist.playlistName}
+            value={playlist.playlistName}
+          />
+          <input
+            onChange={handlePlaylistNameChange}
+            name="playlistDescription"
+            id="playlistDescription"
+            className="PDP__PlaylistNameChangeInput"
+            type="text"
+            placeholder={playlist.playlistDescription}
+            value={playlist.playlistDescription}
+          />
+        </>
       )}
 
       <div className="Row--flat --accented --space-between">

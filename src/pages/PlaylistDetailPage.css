@@ -8,3 +8,31 @@
   left: 2rem;
   font-style: italic;
 }
+
+.PDP__PlaylistName--edit {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  font-style: italic;
+  opacity: 0.6;
+}
+.PDP__PlaylistName--edit:focus {
+  opacity: 1;
+  color: black;
+}
+
+.PDP__PlaylistNameChangeInput {
+  padding: 0 1rem;
+  height: 41px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+  text-decoration: none;
+  color: var(--color-accent-01);
+  opacity: 0.6;
+}
+
+.PDP__PlaylistNameChangeInput:focus {
+  opacity: 1;
+}

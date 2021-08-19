@@ -1,6 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import AddToPlaylistItem from "../components/AddToPlaylistItem";
+import updatePlaylists from "../services/updatePlaylists";
 import useLocalStorage from "../services/useLocalStorage";
+
 import "./AddToPlaylistPage.css";
 
 export default function AddToPlaylistPage() {
@@ -35,10 +37,6 @@ export default function AddToPlaylistPage() {
 
     const clickedPlaylist = clickedPlaylistInArray[0];
 
-    const playlistsWithoutClickedPlaylist = playlists.filter((playlist) => {
-      return playlist.id !== clickedPlaylistId;
-    });
-
     const patchedTrackIds = [...clickedPlaylist.trackIds];
 
     !patchedTrackIds.includes(id)
@@ -50,12 +48,12 @@ export default function AddToPlaylistPage() {
       trackIds: patchedTrackIds,
     };
 
-    const patchedPlaylistCollection = [
-      ...playlistsWithoutClickedPlaylist,
-      patchedPlaylist,
-    ];
-
-    setPlaylists(patchedPlaylistCollection);
+    const updatedPlaylists = updatePlaylists(
+      playlists,
+      clickedPlaylist.id,
+      patchedPlaylist
+    );
+    setPlaylists(updatedPlaylists);
   }
 
   return (
