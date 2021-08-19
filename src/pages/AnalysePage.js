@@ -27,6 +27,22 @@ export default function AnalysePage() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (
+      newTrack.trackTitle.trim() === "" ||
+      newTrack.artistName.trim() === "" ||
+      newTrack.recordTitle.trim() === ""
+    ) {
+      alert("Please write more than just a few spaces.");
+      setNewTrack({
+        ...newTrack,
+        trackTitle: "",
+        artistName: "",
+        recordTitle: "",
+      });
+      return;
+    }
+
     saveInLocalStorage("savedTracks", newTrack);
     showToastSaved("TRACK SAVED");
     resetForm();

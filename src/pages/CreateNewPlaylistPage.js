@@ -25,6 +25,20 @@ export default function CreateNewPlaylistPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (
+      newPlaylist.playlistName.trim() === "" ||
+      newPlaylist.playlistDescription.trim() === ""
+    ) {
+      alert("Please write more than just a few spaces.");
+      setNewPlaylist({
+        ...newPlaylist,
+        playlistName: "",
+        playlistDescription: "",
+      });
+      return;
+    }
+
     saveInLocalStorage("savedPlaylists", newPlaylist);
     showToastSaved("PLAYLIST SAVED");
     resetForm();
