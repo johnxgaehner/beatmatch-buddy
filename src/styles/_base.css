@@ -22,6 +22,7 @@ input:focus {
 
 button {
   all: unset;
+  cursor: pointer;
 }
 
 button:focus {

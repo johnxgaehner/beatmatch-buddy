@@ -63,7 +63,7 @@ export default function AddToPlaylistPage() {
     const confirmBox = window.confirm(
       "Do you really want to delete this track?"
     );
-    if (confirmBox === true) {
+    if (confirmBox) {
       const collection = [...tracks];
       const patchedCollection = collection.filter((track) => {
         return track.id !== id;
