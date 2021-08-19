@@ -72,6 +72,7 @@ export default function AnalysePage() {
             name="trackTitle"
             id="trackTitle"
             placeholder="ENTER TRACK"
+            maxLength="28"
             required
           />
         </div>
@@ -84,6 +85,7 @@ export default function AnalysePage() {
             name="artistName"
             id="artistName"
             placeholder="ENTER ARTIST"
+            maxLength="28"
             required
           />
         </div>
@@ -96,6 +98,7 @@ export default function AnalysePage() {
             name="recordTitle"
             id="recordTitle"
             placeholder="ENTER RECORD"
+            maxLength="28"
             required
           />
         </div>

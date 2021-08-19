@@ -66,6 +66,7 @@ export default function CreateNewPlaylistPage() {
             name="playlistName"
             id="playlistName"
             placeholder="ENTER PLAYLIST NAME"
+            maxLength="28"
             required
           />
         </div>
