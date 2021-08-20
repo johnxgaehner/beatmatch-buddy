@@ -2,19 +2,26 @@ import { ReactComponent as IconSelectionEmpty } from "../assets/icon_circle_empt
 import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_filled.svg";
 import "./AddToPlaylistItem.css";
 
-export default function PlaylistItem({ data, trackId, onAddToPlaylistClick }) {
-  function handleButtonClick() {
-    onAddToPlaylistClick(data.id);
+export default function PlaylistItem({
+  playlist,
+  trackId,
+  onAddToPlaylistClick,
+}) {
+  function handleAddToPlaylistClick() {
+    onAddToPlaylistClick(playlist.id);
   }
 
   return (
-    <div className="Row--flat AddToPlaylistItem" onClick={handleButtonClick}>
-      {data.trackIds.includes(trackId) ? (
+    <div
+      className="Row--flat AddToPlaylistItem"
+      onClick={handleAddToPlaylistClick}
+    >
+      {playlist.trackIds.includes(trackId) ? (
         <IconSelectionFilled className="AddToPlaylistItem__SelectionIcon" />
       ) : (
         <IconSelectionEmpty className="AddToPlaylistItem__SelectionIcon" />
       )}
-      <p>{data.playlistName}</p>
+      <p>{playlist.playlistName}</p>
     </div>
   );
 }
