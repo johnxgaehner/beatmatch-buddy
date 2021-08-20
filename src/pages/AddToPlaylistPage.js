@@ -64,11 +64,18 @@ export default function AddToPlaylistPage() {
       "Do you really want to delete this track?"
     );
     if (confirmBox) {
-      const collection = [...tracks];
-      const patchedCollection = collection.filter((track) => {
+      const trackCollection = [...tracks];
+      const patchedTrackCollection = trackCollection.filter((track) => {
         return track.id !== id;
       });
-      setTracks(patchedCollection);
+      setTracks(patchedTrackCollection);
+
+      const patchedPlaylistCollection = [...playlists];
+      patchedPlaylistCollection.forEach((playlist) => {
+        playlist.trackIds.splice(playlist.trackIds.indexOf(id), 1);
+      });
+      setPlaylists(patchedPlaylistCollection);
+
       history.goBack();
     }
   }
