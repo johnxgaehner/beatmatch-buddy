@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CollectionFilterSection from "../components/CollectionFilterSection";
 import CollectionItem from "../components/CollectionItem";
-import useLocalStorage from "../services/useLocalStorage";
+import useLocalStorage from "../hooks/useLocalStorage";
 import "./CollectionPage.css";
 
 export default function CollectionPage() {

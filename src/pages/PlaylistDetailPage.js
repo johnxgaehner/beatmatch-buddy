@@ -6,7 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 import AddTrackOnTheFlyItem from "../components/AddTrackOnTheFlyItem";
 import TrackItem from "../components/TrackItem";
 import updatePlaylists from "../services/updatePlaylists";
-import useLocalStorage from "../services/useLocalStorage";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 import "./PlaylistDetailPage.css";
 

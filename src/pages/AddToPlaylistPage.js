@@ -1,7 +1,7 @@
 import { Link, useHistory, useParams } from "react-router-dom";
 import AddToPlaylistItem from "../components/AddToPlaylistItem";
 import updatePlaylists from "../services/updatePlaylists";
-import useLocalStorage from "../services/useLocalStorage";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 import "./AddToPlaylistPage.css";
 
