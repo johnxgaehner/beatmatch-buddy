@@ -1,5 +1,5 @@
-import "./ProjectInfoPage.css";
 import { ReactComponent as IconSmile } from "../assets/icon_smile.svg";
+import "./ProjectInfoPage.css";
 
 export default function ProjectInfoPage() {
   return (

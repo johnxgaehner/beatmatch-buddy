@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import "./HomePage.css";
 import { ReactComponent as IconArrow } from "../assets/icon_arrow.svg";
+import "./HomePage.css";
 
 export default function HomePage() {
   return (

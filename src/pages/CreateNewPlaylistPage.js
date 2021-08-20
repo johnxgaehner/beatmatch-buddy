@@ -1,9 +1,9 @@
 import { useState } from "react";
-import "./CreateNewPlaylistPage.css";
+import { useHistory } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import saveInLocalStorage from "../services/saveInLocalStorage";
 import showToastSaved from "../services/showToastSaved";
-import { v4 as uuidv4 } from "uuid";
-import { useHistory } from "react-router-dom";
+import "./CreateNewPlaylistPage.css";
 
 export default function CreateNewPlaylistPage() {
   const history = useHistory();
@@ -16,7 +16,7 @@ export default function CreateNewPlaylistPage() {
     createdAt: new Date(),
   });
 
-  function handleOnChange(event) {
+  function handleInputChange(event) {
     const key = event.target.name;
     const input = event.target.value;
     const newPlaylistData = { ...newPlaylist, id: uuidv4(), [key]: input };
@@ -60,7 +60,7 @@ export default function CreateNewPlaylistPage() {
       <form onSubmit={handleSubmit}>
         <div className="Row--flat">
           <input
-            onChange={handleOnChange}
+            onChange={handleInputChange}
             value={newPlaylist.playlistName}
             type="text"
             name="playlistName"
@@ -72,7 +72,7 @@ export default function CreateNewPlaylistPage() {
         </div>
         <div className="Row--flat">
           <input
-            onChange={handleOnChange}
+            onChange={handleInputChange}
             value={newPlaylist.playlistDescription}
             type="text"
             name="playlistDescription"

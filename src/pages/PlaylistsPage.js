@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import PlaylistItem from "../components/PlaylistItem";
-import useLocalStorage from "../services/useLocalStorage";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function PlaylistsPage() {
   const [playlists] = useLocalStorage("savedPlaylists", []);

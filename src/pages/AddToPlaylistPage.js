@@ -1,16 +1,14 @@
 import { Link, useHistory, useParams } from "react-router-dom";
 import AddToPlaylistItem from "../components/AddToPlaylistItem";
 import updatePlaylists from "../services/updatePlaylists";
-import useLocalStorage from "../services/useLocalStorage";
-
+import useLocalStorage from "../hooks/useLocalStorage";
 import "./AddToPlaylistPage.css";
 
 export default function AddToPlaylistPage() {
   const { id } = useParams();
-  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
-  const [tracks, setTracks] = useLocalStorage("savedTracks", []);
-
   const history = useHistory();
+  const [tracks, setTracks] = useLocalStorage("savedTracks", []);
+  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
 
   function renderAddToPlaylistItems() {
     if (playlists && playlists.length > 0) {
@@ -23,7 +21,7 @@ export default function AddToPlaylistPage() {
             <AddToPlaylistItem
               onAddToPlaylistClick={onAddToPlaylistClick}
               key={playlist.id}
-              data={playlist}
+              playlist={playlist}
               trackId={id}
             />
           );
@@ -34,17 +32,15 @@ export default function AddToPlaylistPage() {
   }
 
   function onAddToPlaylistClick(clickedPlaylistId) {
-    const clickedPlaylistInArray = playlists.filter((playlist) => {
+    const clickedPlaylist = playlists.find((playlist) => {
       return playlist.id === clickedPlaylistId;
     });
 
-    const clickedPlaylist = clickedPlaylistInArray[0];
-
     const patchedTrackIds = [...clickedPlaylist.trackIds];
 
-    !patchedTrackIds.includes(id)
-      ? patchedTrackIds.push(id)
-      : patchedTrackIds.splice(patchedTrackIds.indexOf(id), 1);
+    patchedTrackIds.includes(id)
+      ? patchedTrackIds.splice(patchedTrackIds.indexOf(id), 1)
+      : patchedTrackIds.push(id);
 
     const patchedPlaylist = {
       ...clickedPlaylist,
@@ -56,16 +52,16 @@ export default function AddToPlaylistPage() {
       clickedPlaylist.id,
       patchedPlaylist
     );
+
     setPlaylists(updatedPlaylists);
   }
 
-  function onDeleteTrackClick() {
-    const confirmBox = window.confirm(
+  function handleDeleteTrackClick() {
+    const confirmation = window.confirm(
       "Do you really want to delete this track?"
     );
-    if (confirmBox) {
-      const trackCollection = [...tracks];
-      const patchedTrackCollection = trackCollection.filter((track) => {
+    if (confirmation) {
+      const patchedTrackCollection = tracks.filter((track) => {
         return track.id !== id;
       });
       setTracks(patchedTrackCollection);
@@ -82,13 +78,12 @@ export default function AddToPlaylistPage() {
 
   return (
     <section className="AddToPlaylistPage">
-      <div onClick={onDeleteTrackClick} className="ATPP__DeleteTrack">
+      <div onClick={handleDeleteTrackClick} className="ATPP__DeleteTrack">
         <p>DELETE TRACK</p>
       </div>
       <Link to="/create-new-playlist" className="Row--flat --accented">
         <p>CREATE NEW PLAYLIST</p>
       </Link>
-
       {renderAddToPlaylistItems()}
     </section>
   );
