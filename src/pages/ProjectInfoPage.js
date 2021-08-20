@@ -1,4 +1,5 @@
 import "./ProjectInfoPage.css";
+import { ReactComponent as IconSmile } from "../assets/icon_smile.svg";
 
 export default function ProjectInfoPage() {
   return (
@@ -43,6 +44,7 @@ export default function ProjectInfoPage() {
           </a>
         </li>
       </ul>
+      <IconSmile className="ProjectInfoPage__IconSmile" />
     </section>
   );
 }

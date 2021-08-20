@@ -201,7 +201,7 @@ export default function PlaylistDetailPage() {
       <div className="Row--flat --accented --space-between">
         {!editMode ? (
           <button onClick={handleAddButton}>
-            {!addTracks ? "Add Tracks" : "Done"}
+            {!addTracks ? "Add Tracks" : "Save"}
           </button>
         ) : (
           <button onClick={handleDeleteButton} className="PDP__DeleteButton">
@@ -211,7 +211,7 @@ export default function PlaylistDetailPage() {
 
         {!addTracks && (
           <button onClick={handleEditButton}>
-            {!editMode ? "Edit List" : "Done"}
+            {!editMode ? "Edit Playlist" : "Save"}
           </button>
         )}
       </div>

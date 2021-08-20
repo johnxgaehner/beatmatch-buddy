@@ -24,8 +24,13 @@
 .CollectionItem ul li {
   all: unset;
   display: flex;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 0.9rem;
+}
+
+.CollectionItem ul li:first-child {
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .CollectionItem__RecordPlaceholder {
@@ -35,4 +40,5 @@
 
 .CollectionItem__AddIcon {
   flex-shrink: 0;
+  fill: black;
 }

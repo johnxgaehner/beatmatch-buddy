@@ -17,3 +17,8 @@
   font-size: 0.9rem;
   line-height: 0.9rem;
 }
+
+.AddTrackOnTheFlyItem__SelectionIcon {
+  height: 15px;
+  width: auto;
+}

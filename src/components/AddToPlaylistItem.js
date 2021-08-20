@@ -1,5 +1,5 @@
-import { ReactComponent as IconSelectionEmpty } from "../assets/icon_selection_empty.svg";
-import { ReactComponent as IconSelectionFilled } from "../assets/icon_selection_filled.svg";
+import { ReactComponent as IconSelectionEmpty } from "../assets/icon_circle_empty.svg";
+import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_filled.svg";
 import "./AddToPlaylistItem.css";
 
 export default function PlaylistItem({ data, trackId, onAddToPlaylistClick }) {
@@ -10,9 +10,9 @@ export default function PlaylistItem({ data, trackId, onAddToPlaylistClick }) {
   return (
     <div className="Row--flat AddToPlaylistItem" onClick={handleButtonClick}>
       {data.trackIds.includes(trackId) ? (
-        <IconSelectionFilled />
+        <IconSelectionFilled className="AddToPlaylistItem__SelectionIcon" />
       ) : (
-        <IconSelectionEmpty />
+        <IconSelectionEmpty className="AddToPlaylistItem__SelectionIcon" />
       )}
       <p>{data.playlistName}</p>
     </div>
