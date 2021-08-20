@@ -9,16 +9,14 @@ import "./PlaylistDetailPage.css";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
+  const history = useHistory();
 
   const [tracks] = useLocalStorage("savedTracks", []);
   const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
-
   const [playlist, setPlaylist] = useState();
 
   const [editMode, setEditMode] = useState(false);
   const [addTracksMode, setaddTracksMode] = useState(false);
-
-  const history = useHistory();
 
   useEffect(() => {
     const requestedPlaylist = playlists.find((playlist) => {
@@ -51,6 +49,7 @@ export default function PlaylistDetailPage() {
     }
   }
 
+  // --- ADD TRACKS MODE
   function toggleAddTracksMode() {
     setaddTracksMode(!addTracksMode);
   }
@@ -89,6 +88,7 @@ export default function PlaylistDetailPage() {
     setPlaylists(updatedPlaylists);
   }
 
+  // --- EDIT PLAYLIST MODE
   function toggleEditMode() {
     setEditMode(!editMode);
   }
