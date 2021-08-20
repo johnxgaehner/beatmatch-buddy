@@ -7,10 +7,10 @@ export default function TrackItem({
   trackInfo,
   index,
   editMode,
-  onRemoveClick,
+  onDeleteTrackClick,
 }) {
-  function handleRemoveClick() {
-    onRemoveClick(trackInfo.id);
+  function handleDeleteTrackClick() {
+    onDeleteTrackClick(trackInfo.id);
   }
 
   return !editMode ? (
@@ -39,7 +39,7 @@ export default function TrackItem({
         >
           <div className="TrackItem--left">
             <div
-              onClick={handleRemoveClick}
+              onClick={handleDeleteTrackClick}
               className="TrackItem__IconMinusCircle"
             >
               <IconMinusCircle />

@@ -16,7 +16,7 @@ export default function PlaylistDetailPage() {
   const [playlist, setPlaylist] = useState();
 
   const [editMode, setEditMode] = useState(false);
-  const [addTracks, setAddTracks] = useState(false);
+  const [addTracksMode, setaddTracksMode] = useState(false);
 
   const history = useHistory();
 
@@ -27,14 +27,14 @@ export default function PlaylistDetailPage() {
     setPlaylist(requestedPlaylist);
   }, [playlists, playlistId]);
 
-  function renderTracks() {
+  function renderTracksFromPlaylist() {
     if (tracks && playlist) {
       if (playlist.trackIds.length === 0 || tracks.length === 0) {
         return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
       }
       const includedTracks = playlist.trackIds.map((trackId) => {
-        const found = tracks.find((element) => element.id === trackId);
-        return found;
+        const includedTrack = tracks.find((element) => element.id === trackId);
+        return includedTrack;
       });
       const trackItems = includedTracks.map((track, index) => {
         return (
@@ -43,7 +43,7 @@ export default function PlaylistDetailPage() {
             index={index}
             trackInfo={track}
             editMode={editMode}
-            onRemoveClick={onRemoveClick}
+            onDeleteTrackClick={onDeleteTrackClick}
           />
         );
       });
@@ -51,30 +51,10 @@ export default function PlaylistDetailPage() {
     }
   }
 
-  // --- DELETE PLAYLIST
-  function handleDeleteButton() {
-    const confirmBox = window.confirm(
-      "Do you really want to delete this playlist?"
-    );
-    if (confirmBox) {
-      const playlistsWithoutCurrentPlaylist = playlists.filter((playlist) => {
-        return playlist.id !== playlistId;
-      });
-      setPlaylists(playlistsWithoutCurrentPlaylist);
-      history.goBack();
-    }
+  function toggleAddTracksMode() {
+    setaddTracksMode(!addTracksMode);
   }
 
-  // --- ENTER EDIT MODES
-  function handleEditButton() {
-    setEditMode(!editMode);
-  }
-
-  function handleAddButton() {
-    setAddTracks(!addTracks);
-  }
-
-  // --- ADD TRACKS MODE
   function renderCollection() {
     if (tracks.length === 0) {
       return <div className="Row--flat">YOUR COLLECTION IS EMPTY...</div>;
@@ -95,9 +75,9 @@ export default function PlaylistDetailPage() {
   function onAddToPlaylistClick(clickedTrackId) {
     const patchedTrackIds = [...playlist.trackIds];
 
-    !patchedTrackIds.includes(clickedTrackId)
-      ? patchedTrackIds.push(clickedTrackId)
-      : patchedTrackIds.splice(patchedTrackIds.indexOf(clickedTrackId), 1);
+    patchedTrackIds.includes(clickedTrackId)
+      ? patchedTrackIds.splice(patchedTrackIds.indexOf(clickedTrackId), 1)
+      : patchedTrackIds.push(clickedTrackId);
 
     const patchedPlaylist = { ...playlist, trackIds: patchedTrackIds };
 
@@ -109,7 +89,9 @@ export default function PlaylistDetailPage() {
     setPlaylists(updatedPlaylists);
   }
 
-  // --- EDIT MODE
+  function toggleEditMode() {
+    setEditMode(!editMode);
+  }
 
   function handlePlaylistNameChange(event) {
     const input = event.target;
@@ -126,7 +108,20 @@ export default function PlaylistDetailPage() {
     setPlaylists(updatedPlaylists);
   }
 
-  function onRemoveClick(trackId) {
+  function handleDeletePlaylistClick() {
+    const confirmation = window.confirm(
+      "Do you really want to delete this playlist?"
+    );
+    if (confirmation) {
+      const playlistsWithoutCurrentPlaylist = playlists.filter((playlist) => {
+        return playlist.id !== playlistId;
+      });
+      setPlaylists(playlistsWithoutCurrentPlaylist);
+      history.goBack();
+    }
+  }
+
+  function onDeleteTrackClick(trackId) {
     const newTrackIds = [...playlist.trackIds];
     newTrackIds.splice(newTrackIds.indexOf(trackId), 1);
 
@@ -197,23 +192,26 @@ export default function PlaylistDetailPage() {
 
       <div className="Row--flat --accented --space-between">
         {!editMode ? (
-          <button onClick={handleAddButton}>
-            {!addTracks ? "Add Tracks" : "Save"}
+          <button onClick={toggleAddTracksMode}>
+            {!addTracksMode ? "Add Tracks" : "Save"}
           </button>
         ) : (
-          <button onClick={handleDeleteButton} className="PDP__DeleteButton">
+          <button
+            onClick={handleDeletePlaylistClick}
+            className="PDP__DeleteButton"
+          >
             Delete Playlist
           </button>
         )}
 
-        {!addTracks && (
-          <button onClick={handleEditButton}>
+        {!addTracksMode && (
+          <button onClick={toggleEditMode}>
             {!editMode ? "Edit Playlist" : "Save"}
           </button>
         )}
       </div>
 
-      {!addTracks ? (
+      {!addTracksMode ? (
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="tracks">
             {(provided) => (
@@ -222,7 +220,7 @@ export default function PlaylistDetailPage() {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                {renderTracks()}
+                {renderTracksFromPlaylist()}
                 {provided.placeholder}
               </ul>
             )}
