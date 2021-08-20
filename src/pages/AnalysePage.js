@@ -16,7 +16,7 @@ export default function AnalysePage() {
     recordTitle: "",
   });
 
-  function handleOnChange(event) {
+  function handleInputChange(event) {
     const key = event.target.name;
     const input = event.target.value;
     const newTrackData = { ...newTrack, id: uuidv4(), bpm: BPM, [key]: input };
@@ -64,20 +64,20 @@ export default function AnalysePage() {
       <form onSubmit={handleSubmit}>
         <div className="Row--flat">
           <input
-            onChange={handleOnChange}
+            onChange={handleInputChange}
             value={newTrack.trackTitle}
             type="text"
             name="trackTitle"
             id="trackTitle"
             placeholder="ENTER TRACK"
-            maxLength="28"
+            maxLength="24"
             required
           />
         </div>
 
         <div className="Row--flat">
           <input
-            onChange={handleOnChange}
+            onChange={handleInputChange}
             value={newTrack.artistName}
             type="text"
             name="artistName"
@@ -90,7 +90,7 @@ export default function AnalysePage() {
 
         <div className="Row--flat">
           <input
-            onChange={handleOnChange}
+            onChange={handleInputChange}
             value={newTrack.recordTitle}
             type="text"
             name="recordTitle"

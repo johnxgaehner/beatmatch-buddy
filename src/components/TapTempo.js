@@ -15,7 +15,7 @@ export default function TapTempo({ BPM, setBPM, beatCounter }) {
   }
 
   function average(array) {
-    var sum = 0;
+    let sum = 0;
     for (let i = 1; i < array.length; i++) {
       sum += array[i];
     }
