@@ -12,19 +12,20 @@ export default function CollectionPage() {
 
   function renderCollectionItems() {
     if (collection && collection.length > 0) {
-      const searchFilteredItems = collection.filter((element) => {
-        return (
-          element.trackTitle.toUpperCase().includes(searchFilter) ||
-          element.artistName.toUpperCase().includes(searchFilter) ||
-          element.recordTitle.toUpperCase().includes(searchFilter)
-        );
-      });
-      const tempoFilteredItems = searchFilteredItems.filter((element) => {
-        return +element.bpm >= minTempoFilter && +element.bpm <= maxTempoFilter;
-      });
-      const collectionItems = tempoFilteredItems.map((track) => {
-        return <CollectionItem key={track.id} data={track} />;
-      });
+      const collectionItems = collection
+        .filter((track) => {
+          return (
+            track.trackTitle.toUpperCase().includes(searchFilter) ||
+            track.artistName.toUpperCase().includes(searchFilter) ||
+            track.recordTitle.toUpperCase().includes(searchFilter)
+          );
+        })
+        .filter((track) => {
+          return track.bpm >= minTempoFilter && track.bpm <= maxTempoFilter;
+        })
+        .map((track) => {
+          return <CollectionItem key={track.id} data={track} />;
+        });
       if (collectionItems.length > 0) {
         return collectionItems;
       }
@@ -32,15 +33,15 @@ export default function CollectionPage() {
     }
   }
 
-  function handleSearchInput(event) {
+  function onSearchInput(event) {
     setSearchFilter(event.target.value.toUpperCase());
   }
 
-  function handleMinTempoInput(event) {
+  function onMinTempoChange(event) {
     setMinTempoFilter(+event.target.value);
   }
 
-  function handleMaxTempoInput(event) {
+  function onMaxTempoChange(event) {
     if (event.target.value === "") {
       return setMaxTempoFilter(999);
     }
@@ -52,9 +53,9 @@ export default function CollectionPage() {
       {collection.length > 0 ? (
         <>
           <CollectionFilterSection
-            handleSearchInput={handleSearchInput}
-            handleMinTempoInput={handleMinTempoInput}
-            handleMaxTempoInput={handleMaxTempoInput}
+            onSearchInput={onSearchInput}
+            onMinTempoChange={onMinTempoChange}
+            onMaxTempoChange={onMaxTempoChange}
           />
           {renderCollectionItems()}
         </>

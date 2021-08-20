@@ -1,27 +1,27 @@
 import "./CollectionFilterSection.css";
 
 export default function CollectionFilterSection({
-  handleSearchInput,
-  handleMinTempoInput,
-  handleMaxTempoInput,
+  onSearchInput,
+  onMinTempoChange,
+  onMaxTempoChange,
 }) {
-  function handleSearch(event) {
-    handleSearchInput(event);
+  function handleSearchInput(event) {
+    onSearchInput(event);
   }
 
-  function handleMinTempo(event) {
-    handleMinTempoInput(event);
+  function handleMinTempoChange(event) {
+    onMinTempoChange(event);
   }
 
-  function handleMaxTempo(event) {
-    handleMaxTempoInput(event);
+  function handleMaxTempoChange(event) {
+    onMaxTempoChange(event);
   }
 
   return (
     <>
       <div className="Row--flat">
         <input
-          onChange={handleSearch}
+          onChange={handleSearchInput}
           type="text"
           name="SearchFilter"
           id="SearchFilter"
@@ -32,7 +32,7 @@ export default function CollectionFilterSection({
         <label htmlFor="TempoFilter__min">TEMPO:</label>
         <div className="CollectionPage__TempoFilterSection">
           <input
-            onChange={handleMinTempo}
+            onChange={handleMinTempoChange}
             type="text"
             name="TempoFilter__min"
             id="TempoFilter__min"
@@ -42,7 +42,7 @@ export default function CollectionFilterSection({
           />
           <p>-</p>
           <input
-            onChange={handleMaxTempo}
+            onChange={handleMaxTempoChange}
             type="text"
             name="TempoFilter__max"
             id="TempoFilter__max"

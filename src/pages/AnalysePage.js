@@ -19,7 +19,12 @@ export default function AnalysePage() {
   function handleInputChange(event) {
     const key = event.target.name;
     const input = event.target.value;
-    const newTrackData = { ...newTrack, id: uuidv4(), bpm: BPM, [key]: input };
+    const newTrackData = {
+      ...newTrack,
+      id: uuidv4(),
+      bpm: Number(BPM),
+      [key]: input,
+    };
     setNewTrack(newTrackData);
   }
 
