@@ -14,3 +14,9 @@
 .ProjectInfoPage ul li a {
   color: black;
 }
+
+.ProjectInfoPage__IconSmile {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
