@@ -1,8 +1,7 @@
 import { ReactComponent as IconGrab } from "../assets/icon_grab.svg";
 import { ReactComponent as IconMinusCircle } from "../assets/icon_minus_circle_filled.svg";
-
-import "./TrackItem.css";
 import { Draggable } from "react-beautiful-dnd";
+import "./TrackItem.css";
 
 export default function TrackItem({
   trackInfo,

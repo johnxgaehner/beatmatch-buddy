@@ -1,7 +1,7 @@
-import "./CollectionItem.css";
+import { Link } from "react-router-dom";
 import { ReactComponent as IconPlusCircle } from "../assets/icon_plus_circle_filled.svg";
 import { ReactComponent as RecordPlaceholder } from "../assets/record_placeholder.svg";
-import { Link } from "react-router-dom";
+import "./CollectionItem.css";
 
 export default function CollectionItem({ data }) {
   return (

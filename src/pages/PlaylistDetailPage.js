@@ -1,13 +1,10 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import AddTrackOnTheFlyItem from "../components/AddTrackOnTheFlyItem";
 import TrackItem from "../components/TrackItem";
 import updatePlaylists from "../services/updatePlaylists";
 import useLocalStorage from "../hooks/useLocalStorage";
-
 import "./PlaylistDetailPage.css";
 
 export default function PlaylistDetailPage() {

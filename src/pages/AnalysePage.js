@@ -1,10 +1,8 @@
 import { useState, useRef } from "react";
-
 import { v4 as uuidv4 } from "uuid";
 import TapTempo from "../components/TapTempo";
 import saveInLocalStorage from "../services/saveInLocalStorage";
 import showToastSaved from "../services/showToastSaved";
-
 import "./AnalysePage.css";
 
 export default function AnalysePage() {

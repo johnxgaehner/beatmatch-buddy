@@ -1,9 +1,9 @@
 import { useState } from "react";
-import "./CreateNewPlaylistPage.css";
+import { useHistory } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import saveInLocalStorage from "../services/saveInLocalStorage";
 import showToastSaved from "../services/showToastSaved";
-import { v4 as uuidv4 } from "uuid";
-import { useHistory } from "react-router-dom";
+import "./CreateNewPlaylistPage.css";
 
 export default function CreateNewPlaylistPage() {
   const history = useHistory();
