@@ -1,5 +1,5 @@
-import { ReactComponent as IconSelectionEmpty } from "../assets/icon_selection_empty.svg";
-import { ReactComponent as IconSelectionFilled } from "../assets/icon_selection_filled.svg";
+import { ReactComponent as IconSelectionEmpty } from "../assets/icon_circle_empty.svg";
+import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_filled.svg";
 import "./AddTrackOnTheFlyItem.css";
 
 export default function AddTrackOnTheFlyItem({
@@ -11,12 +11,12 @@ export default function AddTrackOnTheFlyItem({
     onAddToPlaylistClick(trackInfo.id);
   }
   return (
-    <div className="AddTrackOnTheFlyItem">
-      <div onClick={handleOnAddToPlaylistClick}>
+    <div onClick={handleOnAddToPlaylistClick} className="AddTrackOnTheFlyItem">
+      <div>
         {playlist.trackIds.includes(trackInfo.id) ? (
-          <IconSelectionFilled />
+          <IconSelectionFilled className="AddTrackOnTheFlyItem__SelectionIcon" />
         ) : (
-          <IconSelectionEmpty />
+          <IconSelectionEmpty className="AddTrackOnTheFlyItem__SelectionIcon" />
         )}
       </div>
       <ul>

@@ -35,4 +35,5 @@
 
 .CollectionItem__AddIcon {
   flex-shrink: 0;
+  fill: black;
 }
