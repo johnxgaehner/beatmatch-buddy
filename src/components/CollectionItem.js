@@ -10,10 +10,10 @@ export default function CollectionItem({ data }) {
         <RecordPlaceholder className="CollectionItem__RecordPlaceholder" />
         <div>
           <ul>
-            <li>{data.trackTitle}</li>
-            <li>{data.artistName}</li>
-            <li>{data.recordTitle}</li>
-            <li>{data.bpm}BPM</li>
+            <li className="CollectionItem__TrackTitle">{data.trackTitle}</li>
+            <li className="CollectionItem__ArtistName">{data.artistName}</li>
+            <li className="CollectionItem__RecordTitle">{data.recordTitle}</li>
+            <li className="CollectionItem__BPM">{data.bpm}BPM</li>
           </ul>
         </div>
       </div>

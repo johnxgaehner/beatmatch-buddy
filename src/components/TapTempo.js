@@ -30,12 +30,12 @@ export default function TapTempo({ BPM, setBPM, beatCounter }) {
     <>
       <div
         onClick={tapTempo}
-        className="Row--flat --space-between TapTempo-Row"
+        className="Row--flat --space-between --disable-select TapTempo-Row"
       >
         <p>TAP HERE</p>
         <IconRecDot />
       </div>
-      <div className="Row--flat">{renderBPM()}</div>
+      <div className="Row--flat --disable-select">{renderBPM()}</div>
     </>
   );
 }
