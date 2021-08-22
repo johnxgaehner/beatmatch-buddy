@@ -5,8 +5,8 @@ import "./Header.css";
 
 export default function Header() {
   const history = useHistory();
-  const [headerIsHidden, setHeaderIsHidden] = useState(false);
 
+  const [headerIsHidden, setHeaderIsHidden] = useState(false);
   const MIN_SCROLL = 63;
   const TIMEOUT_DELAY = 300;
 
