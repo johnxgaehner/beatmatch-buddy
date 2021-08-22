@@ -16,7 +16,7 @@ export default function TrackItem({
   return !editMode ? (
     <li className="TrackItem">
       <div className="TrackItem--left">
-        {index < 10 ? (
+        {index < 9 ? (
           <p className="TrackItem__Index">{`#0${index + 1}`}</p>
         ) : (
           <p className="TrackItem__Index">{`#${index + 1}`}</p>

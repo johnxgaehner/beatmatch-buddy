@@ -3,20 +3,32 @@
 }
 
 .PDP__PlaylistName {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
+  position: fixed;
+  top: 0;
+  padding-top: 1.5rem;
+  padding-left: 2rem;
   font-style: italic;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
 }
 
 .PDP__PlaylistName--edit {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
+  position: fixed;
+  top: 0;
+  padding-top: 1.5rem;
+  padding-left: 2rem;
   font-style: italic;
   opacity: 0.6;
   width: 320px;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
 }
+
+.PDP__PlaylistName--edit.--hidden,
+.PDP__PlaylistName.--hidden {
+  transform: translateY(-110%);
+}
+
 .PDP__PlaylistName--edit:focus {
   opacity: 1;
   color: black;

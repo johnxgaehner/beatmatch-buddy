@@ -5,6 +5,7 @@ import AddTrackOnTheFlyItem from "../components/AddTrackOnTheFlyItem";
 import TrackItem from "../components/TrackItem";
 import updatePlaylists from "../services/updatePlaylists";
 import useLocalStorage from "../hooks/useLocalStorage";
+import useScroll from "../hooks/useScroll";
 import "./PlaylistDetailPage.css";
 
 export default function PlaylistDetailPage() {
@@ -17,6 +18,23 @@ export default function PlaylistDetailPage() {
 
   const [editMode, setEditMode] = useState(false);
   const [addTracksMode, setaddTracksMode] = useState(false);
+
+  const [headerIsHidden, setHeaderIsHidden] = useState(false);
+  const MIN_SCROLL = 63;
+  const TIMEOUT_DELAY = 300;
+
+  useScroll((callbackData) => {
+    const { previousScrollTop, currentScrollTop } = callbackData;
+    const isScrolledDown = previousScrollTop < currentScrollTop;
+    const isMinimumScrolled = currentScrollTop > MIN_SCROLL;
+    setTimeout(() => {
+      setHeaderIsHidden(isScrolledDown && isMinimumScrolled);
+    }, TIMEOUT_DELAY);
+  });
+
+  function getHeaderClass() {
+    return headerIsHidden ? "--hidden" : "";
+  }
 
   useEffect(() => {
     const requestedPlaylist = playlists.find((playlist) => {
@@ -158,7 +176,9 @@ export default function PlaylistDetailPage() {
         <p>loading...</p>
       ) : !editMode ? (
         <>
-          <h1 className="PDP__PlaylistName">{playlist.playlistName}</h1>
+          <h1 className={`PDP__PlaylistName ${getHeaderClass()}`}>
+            {playlist.playlistName}
+          </h1>
           <div className="Row--flat --accented">
             {playlist.playlistDescription}
           </div>
@@ -170,7 +190,7 @@ export default function PlaylistDetailPage() {
               onChange={handlePlaylistNameChange}
               name="playlistName"
               id="playlistName"
-              className="PDP__PlaylistName--edit"
+              className={`PDP__PlaylistName--edit ${getHeaderClass()}`}
               type="text"
               placeholder={playlist.playlistName}
               value={playlist.playlistName}

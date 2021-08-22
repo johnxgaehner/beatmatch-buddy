@@ -1,11 +1,30 @@
+import { useState } from "react";
 import { Switch, Route, Link, useHistory } from "react-router-dom";
+import useScroll from "../hooks/useScroll";
 import "./Header.css";
 
 export default function Header() {
   const history = useHistory();
 
+  const [headerIsHidden, setHeaderIsHidden] = useState(false);
+  const MIN_SCROLL = 63;
+  const TIMEOUT_DELAY = 300;
+
+  useScroll((callbackData) => {
+    const { previousScrollTop, currentScrollTop } = callbackData;
+    const isScrolledDown = previousScrollTop < currentScrollTop;
+    const isMinimumScrolled = currentScrollTop > MIN_SCROLL;
+    setTimeout(() => {
+      setHeaderIsHidden(isScrolledDown && isMinimumScrolled);
+    }, TIMEOUT_DELAY);
+  });
+
+  function getHeaderClass() {
+    return headerIsHidden ? "--hidden" : "";
+  }
+
   return (
-    <header className="Header">
+    <header className={`Header ${getHeaderClass()}`}>
       <Switch>
         <Route path="/analyse">
           <h1>Analyse</h1>
