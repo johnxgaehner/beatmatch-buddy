@@ -8,22 +8,23 @@ export default function Header() {
   const [headerIsHidden, setHeaderIsHidden] = useState(false);
 
   const MIN_SCROLL = 63;
-  const TIMEOUT_DELAY = 400;
+  const TIMEOUT_DELAY = 300;
 
   useScroll((callbackData) => {
     const { previousScrollTop, currentScrollTop } = callbackData;
     const isScrolledDown = previousScrollTop < currentScrollTop;
     const isMinimumScrolled = currentScrollTop > MIN_SCROLL;
-
     setTimeout(() => {
       setHeaderIsHidden(isScrolledDown && isMinimumScrolled);
     }, TIMEOUT_DELAY);
   });
 
-  const hiddenStyle = headerIsHidden ? "hidden" : "";
+  function getHeaderClass() {
+    return headerIsHidden ? "--hidden" : "";
+  }
 
   return (
-    <header className="Header">
+    <header className={`Header ${getHeaderClass()}`}>
       <Switch>
         <Route path="/analyse">
           <h1>Analyse</h1>
