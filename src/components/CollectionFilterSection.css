@@ -2,24 +2,24 @@
   border-bottom: 1px solid black;
 }
 
-.CollectionFilterSection__Sort {
+.CollectionFilterSection__SortButton {
   display: flex;
   align-items: center;
   gap: 3px;
 }
 
-.CollectionFilterSection__SortIcon {
+.CollectionFilterSection__SortButtonIcon {
   height: 12px;
   width: auto;
   transform: rotate(90deg);
   transition: 0.2s ease-in;
 }
 
-.CollectionFilterSection__SortIcon.active {
+.CollectionFilterSection__SortButtonIcon.active {
   transform: rotate(270deg);
 }
 
-.CollectionFilterSection__SortDropdown {
+.CollectionFilterSection__SortDropdownMenu {
   position: absolute;
   background-color: var(--color-background);
   left: 1rem;
@@ -30,30 +30,14 @@
   display: none;
 }
 
-.CollectionFilterSection__SortDropdown.active {
+.CollectionFilterSection__SortDropdownMenu.active {
   display: block;
 }
 
-.CollectionFilterSection__SortDropdownList {
+.CollectionFilterSection__SortDropdownSelectionList {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.7rem;
-}
-
-.CollectionFilterSection__SortDropdown ul li {
-  all: unset;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.9rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.CollectionFilterSection__SelectionIcon {
-  height: 12px;
-  width: auto;
 }
 
 .CollectionFilterSection__TempoFilterSection {

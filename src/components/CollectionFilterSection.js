@@ -1,9 +1,7 @@
 import { useRef } from "react";
-import { ReactComponent as ArrowIcon } from "../assets/icon_arrow.svg";
-import { ReactComponent as IconSelectionEmpty } from "../assets/icon_circle_empty.svg";
-import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_filled.svg";
 import useOutsideClick from "../hooks/useOutsideClick";
-
+import SortCollectionByItem from "./SortCollectionByItem";
+import { ReactComponent as ArrowIcon } from "../assets/icon_arrow.svg";
 import "./CollectionFilterSection.css";
 
 export default function CollectionFilterSection({
@@ -20,14 +18,6 @@ export default function CollectionFilterSection({
     onSearchInput(event);
   }
 
-  function handleMinTempoChange(event) {
-    onMinTempoChange(event);
-  }
-
-  function handleMaxTempoChange(event) {
-    onMaxTempoChange(event);
-  }
-
   function handleDropDownButtonClick() {
     setDropdown(!dropdown);
   }
@@ -35,6 +25,14 @@ export default function CollectionFilterSection({
   function handleSortButtonClick(event) {
     onSortButtonClick(event.target.id);
     setDropdown(!dropdown);
+  }
+
+  function handleMinTempoChange(event) {
+    onMinTempoChange(event);
+  }
+
+  function handleMaxTempoChange(event) {
+    onMaxTempoChange(event);
   }
 
   return (
@@ -48,79 +46,79 @@ export default function CollectionFilterSection({
           placeholder="SEARCH:"
         />
         <button
-          className="CollectionFilterSection__Sort"
+          className="CollectionFilterSection__SortButton"
           onClick={handleDropDownButtonClick}
         >
-          Sort{" "}
+          Sort
           <ArrowIcon
-            className={`CollectionFilterSection__SortIcon ${
-              dropdown ? `active` : `inactive`
+            className={`CollectionFilterSection__SortButtonIcon ${
+              dropdown && `active`
             }`}
           />
         </button>
       </div>
       <div
-        className={`CollectionFilterSection__SortDropdown ${
-          dropdown ? `active` : `inactive`
+        className={`CollectionFilterSection__SortDropdownMenu ${
+          dropdown && `active`
         }`}
         ref={dropdownRef}
       >
-        <ul className="CollectionFilterSection__SortDropdownList">
-          <SortDropDownListItem
+        <ul className="CollectionFilterSection__SortDropdownSelectionList">
+          <SortCollectionByItem
             text="Track Title, A-Z"
             sortValue="trackTitle_AtoZ"
             handleSortButtonClick={handleSortButtonClick}
             sortByValue={sortByValue}
           />
-          <SortDropDownListItem
+          <SortCollectionByItem
             text="Track Title, Z-A"
             sortValue="trackTitle_ZtoA"
             handleSortButtonClick={handleSortButtonClick}
             sortByValue={sortByValue}
           />
-          <SortDropDownListItem
+          <SortCollectionByItem
             text="Artist Name, A-Z"
             sortValue="artistName_AtoZ"
             handleSortButtonClick={handleSortButtonClick}
             sortByValue={sortByValue}
           />
-          <SortDropDownListItem
+          <SortCollectionByItem
             text="Artist Name, Z-A"
             sortValue="artistName_ZtoA"
             handleSortButtonClick={handleSortButtonClick}
             sortByValue={sortByValue}
           />
-          <SortDropDownListItem
+          <SortCollectionByItem
             text="Record Title, A-Z"
             sortValue="recordTitle_AtoZ"
             handleSortButtonClick={handleSortButtonClick}
             sortByValue={sortByValue}
           />
-          <SortDropDownListItem
+          <SortCollectionByItem
             text="Record Title, Z-A"
             sortValue="recordTitle_ZtoA"
             handleSortButtonClick={handleSortButtonClick}
             sortByValue={sortByValue}
           />
-          <SortDropDownListItem
+          <SortCollectionByItem
             text="BPM, slow to fast"
             sortValue="bpm_0to9"
             handleSortButtonClick={handleSortButtonClick}
             sortByValue={sortByValue}
           />
-          <SortDropDownListItem
+          <SortCollectionByItem
             text="BPM, fast to slow"
             sortValue="bpm_9to0"
             handleSortButtonClick={handleSortButtonClick}
             sortByValue={sortByValue}
           />
-          <SortDropDownListItem
+          <SortCollectionByItem
             text="Date, old to new"
             sortValue="date_0to9"
             handleSortButtonClick={handleSortButtonClick}
             sortByValue={sortByValue}
           />
-          <SortDropDownListItem
+          <SortCollectionByItem
             text="Date, new to old"
             sortValue="date_9to0"
             handleSortButtonClick={handleSortButtonClick}
@@ -153,23 +151,5 @@ export default function CollectionFilterSection({
         </div>
       </div>
     </section>
-  );
-}
-
-function SortDropDownListItem({
-  handleSortButtonClick,
-  sortByValue,
-  sortValue,
-  text,
-}) {
-  return (
-    <li onClick={handleSortButtonClick} id={sortValue}>
-      {sortByValue === sortValue ? (
-        <IconSelectionFilled className="CollectionFilterSection__SelectionIcon" />
-      ) : (
-        <IconSelectionEmpty className="CollectionFilterSection__SelectionIcon" />
-      )}
-      {text}
-    </li>
   );
 }
