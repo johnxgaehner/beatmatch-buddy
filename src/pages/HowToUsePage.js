@@ -1,4 +1,5 @@
 import "./HowToUsePage.css";
+import { ReactComponent as IconPlusCircle } from "../assets/icon_plus_circle_filled.svg";
 
 export default function HowToUsePage() {
   return (
@@ -14,8 +15,9 @@ export default function HowToUsePage() {
         collection for a keyword, sort it or filter within a tempo range.
       </p>
       <p>
-        Click on the Plus Icon on the right and you can add the track to a
-        playlist. If you haven't yet, you can create a new playlist on the fly.
+        Click on the <IconPlusCircle className="IconPlusCircle" /> on the right
+        and you can add the track to a playlist. If you haven't yet, you can
+        create a new playlist on the fly.
       </p>
       <p>
         To prepare your set, go to your playlists archive and navigate into the
