@@ -66,86 +66,66 @@ export default function CollectionFilterSection({
         ref={dropdownRef}
       >
         <ul className="CollectionFilterSection__SortDropdownList">
-          <li onClick={handleSortButtonClick} id="trackTitle_AtoZ">
-            {sortByValue === "trackTitle_AtoZ" ? (
-              <IconSelectionFilled className="CollectionFilterSection__SelectionIcon" />
-            ) : (
-              <IconSelectionEmpty className="CollectionFilterSection__SelectionIcon" />
-            )}
-            Track Title, A-Z
-          </li>
-          <li onClick={handleSortButtonClick} id="trackTitle_ZtoA">
-            {sortByValue === "trackTitle_ZtoA" ? (
-              <IconSelectionFilled className="CollectionFilterSection__SelectionIcon" />
-            ) : (
-              <IconSelectionEmpty className="CollectionFilterSection__SelectionIcon" />
-            )}
-            Track Title, Z-A
-          </li>
-          <li onClick={handleSortButtonClick} id="artistName_AtoZ">
-            {sortByValue === "artistName_AtoZ" ? (
-              <IconSelectionFilled className="CollectionFilterSection__SelectionIcon" />
-            ) : (
-              <IconSelectionEmpty className="CollectionFilterSection__SelectionIcon" />
-            )}
-            Artist Name, A-Z
-          </li>
-          <li onClick={handleSortButtonClick} id="artistName_ZtoA">
-            {sortByValue === "artistName_ZtoA" ? (
-              <IconSelectionFilled className="CollectionFilterSection__SelectionIcon" />
-            ) : (
-              <IconSelectionEmpty className="CollectionFilterSection__SelectionIcon" />
-            )}
-            Artist Name, Z-A
-          </li>
-          <li onClick={handleSortButtonClick} id="recordTitle_AtoZ">
-            {sortByValue === "recordTitle_AtoZ" ? (
-              <IconSelectionFilled className="CollectionFilterSection__SelectionIcon" />
-            ) : (
-              <IconSelectionEmpty className="CollectionFilterSection__SelectionIcon" />
-            )}
-            Record Title, A-Z
-          </li>
-          <li onClick={handleSortButtonClick} id="recordTitle_ZtoA">
-            {sortByValue === "recordTitle_ZtoA" ? (
-              <IconSelectionFilled className="CollectionFilterSection__SelectionIcon" />
-            ) : (
-              <IconSelectionEmpty className="CollectionFilterSection__SelectionIcon" />
-            )}
-            Record Title, Z-A
-          </li>
-          <li onClick={handleSortButtonClick} id="bpm_0to9">
-            {sortByValue === "bpm_0to9" ? (
-              <IconSelectionFilled className="CollectionFilterSection__SelectionIcon" />
-            ) : (
-              <IconSelectionEmpty className="CollectionFilterSection__SelectionIcon" />
-            )}
-            BPM, slow to fast
-          </li>
-          <li onClick={handleSortButtonClick} id="bpm_9to0">
-            {sortByValue === "bpm_9to0" ? (
-              <IconSelectionFilled className="CollectionFilterSection__SelectionIcon" />
-            ) : (
-              <IconSelectionEmpty className="CollectionFilterSection__SelectionIcon" />
-            )}
-            BPM, fast to slow
-          </li>
-          <li onClick={handleSortButtonClick} id="date_0to9">
-            {sortByValue === "date_0to9" ? (
-              <IconSelectionFilled className="CollectionFilterSection__SelectionIcon" />
-            ) : (
-              <IconSelectionEmpty className="CollectionFilterSection__SelectionIcon" />
-            )}
-            Date, old to new
-          </li>
-          <li onClick={handleSortButtonClick} id="date_9to0">
-            {sortByValue === "date_9to0" ? (
-              <IconSelectionFilled className="CollectionFilterSection__SelectionIcon" />
-            ) : (
-              <IconSelectionEmpty className="CollectionFilterSection__SelectionIcon" />
-            )}
-            Date, new to old
-          </li>
+          <SortDropDownListItem
+            text="Track Title, A-Z"
+            sortValue="trackTitle_AtoZ"
+            handleSortButtonClick={handleSortButtonClick}
+            sortByValue={sortByValue}
+          />
+          <SortDropDownListItem
+            text="Track Title, Z-A"
+            sortValue="trackTitle_ZtoA"
+            handleSortButtonClick={handleSortButtonClick}
+            sortByValue={sortByValue}
+          />
+          <SortDropDownListItem
+            text="Artist Name, A-Z"
+            sortValue="artistName_AtoZ"
+            handleSortButtonClick={handleSortButtonClick}
+            sortByValue={sortByValue}
+          />
+          <SortDropDownListItem
+            text="Artist Name, Z-A"
+            sortValue="artistName_ZtoA"
+            handleSortButtonClick={handleSortButtonClick}
+            sortByValue={sortByValue}
+          />
+          <SortDropDownListItem
+            text="Record Title, A-Z"
+            sortValue="recordTitle_AtoZ"
+            handleSortButtonClick={handleSortButtonClick}
+            sortByValue={sortByValue}
+          />
+          <SortDropDownListItem
+            text="Record Title, Z-A"
+            sortValue="recordTitle_ZtoA"
+            handleSortButtonClick={handleSortButtonClick}
+            sortByValue={sortByValue}
+          />
+          <SortDropDownListItem
+            text="BPM, slow to fast"
+            sortValue="bpm_0to9"
+            handleSortButtonClick={handleSortButtonClick}
+            sortByValue={sortByValue}
+          />
+          <SortDropDownListItem
+            text="BPM, fast to slow"
+            sortValue="bpm_9to0"
+            handleSortButtonClick={handleSortButtonClick}
+            sortByValue={sortByValue}
+          />
+          <SortDropDownListItem
+            text="Date, old to new"
+            sortValue="date_0to9"
+            handleSortButtonClick={handleSortButtonClick}
+            sortByValue={sortByValue}
+          />
+          <SortDropDownListItem
+            text="Date, new to old"
+            sortValue="date_9to0"
+            handleSortButtonClick={handleSortButtonClick}
+            sortByValue={sortByValue}
+          />
         </ul>
       </div>
       <div className="Row--flat --space-between">
@@ -173,5 +153,23 @@ export default function CollectionFilterSection({
         </div>
       </div>
     </section>
+  );
+}
+
+function SortDropDownListItem({
+  handleSortButtonClick,
+  sortByValue,
+  sortValue,
+  text,
+}) {
+  return (
+    <li onClick={handleSortButtonClick} id={sortValue}>
+      {sortByValue === sortValue ? (
+        <IconSelectionFilled className="CollectionFilterSection__SelectionIcon" />
+      ) : (
+        <IconSelectionEmpty className="CollectionFilterSection__SelectionIcon" />
+      )}
+      {text}
+    </li>
   );
 }
