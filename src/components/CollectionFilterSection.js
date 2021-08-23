@@ -1,6 +1,8 @@
 import { useState, useRef } from "react";
 import { ReactComponent as ArrowIcon } from "../assets/icon_arrow.svg";
 import { ReactComponent as IconSelectionEmpty } from "../assets/icon_circle_empty.svg";
+import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_filled.svg";
+
 import "./CollectionFilterSection.css";
 
 export default function CollectionFilterSection({
@@ -8,6 +10,7 @@ export default function CollectionFilterSection({
   onMinTempoChange,
   onMaxTempoChange,
   onSortButtonClick,
+  sortByValue,
 }) {
   const dropdownRef = useRef(null);
   const [dropdown, setDropdown] = useState(false);
@@ -63,43 +66,83 @@ export default function CollectionFilterSection({
       >
         <ul>
           <li onClick={handleSortButtonClick} id="trackTitle_AtoZ">
-            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            {sortByValue === "trackTitle_AtoZ" ? (
+              <IconSelectionFilled className="CollectionPage__SelectionIcon" />
+            ) : (
+              <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            )}
             Track Title, A-Z
           </li>
           <li onClick={handleSortButtonClick} id="trackTitle_ZtoA">
-            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            {sortByValue === "trackTitle_ZtoA" ? (
+              <IconSelectionFilled className="CollectionPage__SelectionIcon" />
+            ) : (
+              <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            )}
             Track Title, Z-A
           </li>
           <li onClick={handleSortButtonClick} id="artistName_AtoZ">
-            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            {sortByValue === "artistName_AtoZ" ? (
+              <IconSelectionFilled className="CollectionPage__SelectionIcon" />
+            ) : (
+              <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            )}
             Artist Name, A-Z
           </li>
           <li onClick={handleSortButtonClick} id="artistName_ZtoA">
-            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            {sortByValue === "artistName_ZtoA" ? (
+              <IconSelectionFilled className="CollectionPage__SelectionIcon" />
+            ) : (
+              <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            )}
             Artist Name, Z-A
           </li>
           <li onClick={handleSortButtonClick} id="recordTitle_AtoZ">
-            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            {sortByValue === "recordTitle_AtoZ" ? (
+              <IconSelectionFilled className="CollectionPage__SelectionIcon" />
+            ) : (
+              <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            )}
             Record Title, A-Z
           </li>
           <li onClick={handleSortButtonClick} id="recordTitle_ZtoA">
-            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            {sortByValue === "recordTitle_ZtoA" ? (
+              <IconSelectionFilled className="CollectionPage__SelectionIcon" />
+            ) : (
+              <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            )}
             Record Title, Z-A
           </li>
           <li onClick={handleSortButtonClick} id="bpm_0to9">
-            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            {sortByValue === "bpm_0to9" ? (
+              <IconSelectionFilled className="CollectionPage__SelectionIcon" />
+            ) : (
+              <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            )}
             BPM, slow to fast
           </li>
           <li onClick={handleSortButtonClick} id="bpm_9to0">
-            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            {sortByValue === "bpm_9to0" ? (
+              <IconSelectionFilled className="CollectionPage__SelectionIcon" />
+            ) : (
+              <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            )}
             BPM, fast to slow
           </li>
           <li onClick={handleSortButtonClick} id="date_0to9">
-            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            {sortByValue === "date_0to9" ? (
+              <IconSelectionFilled className="CollectionPage__SelectionIcon" />
+            ) : (
+              <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            )}
             Date, old to new
           </li>
           <li onClick={handleSortButtonClick} id="date_9to0">
-            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            {sortByValue === "date_9to0" ? (
+              <IconSelectionFilled className="CollectionPage__SelectionIcon" />
+            ) : (
+              <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            )}
             Date, new to old
           </li>
         </ul>

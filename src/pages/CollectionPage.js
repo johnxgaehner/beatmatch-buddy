@@ -7,7 +7,7 @@ import "./CollectionPage.css";
 export default function CollectionPage() {
   const [collection] = useLocalStorage("savedTracks", []);
   const [searchFilter, setSearchFilter] = useState("");
-  const [sortBy, setSortBy] = useState("trackTitle_AtoZ");
+  const [sortBy, setSortBy] = useState("date_9to0");
   const [minTempoFilter, setMinTempoFilter] = useState(0);
   const [maxTempoFilter, setMaxTempoFilter] = useState(999);
 
@@ -86,6 +86,7 @@ export default function CollectionPage() {
             onMinTempoChange={onMinTempoChange}
             onMaxTempoChange={onMaxTempoChange}
             onSortButtonClick={onSortButtonClick}
+            sortByValue={sortBy}
           />
           {renderCollectionItems()}
         </>
