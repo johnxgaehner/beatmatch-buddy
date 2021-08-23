@@ -14,26 +14,27 @@ export default function CollectionPage() {
   function renderCollectionItems() {
     if (collection && collection.length > 0) {
       const sortedCollectionItems = collection.sort(function (a, b) {
-        if (sortBy === "trackTitle_AtoZ") {
-          return a.trackTitle.toUpperCase() > b.trackTitle.toUpperCase();
-        } else if (sortBy === "trackTitle_ZtoA") {
-          return a.trackTitle.toUpperCase() < b.trackTitle.toUpperCase();
-        } else if (sortBy === "artistName_AtoZ") {
-          return a.artistName.toUpperCase() > b.artistName.toUpperCase();
-        } else if (sortBy === "artistName_ZtoA") {
-          return a.artistName.toUpperCase() < b.artistName.toUpperCase();
-        } else if (sortBy === "recordTitle_AtoZ") {
-          return a.recordTitle.toUpperCase() > b.recordTitle.toUpperCase();
-        } else if (sortBy === "recordTitle_ZtoA") {
-          return a.recordTitle.toUpperCase() < b.recordTitle.toUpperCase();
-        } else if (sortBy === "bpm_0to9") {
-          return a.bpm - b.bpm;
-        } else if (sortBy === "bpm_9to0") {
-          return b.bpm - a.bpm;
-        } else if (sortBy === "date_0to9") {
-          return new Date(b.createdAt) - new Date(a.createdAt);
-        } else {
-          return new Date(a.createdAt) - new Date(b.createdAt);
+        switch (sortBy) {
+          case "trackTitle_AtoZ":
+            return a.trackTitle.toUpperCase() > b.trackTitle.toUpperCase();
+          case "trackTitle_ZtoA":
+            return a.trackTitle.toUpperCase() < b.trackTitle.toUpperCase();
+          case "artistName_AtoZ":
+            return a.artistName.toUpperCase() > b.artistName.toUpperCase();
+          case "artistName_ZtoA":
+            return a.artistName.toUpperCase() < b.artistName.toUpperCase();
+          case "recordTitle_AtoZ":
+            return a.recordTitle.toUpperCase() > b.recordTitle.toUpperCase();
+          case "recordTitle_ZtoA":
+            return a.recordTitle.toUpperCase() < b.recordTitle.toUpperCase();
+          case "bpm_0to9":
+            return a.bpm - b.bpm;
+          case "bpm_9to0":
+            return b.bpm - a.bpm;
+          case "date_0to9":
+            return new Date(a.createdAt) - new Date(b.createdAt);
+          default:
+            return new Date(b.createdAt) - new Date(a.createdAt);
         }
       });
 
