@@ -7,12 +7,23 @@ import "./CollectionPage.css";
 export default function CollectionPage() {
   const [collection] = useLocalStorage("savedTracks", []);
   const [searchFilter, setSearchFilter] = useState("");
+  const [sortBy, setSortBy] = useState("trackTitle_AtoZ");
   const [minTempoFilter, setMinTempoFilter] = useState(0);
   const [maxTempoFilter, setMaxTempoFilter] = useState(999);
 
   function renderCollectionItems() {
     if (collection && collection.length > 0) {
-      const collectionItems = collection
+      const sortedCollectionItems = collection.sort(function (a, b) {
+        if (sortBy === "trackTitle_AtoZ") {
+          return a.trackTitle > b.trackTitle;
+        } else if (sortBy === "trackTitle_ZtoA") {
+          return a.trackTitle < b.trackTitle;
+        } else {
+          return new Date(a.createdAt) - new Date(b.createdAt);
+        }
+      });
+
+      const collectionItems = sortedCollectionItems
         .filter((track) => {
           return (
             track.trackTitle.toUpperCase().includes(searchFilter) ||
@@ -48,6 +59,10 @@ export default function CollectionPage() {
     setMaxTempoFilter(+event.target.value);
   }
 
+  function onSortButtonClick(sortId) {
+    setSortBy(sortId);
+  }
+
   return (
     <section className="CollectionPage">
       {collection.length > 0 ? (
@@ -56,6 +71,7 @@ export default function CollectionPage() {
             onSearchInput={onSearchInput}
             onMinTempoChange={onMinTempoChange}
             onMaxTempoChange={onMaxTempoChange}
+            onSortButtonClick={onSortButtonClick}
           />
           {renderCollectionItems()}
         </>

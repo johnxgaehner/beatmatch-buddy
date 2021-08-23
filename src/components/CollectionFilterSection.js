@@ -7,7 +7,11 @@ export default function CollectionFilterSection({
   onSearchInput,
   onMinTempoChange,
   onMaxTempoChange,
+  onSortButtonClick,
 }) {
+  const dropdownRef = useRef(null);
+  const [dropdown, setDropdown] = useState(false);
+
   function handleSearchInput(event) {
     onSearchInput(event);
   }
@@ -20,12 +24,14 @@ export default function CollectionFilterSection({
     onMaxTempoChange(event);
   }
 
-  function handleSortButtonClick() {
+  function handleDropDownButtonClick() {
     setDropdown(!dropdown);
   }
 
-  const dropdownRef = useRef(null);
-  const [dropdown, setDropdown] = useState(false);
+  function handleSortButtonClick(event) {
+    onSortButtonClick(event.target.id);
+    setDropdown(!dropdown);
+  }
 
   return (
     <>
@@ -39,7 +45,7 @@ export default function CollectionFilterSection({
         />
         <button
           className="CollectionPage__Sort"
-          onClick={handleSortButtonClick}
+          onClick={handleDropDownButtonClick}
         >
           Sort{" "}
           <ArrowIcon
@@ -56,11 +62,11 @@ export default function CollectionFilterSection({
         ref={dropdownRef}
       >
         <ul>
-          <li>
+          <li onClick={handleSortButtonClick} id="trackTitle_AtoZ">
             <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
             Track Title, A-Z
           </li>
-          <li>
+          <li onClick={handleSortButtonClick} id="trackTitle_ZtoA">
             <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
             Track Title, Z-A
           </li>
