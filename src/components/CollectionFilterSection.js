@@ -1,3 +1,6 @@
+import { useState, useRef } from "react";
+import { ReactComponent as ArrowIcon } from "../assets/icon_arrow.svg";
+import { ReactComponent as IconSelectionEmpty } from "../assets/icon_circle_empty.svg";
 import "./CollectionFilterSection.css";
 
 export default function CollectionFilterSection({
@@ -17,6 +20,13 @@ export default function CollectionFilterSection({
     onMaxTempoChange(event);
   }
 
+  function handleSortButtonClick() {
+    setDropdown(!dropdown);
+  }
+
+  const dropdownRef = useRef(null);
+  const [dropdown, setDropdown] = useState(false);
+
   return (
     <>
       <div className="Row--flat">
@@ -27,6 +37,58 @@ export default function CollectionFilterSection({
           id="SearchFilter"
           placeholder="SEARCH:"
         />
+        <button
+          className="CollectionPage__Sort"
+          onClick={handleSortButtonClick}
+        >
+          Sort{" "}
+          <ArrowIcon
+            className={`CollectionPage__SortIcon ${
+              dropdown ? `active` : `inactive`
+            }`}
+          />
+        </button>
+      </div>
+      <div
+        className={`CollectionPage__SortDropdown ${
+          dropdown ? `active` : `inactive`
+        }`}
+        ref={dropdownRef}
+      >
+        <ul>
+          <li>
+            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            Track Title, A-Z
+          </li>
+          <li>
+            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            Track Title, Z-A
+          </li>
+          <li>
+            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            Artist Name, A-Z
+          </li>
+          <li>
+            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            Artist Name, Z-A
+          </li>
+          <li>
+            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            Record Title, A-Z
+          </li>
+          <li>
+            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            Record Title, Z-A
+          </li>
+          <li>
+            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            Date, old to new
+          </li>
+          <li>
+            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            Date, new to old
+          </li>
+        </ul>
       </div>
       <div className="Row--flat --space-between">
         <label htmlFor="TempoFilter__min">TEMPO:</label>
