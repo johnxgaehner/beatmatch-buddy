@@ -86,6 +86,14 @@ export default function CollectionFilterSection({
             <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
             Record Title, Z-A
           </li>
+          <li onClick={handleSortButtonClick} id="bpm_0to9">
+            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            BPM, slow to fast
+          </li>
+          <li onClick={handleSortButtonClick} id="bpm_9to0">
+            <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
+            BPM, fast to slow
+          </li>
           <li onClick={handleSortButtonClick} id="date_0to9">
             <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
             Date, old to new
