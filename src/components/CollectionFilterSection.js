@@ -70,27 +70,27 @@ export default function CollectionFilterSection({
             <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
             Track Title, Z-A
           </li>
-          <li>
+          <li onClick={handleSortButtonClick} id="artistName_AtoZ">
             <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
             Artist Name, A-Z
           </li>
-          <li>
+          <li onClick={handleSortButtonClick} id="artistName_ZtoA">
             <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
             Artist Name, Z-A
           </li>
-          <li>
+          <li onClick={handleSortButtonClick} id="recordTitle_AtoZ">
             <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
             Record Title, A-Z
           </li>
-          <li>
+          <li onClick={handleSortButtonClick} id="recordTitle_ZtoA">
             <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
             Record Title, Z-A
           </li>
-          <li>
+          <li onClick={handleSortButtonClick} id="date_0to9">
             <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
             Date, old to new
           </li>
-          <li>
+          <li onClick={handleSortButtonClick} id="date_9to0">
             <IconSelectionEmpty className="CollectionPage__SelectionIcon" />
             Date, new to old
           </li>
