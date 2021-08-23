@@ -4,44 +4,14 @@
   gap: 0.5rem;
 }
 
+.CollectionFilterSection {
+  border-bottom: 1px solid black;
+}
+
 .CollectionPage__Sort {
   display: flex;
   align-items: center;
   gap: 3px;
-}
-
-.CollectionPage__SortDropdown {
-  opacity: 0;
-  position: absolute;
-  top: 110px;
-  left: 0;
-  right: 0;
-  padding: 0.2rem 1rem;
-  background-color: var(--color-background);
-  border-bottom: 1px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  color: black;
-  text-transform: none;
-  font-size: 0.9rem;
-}
-
-.CollectionPage__SortDropdown.active {
-  opacity: 1;
-}
-
-.CollectionPage__SortDropdown ul li {
-  all: unset;
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  padding: 0.2rem;
-}
-
-.CollectionPage__SelectionIcon {
-  height: 8px;
-  width: auto;
 }
 
 .CollectionPage__SortIcon {
@@ -53,6 +23,39 @@
 
 .CollectionPage__SortIcon.active {
   transform: rotate(270deg);
+}
+
+.CollectionPage__SortDropdown {
+  position: absolute;
+  background-color: var(--color-background);
+  left: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid black;
+  text-transform: none;
+  opacity: 0;
+}
+
+.CollectionPage__SortDropdown.active {
+  opacity: 1;
+}
+
+.CollectionPage__SortDropdownList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.CollectionPage__SortDropdown ul li {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.CollectionPage__SelectionIcon {
+  height: 10px;
+  width: auto;
 }
 
 .CollectionPage__TempoFilterSection input {

@@ -37,7 +37,7 @@ export default function CollectionFilterSection({
   }
 
   return (
-    <>
+    <section className="CollectionFilterSection">
       <div className="Row--flat">
         <input
           onChange={handleSearchInput}
@@ -64,7 +64,7 @@ export default function CollectionFilterSection({
         }`}
         ref={dropdownRef}
       >
-        <ul>
+        <ul className="CollectionPage__SortDropdownList">
           <li onClick={handleSortButtonClick} id="trackTitle_AtoZ">
             {sortByValue === "trackTitle_AtoZ" ? (
               <IconSelectionFilled className="CollectionPage__SelectionIcon" />
@@ -171,6 +171,6 @@ export default function CollectionFilterSection({
           />
         </div>
       </div>
-    </>
+    </section>
   );
 }
