@@ -11,6 +11,7 @@ import CreateNewPlaylistPage from "./pages/CreateNewPlaylistPage";
 import AddToPlaylistPage from "./pages/AddToPlaylistPage";
 import ProjectInfoPage from "./pages/ProjectInfoPage";
 import PlaylistDetailPage from "./pages/PlaylistDetailPage";
+import HowToUsePage from "./pages/HowToUsePage";
 
 function App() {
   return (
@@ -31,14 +32,17 @@ function App() {
           <Route path="/playlists">
             <PlaylistsPage />
           </Route>
-          <Route path="/project-info">
-            <ProjectInfoPage />
-          </Route>
           <Route path="/playlist/:playlistId">
             <PlaylistDetailPage />
           </Route>
           <Route path="/create-new-playlist">
             <CreateNewPlaylistPage />
+          </Route>
+          <Route path="/project-info">
+            <ProjectInfoPage />
+          </Route>
+          <Route path="/how-to-use">
+            <HowToUsePage />
           </Route>
           <Route path="/">
             <HomePage />

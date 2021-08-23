@@ -18,6 +18,10 @@ export default function HomePage() {
           <p>Playlists</p>
           <IconArrow />
         </NavLink>
+        <NavLink className="Row--flat --space-between" to="/how-to-use">
+          <p>How To Use</p>
+          <IconArrow />
+        </NavLink>
         <NavLink className="Row--flat --space-between" to="/project-info">
           <p>Project Info</p>
           <IconArrow />

@@ -56,18 +56,23 @@ export default function Header() {
             Return
           </p>
         </Route>
-        <Route path="/project-info">
-          <h1>Project Info</h1>
-          <Link to="/">
-            <p>Menu</p>
-          </Link>
-        </Route>
-
         <Route path="/create-new-playlist">
           <h1>Create New Playlist</h1>
           <p onClick={history.goBack} className="Header__ReturnLink">
             Return
           </p>
+        </Route>
+        <Route path="/how-to-use">
+          <h1>How To Use</h1>
+          <Link to="/">
+            <p>Menu</p>
+          </Link>
+        </Route>
+        <Route path="/project-info">
+          <h1>Project Info</h1>
+          <Link to="/">
+            <p>Menu</p>
+          </Link>
         </Route>
         <Route path="/">
           <h1>Home</h1>
