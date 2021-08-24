@@ -17,6 +17,9 @@ export default function PlaylistItem({
     from: { position: "absolute", opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
+    config: {
+      duration: 150,
+    },
   });
 
   return (
