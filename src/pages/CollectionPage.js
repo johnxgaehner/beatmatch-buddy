@@ -74,8 +74,8 @@ export default function CollectionPage() {
     setMaxTempoFilter(+event.target.value);
   }
 
-  function onSortButtonClick(sortId) {
-    setSortBy(sortId);
+  function onSortValueSelection(sortValue) {
+    setSortBy(sortValue);
   }
 
   return (
@@ -86,7 +86,7 @@ export default function CollectionPage() {
             onSearchInput={onSearchInput}
             onMinTempoChange={onMinTempoChange}
             onMaxTempoChange={onMaxTempoChange}
-            onSortButtonClick={onSortButtonClick}
+            onSortValueSelection={onSortValueSelection}
             sortByValue={sortBy}
           />
           {renderCollectionItems()}

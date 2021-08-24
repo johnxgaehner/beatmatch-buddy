@@ -3,15 +3,19 @@ import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_fil
 import "./SortCollectionByItem.css";
 
 export default function SortCollectionByItem({
-  handleSortButtonClick,
+  onSortSelection,
   sortByValue,
   sortValue,
   text,
 }) {
+  function handleSortValueSelection() {
+    onSortSelection(sortValue);
+  }
+
   return (
     <li
       className="SortCollectionByItem__SelectionItem"
-      onClick={handleSortButtonClick}
+      onClick={handleSortValueSelection}
       id={sortValue}
     >
       {sortByValue === sortValue ? (

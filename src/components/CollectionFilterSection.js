@@ -8,7 +8,7 @@ export default function CollectionFilterSection({
   onSearchInput,
   onMinTempoChange,
   onMaxTempoChange,
-  onSortButtonClick,
+  onSortValueSelection,
   sortByValue,
 }) {
   const dropdownRef = useRef(null);
@@ -22,8 +22,8 @@ export default function CollectionFilterSection({
     setDropdown(!dropdown);
   }
 
-  function handleSortButtonClick(event) {
-    onSortButtonClick(event.target.id);
+  function onSortSelection() {
+    onSortValueSelection();
     setDropdown(!dropdown);
   }
 
@@ -67,61 +67,61 @@ export default function CollectionFilterSection({
           <SortCollectionByItem
             text="Track Title, A-Z"
             sortValue="trackTitle_AtoZ"
-            handleSortButtonClick={handleSortButtonClick}
+            onSortSelection={onSortSelection}
             sortByValue={sortByValue}
           />
           <SortCollectionByItem
             text="Track Title, Z-A"
             sortValue="trackTitle_ZtoA"
-            handleSortButtonClick={handleSortButtonClick}
+            onSortSelection={onSortSelection}
             sortByValue={sortByValue}
           />
           <SortCollectionByItem
             text="Artist Name, A-Z"
             sortValue="artistName_AtoZ"
-            handleSortButtonClick={handleSortButtonClick}
+            onSortSelection={onSortSelection}
             sortByValue={sortByValue}
           />
           <SortCollectionByItem
             text="Artist Name, Z-A"
             sortValue="artistName_ZtoA"
-            handleSortButtonClick={handleSortButtonClick}
+            onSortSelection={onSortSelection}
             sortByValue={sortByValue}
           />
           <SortCollectionByItem
             text="Record Title, A-Z"
             sortValue="recordTitle_AtoZ"
-            handleSortButtonClick={handleSortButtonClick}
+            onSortSelection={onSortSelection}
             sortByValue={sortByValue}
           />
           <SortCollectionByItem
             text="Record Title, Z-A"
             sortValue="recordTitle_ZtoA"
-            handleSortButtonClick={handleSortButtonClick}
+            onSortSelection={onSortSelection}
             sortByValue={sortByValue}
           />
           <SortCollectionByItem
             text="BPM, slow to fast"
             sortValue="bpm_0to9"
-            handleSortButtonClick={handleSortButtonClick}
+            onSortSelection={onSortSelection}
             sortByValue={sortByValue}
           />
           <SortCollectionByItem
             text="BPM, fast to slow"
             sortValue="bpm_9to0"
-            handleSortButtonClick={handleSortButtonClick}
+            onSortSelection={onSortSelection}
             sortByValue={sortByValue}
           />
           <SortCollectionByItem
             text="Date, old to new"
             sortValue="date_0to9"
-            handleSortButtonClick={handleSortButtonClick}
+            onSortSelection={onSortSelection}
             sortByValue={sortByValue}
           />
           <SortCollectionByItem
             text="Date, new to old"
             sortValue="date_9to0"
-            handleSortButtonClick={handleSortButtonClick}
+            onSortSelection={onSortSelection}
             sortByValue={sortByValue}
           />
         </ul>
