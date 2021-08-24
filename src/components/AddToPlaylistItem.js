@@ -24,17 +24,19 @@ export default function PlaylistItem({
       className="Row--flat AddToPlaylistItem"
       onClick={handleAddToPlaylistClick}
     >
-      {transition((style, item) =>
-        item ? (
-          <animated.div style={style}>
-            <IconSelectionFilled className="AddToPlaylistItem__SelectionIcon" />
-          </animated.div>
-        ) : (
-          <animated.div style={style}>
-            <IconSelectionEmpty className="AddToPlaylistItem__SelectionIcon" />
-          </animated.div>
-        )
-      )}
+      <div className="AddToPlaylistItem__SelectionIconContainer">
+        {transition((style, item) =>
+          item ? (
+            <animated.div style={style}>
+              <IconSelectionFilled className="AddToPlaylistItem__SelectionIcon" />
+            </animated.div>
+          ) : (
+            <animated.div style={style}>
+              <IconSelectionEmpty className="AddToPlaylistItem__SelectionIcon" />
+            </animated.div>
+          )
+        )}
+      </div>
       <p className="AddToPlaylistItem__SelectionName">
         {playlist.playlistName}
       </p>

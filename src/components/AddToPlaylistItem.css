@@ -1,15 +1,16 @@
 .AddToPlaylistItem {
-  gap: 1rem;
+  gap: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.AddToPlaylistItem__SelectionIconContainer {
   display: flex;
   align-items: center;
 }
 
 .AddToPlaylistItem__SelectionIcon {
-  height: 15px;
   margin-top: 5px;
+  height: 15px;
   width: auto;
-}
-
-.AddToPlaylistItem__SelectionName {
-  padding-left: 1.5rem;
 }

@@ -1,3 +1,4 @@
+import { useTransition, animated } from "react-spring";
 import { ReactComponent as IconSelectionEmpty } from "../assets/icon_circle_empty.svg";
 import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_filled.svg";
 import "./AddTrackOnTheFlyItem.css";
@@ -10,16 +11,30 @@ export default function AddTrackOnTheFlyItem({
   function handleOnAddToPlaylistClick() {
     onAddToPlaylistClick(trackInfo.id);
   }
+
+  const transition = useTransition(playlist.trackIds.includes(trackInfo.id), {
+    initial: { position: "absolute" },
+    from: { position: "absolute", opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+  });
+
   return (
     <div onClick={handleOnAddToPlaylistClick} className="AddTrackOnTheFlyItem">
-      <div>
-        {playlist.trackIds.includes(trackInfo.id) ? (
-          <IconSelectionFilled className="AddTrackOnTheFlyItem__SelectionIcon" />
-        ) : (
-          <IconSelectionEmpty className="AddTrackOnTheFlyItem__SelectionIcon" />
+      <div className="AddTrackOnTheFlyItem__SelectionIconContainer">
+        {transition((style, item) =>
+          item ? (
+            <animated.div style={style}>
+              <IconSelectionFilled className="AddTrackOnTheFlyItem__SelectionIcon" />
+            </animated.div>
+          ) : (
+            <animated.div style={style}>
+              <IconSelectionEmpty className="AddTrackOnTheFlyItem__SelectionIcon" />
+            </animated.div>
+          )
         )}
       </div>
-      <ul>
+      <ul className="AddTrackOnTheFlyItem__SelectionTrack">
         <li>{trackInfo.trackTitle}</li>
         <li>{trackInfo.artistName}</li>
         <li>{trackInfo.recordTitle}</li>
