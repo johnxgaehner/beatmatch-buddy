@@ -16,17 +16,29 @@ export default function CollectionPage() {
       const sortedCollectionItems = collection.sort(function (a, b) {
         switch (sortBy) {
           case "trackTitle_AtoZ":
-            return a.trackTitle.toUpperCase() > b.trackTitle.toUpperCase();
+            return a.trackTitle.toUpperCase() > b.trackTitle.toUpperCase()
+              ? 1
+              : -1;
           case "trackTitle_ZtoA":
-            return a.trackTitle.toUpperCase() < b.trackTitle.toUpperCase();
+            return a.trackTitle.toUpperCase() < b.trackTitle.toUpperCase()
+              ? 1
+              : -1;
           case "artistName_AtoZ":
-            return a.artistName.toUpperCase() > b.artistName.toUpperCase();
+            return a.artistName.toUpperCase() > b.artistName.toUpperCase()
+              ? 1
+              : -1;
           case "artistName_ZtoA":
-            return a.artistName.toUpperCase() < b.artistName.toUpperCase();
+            return a.artistName.toUpperCase() < b.artistName.toUpperCase()
+              ? 1
+              : -1;
           case "recordTitle_AtoZ":
-            return a.recordTitle.toUpperCase() > b.recordTitle.toUpperCase();
+            return a.recordTitle.toUpperCase() > b.recordTitle.toUpperCase()
+              ? 1
+              : -1;
           case "recordTitle_ZtoA":
-            return a.recordTitle.toUpperCase() < b.recordTitle.toUpperCase();
+            return a.recordTitle.toUpperCase() < b.recordTitle.toUpperCase()
+              ? 1
+              : -1;
           case "bpm_0to9":
             return a.bpm - b.bpm;
           case "bpm_9to0":

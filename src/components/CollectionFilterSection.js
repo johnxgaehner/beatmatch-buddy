@@ -22,8 +22,8 @@ export default function CollectionFilterSection({
     setDropdown(!dropdown);
   }
 
-  function onSortSelection() {
-    onSortValueSelection();
+  function onSortSelection(sortValue) {
+    onSortValueSelection(sortValue);
     setDropdown(!dropdown);
   }
 
