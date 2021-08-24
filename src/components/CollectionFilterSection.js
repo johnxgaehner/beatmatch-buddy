@@ -35,6 +35,35 @@ export default function CollectionFilterSection({
     onMaxTempoChange(event);
   }
 
+  function renderSortCollectionByItems() {
+    const sortPossibilities = [
+      { text: "Track Title, A-Z", sortValue: "trackTitle_AtoZ" },
+      { text: "Track Title, Z-A", sortValue: "trackTitle_ZtoA" },
+      { text: "Artist Name, A-Z", sortValue: "artistName_AtoZ" },
+      { text: "Artist Name, Z-A", sortValue: "artistName_ZtoA" },
+      { text: "Record Title, A-Z", sortValue: "recordTitle_AtoZ" },
+      { text: "Record Title, Z-A", sortValue: "recordTitle_ZtoA" },
+      { text: "BPM, slow to fast", sortValue: "bpm_0to9" },
+      { text: "BPM, fast to slow", sortValue: "bpm_9to0" },
+      { text: "Date, old to new", sortValue: "date_0to9" },
+      { text: "Date, new to old", sortValue: "date_9to0" },
+    ];
+
+    const sortCollectionByItems = sortPossibilities.map((item, index) => {
+      return (
+        <SortCollectionByItem
+          key={index}
+          text={item.text}
+          sortValue={item.sortValue}
+          onSortSelection={onSortSelection}
+          currentSortValue={currentSortValue}
+        />
+      );
+    });
+
+    return sortCollectionByItems;
+  }
+
   return (
     <section className="CollectionFilterSection">
       <div className="Row--flat">
@@ -64,66 +93,7 @@ export default function CollectionFilterSection({
         ref={dropdownRef}
       >
         <ul className="CollectionFilterSection__SortDropdownSelectionList">
-          <SortCollectionByItem
-            text="Track Title, A-Z"
-            sortValue="trackTitle_AtoZ"
-            onSortSelection={onSortSelection}
-            currentSortValue={currentSortValue}
-          />
-          <SortCollectionByItem
-            text="Track Title, Z-A"
-            sortValue="trackTitle_ZtoA"
-            onSortSelection={onSortSelection}
-            currentSortValue={currentSortValue}
-          />
-          <SortCollectionByItem
-            text="Artist Name, A-Z"
-            sortValue="artistName_AtoZ"
-            onSortSelection={onSortSelection}
-            currentSortValue={currentSortValue}
-          />
-          <SortCollectionByItem
-            text="Artist Name, Z-A"
-            sortValue="artistName_ZtoA"
-            onSortSelection={onSortSelection}
-            currentSortValue={currentSortValue}
-          />
-          <SortCollectionByItem
-            text="Record Title, A-Z"
-            sortValue="recordTitle_AtoZ"
-            onSortSelection={onSortSelection}
-            currentSortValue={currentSortValue}
-          />
-          <SortCollectionByItem
-            text="Record Title, Z-A"
-            sortValue="recordTitle_ZtoA"
-            onSortSelection={onSortSelection}
-            currentSortValue={currentSortValue}
-          />
-          <SortCollectionByItem
-            text="BPM, slow to fast"
-            sortValue="bpm_0to9"
-            onSortSelection={onSortSelection}
-            currentSortValue={currentSortValue}
-          />
-          <SortCollectionByItem
-            text="BPM, fast to slow"
-            sortValue="bpm_9to0"
-            onSortSelection={onSortSelection}
-            currentSortValue={currentSortValue}
-          />
-          <SortCollectionByItem
-            text="Date, old to new"
-            sortValue="date_0to9"
-            onSortSelection={onSortSelection}
-            currentSortValue={currentSortValue}
-          />
-          <SortCollectionByItem
-            text="Date, new to old"
-            sortValue="date_9to0"
-            onSortSelection={onSortSelection}
-            currentSortValue={currentSortValue}
-          />
+          {renderSortCollectionByItems()}
         </ul>
       </div>
       <div className="Row--flat --space-between">

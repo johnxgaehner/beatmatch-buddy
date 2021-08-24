@@ -8,7 +8,7 @@ export default function CollectionPage() {
   const [collection] = useLocalStorage("savedTracks", []);
   const [searchFilter, setSearchFilter] = useState("");
   const [currentSortValue, setCurrentSortValue] = useLocalStorage(
-    "sortValue",
+    "sortCollectionValue",
     "date_9to0"
   );
   const [minTempoFilter, setMinTempoFilter] = useState(0);
