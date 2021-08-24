@@ -26,6 +26,9 @@
   display: flex;
   font-size: 0.8rem;
   line-height: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .CollectionItem ul li:first-child {

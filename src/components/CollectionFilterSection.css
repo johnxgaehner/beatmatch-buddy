@@ -1,10 +1,52 @@
-.CollectionPage__TempoFilterSection {
+.CollectionFilterSection {
+  border-bottom: 1px solid black;
+}
+
+.CollectionFilterSection__SortButton {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.CollectionFilterSection__SortButtonIcon {
+  height: 12px;
+  width: auto;
+  transform: rotate(90deg);
+  transition: 0.2s ease-in;
+}
+
+.CollectionFilterSection__SortButtonIcon.active {
+  transform: rotate(270deg);
+}
+
+.CollectionFilterSection__SortDropdownMenu {
+  position: absolute;
+  background-color: var(--color-background);
+  left: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid black;
+  text-transform: none;
+  display: none;
+}
+
+.CollectionFilterSection__SortDropdownMenu.active {
+  display: block;
+}
+
+.CollectionFilterSection__SortDropdownSelectionList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.CollectionFilterSection__TempoFilterSection {
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
 }
 
-.CollectionPage__TempoFilterSection input {
+.CollectionFilterSection__TempoFilterSection input {
   width: 35px;
   text-align: right;
 }

@@ -14,6 +14,7 @@ export default function AnalysePage() {
     trackTitle: "",
     artistName: "",
     recordTitle: "",
+    createdAt: "",
   });
 
   function handleInputChange(event) {
@@ -24,6 +25,7 @@ export default function AnalysePage() {
       id: uuidv4(),
       bpm: Number(BPM),
       [key]: input,
+      createdAt: new Date(),
     };
     setNewTrack(newTrackData);
   }
@@ -42,6 +44,7 @@ export default function AnalysePage() {
         trackTitle: "",
         artistName: "",
         recordTitle: "",
+        createdAt: "",
       });
       return;
     }
@@ -60,6 +63,7 @@ export default function AnalysePage() {
       trackTitle: "",
       artistName: "",
       recordTitle: "",
+      createdAt: "",
     });
   }
 
@@ -75,7 +79,7 @@ export default function AnalysePage() {
             name="trackTitle"
             id="trackTitle"
             placeholder="ENTER TRACK"
-            maxLength="24"
+            maxLength="30"
             required
           />
         </div>

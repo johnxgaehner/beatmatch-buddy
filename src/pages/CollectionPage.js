@@ -7,12 +7,53 @@ import "./CollectionPage.css";
 export default function CollectionPage() {
   const [collection] = useLocalStorage("savedTracks", []);
   const [searchFilter, setSearchFilter] = useState("");
+  const [currentSortValue, setCurrentSortValue] = useLocalStorage(
+    "sortCollectionValue",
+    "date_9to0"
+  );
   const [minTempoFilter, setMinTempoFilter] = useState(0);
   const [maxTempoFilter, setMaxTempoFilter] = useState(999);
 
   function renderCollectionItems() {
     if (collection && collection.length > 0) {
-      const collectionItems = collection
+      const sortedCollectionItems = collection.sort(function (a, b) {
+        switch (currentSortValue) {
+          case "trackTitle_AtoZ":
+            return a.trackTitle.toUpperCase() > b.trackTitle.toUpperCase()
+              ? 1
+              : -1;
+          case "trackTitle_ZtoA":
+            return a.trackTitle.toUpperCase() < b.trackTitle.toUpperCase()
+              ? 1
+              : -1;
+          case "artistName_AtoZ":
+            return a.artistName.toUpperCase() > b.artistName.toUpperCase()
+              ? 1
+              : -1;
+          case "artistName_ZtoA":
+            return a.artistName.toUpperCase() < b.artistName.toUpperCase()
+              ? 1
+              : -1;
+          case "recordTitle_AtoZ":
+            return a.recordTitle.toUpperCase() > b.recordTitle.toUpperCase()
+              ? 1
+              : -1;
+          case "recordTitle_ZtoA":
+            return a.recordTitle.toUpperCase() < b.recordTitle.toUpperCase()
+              ? 1
+              : -1;
+          case "bpm_0to9":
+            return a.bpm - b.bpm;
+          case "bpm_9to0":
+            return b.bpm - a.bpm;
+          case "date_0to9":
+            return new Date(a.createdAt) - new Date(b.createdAt);
+          default:
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        }
+      });
+
+      const collectionItems = sortedCollectionItems
         .filter((track) => {
           return (
             track.trackTitle.toUpperCase().includes(searchFilter) ||
@@ -48,6 +89,10 @@ export default function CollectionPage() {
     setMaxTempoFilter(+event.target.value);
   }
 
+  function onSortValueSelection(selectedValue) {
+    setCurrentSortValue(selectedValue);
+  }
+
   return (
     <section className="CollectionPage">
       {collection.length > 0 ? (
@@ -56,6 +101,8 @@ export default function CollectionPage() {
             onSearchInput={onSearchInput}
             onMinTempoChange={onMinTempoChange}
             onMaxTempoChange={onMaxTempoChange}
+            onSortValueSelection={onSortValueSelection}
+            currentSortValue={currentSortValue}
           />
           {renderCollectionItems()}
         </>
