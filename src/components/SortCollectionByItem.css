@@ -7,9 +7,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .SortCollectionByItem__SelectionIcon {
   height: 12px;
   width: auto;
+  pointer-events: none;
 }
