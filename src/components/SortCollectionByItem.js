@@ -4,7 +4,7 @@ import "./SortCollectionByItem.css";
 
 export default function SortCollectionByItem({
   onSortSelection,
-  sortByValue,
+  currentSortValue,
   sortValue,
   text,
 }) {
@@ -18,7 +18,7 @@ export default function SortCollectionByItem({
       onClick={handleSortValueSelection}
       id={sortValue}
     >
-      {sortByValue === sortValue ? (
+      {currentSortValue === sortValue ? (
         <IconSelectionFilled className="SortCollectionByItem__SelectionIcon" />
       ) : (
         <IconSelectionEmpty className="SortCollectionByItem__SelectionIcon" />

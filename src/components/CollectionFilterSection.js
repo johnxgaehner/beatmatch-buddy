@@ -9,7 +9,7 @@ export default function CollectionFilterSection({
   onMinTempoChange,
   onMaxTempoChange,
   onSortValueSelection,
-  sortByValue,
+  currentSortValue,
 }) {
   const dropdownRef = useRef(null);
   const [dropdown, setDropdown] = useOutsideClick(dropdownRef, false);
@@ -22,8 +22,8 @@ export default function CollectionFilterSection({
     setDropdown(!dropdown);
   }
 
-  function onSortSelection(sortValue) {
-    onSortValueSelection(sortValue);
+  function onSortSelection(selectedValue) {
+    onSortValueSelection(selectedValue);
     setDropdown(!dropdown);
   }
 
@@ -68,61 +68,61 @@ export default function CollectionFilterSection({
             text="Track Title, A-Z"
             sortValue="trackTitle_AtoZ"
             onSortSelection={onSortSelection}
-            sortByValue={sortByValue}
+            currentSortValue={currentSortValue}
           />
           <SortCollectionByItem
             text="Track Title, Z-A"
             sortValue="trackTitle_ZtoA"
             onSortSelection={onSortSelection}
-            sortByValue={sortByValue}
+            currentSortValue={currentSortValue}
           />
           <SortCollectionByItem
             text="Artist Name, A-Z"
             sortValue="artistName_AtoZ"
             onSortSelection={onSortSelection}
-            sortByValue={sortByValue}
+            currentSortValue={currentSortValue}
           />
           <SortCollectionByItem
             text="Artist Name, Z-A"
             sortValue="artistName_ZtoA"
             onSortSelection={onSortSelection}
-            sortByValue={sortByValue}
+            currentSortValue={currentSortValue}
           />
           <SortCollectionByItem
             text="Record Title, A-Z"
             sortValue="recordTitle_AtoZ"
             onSortSelection={onSortSelection}
-            sortByValue={sortByValue}
+            currentSortValue={currentSortValue}
           />
           <SortCollectionByItem
             text="Record Title, Z-A"
             sortValue="recordTitle_ZtoA"
             onSortSelection={onSortSelection}
-            sortByValue={sortByValue}
+            currentSortValue={currentSortValue}
           />
           <SortCollectionByItem
             text="BPM, slow to fast"
             sortValue="bpm_0to9"
             onSortSelection={onSortSelection}
-            sortByValue={sortByValue}
+            currentSortValue={currentSortValue}
           />
           <SortCollectionByItem
             text="BPM, fast to slow"
             sortValue="bpm_9to0"
             onSortSelection={onSortSelection}
-            sortByValue={sortByValue}
+            currentSortValue={currentSortValue}
           />
           <SortCollectionByItem
             text="Date, old to new"
             sortValue="date_0to9"
             onSortSelection={onSortSelection}
-            sortByValue={sortByValue}
+            currentSortValue={currentSortValue}
           />
           <SortCollectionByItem
             text="Date, new to old"
             sortValue="date_9to0"
             onSortSelection={onSortSelection}
-            sortByValue={sortByValue}
+            currentSortValue={currentSortValue}
           />
         </ul>
       </div>
