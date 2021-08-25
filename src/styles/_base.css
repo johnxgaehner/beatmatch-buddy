@@ -55,10 +55,3 @@ button:focus {
   -webkit-user-select: none; /* Chrome, Safari, and Opera */
   -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
 }
-
-/* @media (hover: hover) {
-  .Row--flat:hover,
-  .Row--high:hover {
-    padding: 0 1.5rem;
-  }
-} */
