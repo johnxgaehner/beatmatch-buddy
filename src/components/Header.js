@@ -3,12 +3,13 @@ import { Switch, Route, useHistory } from "react-router-dom";
 import Menu from "./Menu";
 import useScroll from "../hooks/useScroll";
 import "./Header.css";
+import { useRef } from "react";
+import useOutsideOnClick from "../services/useOutsideOnClick";
 
 export default function Header() {
   const history = useHistory();
 
   const [headerIsHidden, setHeaderIsHidden] = useState(false);
-  const [menuIsVisible, setMenuIsVisible] = useState(false);
 
   const MIN_SCROLL = 63;
   const TIMEOUT_DELAY = 300;
@@ -26,18 +27,27 @@ export default function Header() {
     return headerIsHidden ? "Header--hidden" : "";
   }
 
+  const menuRef = useRef();
+  const [menuIsVisible, setMenuIsVisible] = useState(false);
+
+  useOutsideOnClick(menuRef, () => setMenuIsVisible(false));
+
   function toggleMenu() {
     setMenuIsVisible(!menuIsVisible);
-    document.body.style.overflow = "hidden";
+    menuIsVisible
+      ? (document.body.style.overflow = "auto")
+      : (document.body.style.overflow = "hidden");
   }
 
   return (
     <>
-      <Menu
-        menuIsVisible={menuIsVisible}
-        setMenuIsVisible={setMenuIsVisible}
-        toggleMenu={toggleMenu}
-      />
+      <div ref={menuRef}>
+        <Menu
+          menuIsVisible={menuIsVisible}
+          setMenuIsVisible={setMenuIsVisible}
+          toggleMenu={toggleMenu}
+        />
+      </div>
       <header className={`Header ${getHeaderState()}`}>
         <Switch>
           <Route path="/analyse">

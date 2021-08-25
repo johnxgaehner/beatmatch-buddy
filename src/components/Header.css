@@ -3,8 +3,7 @@
   height: 63px;
   position: fixed;
   top: 0;
-  left: 1rem;
-  right: 1rem;
+  width: 100%;
   padding: 0 1rem;
   display: flex;
   align-items: center;
@@ -31,6 +30,7 @@
   border: 1px solid black;
   border-radius: 25px;
   padding: 0.25rem 0.5rem;
+  background-color: lightgrey;
   transition: background-color 300ms cubic-bezier(0.52, 0.16, 0.24, 1);
 }
 
