@@ -56,8 +56,8 @@ export default function CollectionFilterSection({
           key={index}
           text={item.text}
           sortValue={item.sortValue}
-          onSortSelection={onSortSelection}
           currentSortValue={currentSortValue}
+          onSortSelection={onSortSelection}
         />
       );
     });
