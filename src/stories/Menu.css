@@ -1,0 +1,51 @@
+.Storybook-Menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  transition: left 0.3s ease-out;
+}
+
+.--toggled {
+  left: 0;
+}
+
+.Storybook-Menu__Header {
+  height: 63px;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.Storybook-Menu__ToggleButton {
+  font-size: 0.9rem;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 0.25rem 0.5rem;
+}
+
+.Storybook-Menu__Navigation {
+  display: flex;
+  flex-direction: column;
+}
+
+.Storybook-Menu__NavigationItem {
+  padding: 0.6rem 1rem;
+  height: 42px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: black;
+}
+
+.Storybook-Menu__NavigationItem:last-child {
+  border-bottom: none;
+}
