@@ -27,7 +27,7 @@ export default function Header() {
   }
 
   function toggleMenu() {
-    setMenuIsVisible(true);
+    setMenuIsVisible(!menuIsVisible);
     document.body.style.overflow = "hidden";
   }
 
@@ -43,7 +43,7 @@ export default function Header() {
           <Route path="/analyse">
             <h1 className="Header__PageTitle">Analyse</h1>
             <p onClick={toggleMenu} className="Header__Link">
-              Menu
+              {menuIsVisible ? "Close" : "Menu"}
             </p>
           </Route>
           <Route path="/collection/add-to-playlist/:id">
@@ -55,37 +55,37 @@ export default function Header() {
           <Route path="/collection">
             <h1 className="Header__PageTitle">Collection</h1>
             <p onClick={toggleMenu} className="Header__Link">
-              Menu
+              {menuIsVisible ? "Close" : "Menu"}
             </p>
           </Route>
           <Route path="/playlists">
             <h1 className="Header__PageTitle">Playlists</h1>
             <p onClick={toggleMenu} className="Header__Link">
-              Menu
+              {menuIsVisible ? "Close" : "Menu"}
             </p>
           </Route>
           <Route path="/playlist/:playlistId">
             <p></p>
             <p onClick={history.goBack} className="Header__Link">
-              Return
+              {menuIsVisible ? "Close" : "Menu"}
             </p>
           </Route>
           <Route path="/create-new-playlist">
             <h1 className="Header__PageTitle">Create New Playlist</h1>
             <p onClick={history.goBack} className="Header__Link">
-              Return
+              {menuIsVisible ? "Close" : "Menu"}
             </p>
           </Route>
           <Route path="/how-to-use">
             <h1 className="Header__PageTitle">How To Use</h1>
             <p onClick={toggleMenu} className="Header__Link">
-              Menu
+              {menuIsVisible ? "Close" : "Menu"}
             </p>
           </Route>
           <Route path="/project-info">
             <h1 className="Header__PageTitle">Project Info</h1>
             <p onClick={toggleMenu} className="Header__Link">
-              Menu
+              {menuIsVisible ? "Close" : "Menu"}
             </p>
           </Route>
           <Route path="/">

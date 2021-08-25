@@ -15,12 +15,6 @@ export default function Menu({ menuIsVisible, setMenuIsVisible }) {
 
   return (
     <section onClick={toggleMenu} className={`Menu ${getMenuState()}`}>
-      <div className="Menu__Header">
-        <h1 className="Menu__Title">Menu</h1>
-        <p onClick={toggleMenu} className="Menu__Closer">
-          Close
-        </p>
-      </div>
       <Navigation />
     </section>
   );
