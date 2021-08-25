@@ -38,6 +38,5 @@ CollectionItem.propTypes = {
     trackTitle: PropTypes.string,
     artistName: PropTypes.string,
     recordTitle: PropTypes.string,
-    createdAt: PropTypes.string,
   }).isRequired,
 };

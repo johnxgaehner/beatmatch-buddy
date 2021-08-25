@@ -21,7 +21,7 @@ export default function AddToPlaylistPage() {
             <AddToPlaylistItem
               key={playlist.id}
               trackId={id}
-              playlist={playlist}
+              playlistInfo={playlist}
               onAddToPlaylistClick={onAddToPlaylistClick}
             />
           );

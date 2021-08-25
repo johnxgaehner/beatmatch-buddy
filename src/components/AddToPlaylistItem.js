@@ -5,15 +5,15 @@ import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_fil
 import "./AddToPlaylistItem.css";
 
 export default function PlaylistItem({
-  playlist,
+  playlistInfo,
   trackId,
   onAddToPlaylistClick,
 }) {
   function handleAddToPlaylistClick() {
-    onAddToPlaylistClick(playlist.id);
+    onAddToPlaylistClick(playlistInfo.id);
   }
 
-  const transition = useTransition(playlist.trackIds.includes(trackId), {
+  const transition = useTransition(playlistInfo.trackIds.includes(trackId), {
     initial: { position: "absolute" },
     from: { position: "absolute", opacity: 0 },
     enter: { opacity: 1 },
@@ -42,7 +42,7 @@ export default function PlaylistItem({
         )}
       </div>
       <p className="AddToPlaylistItem__SelectionName">
-        {playlist.playlistName}
+        {playlistInfo.playlistName}
       </p>
     </div>
   );
@@ -50,12 +50,10 @@ export default function PlaylistItem({
 
 PlaylistItem.propTypes = {
   trackId: PropTypes.string.isRequired,
-  playlist: PropTypes.shape({
+  playlistInfo: PropTypes.shape({
     id: PropTypes.string,
     playlistName: PropTypes.string,
-    playlistDescription: PropTypes.string,
     trackIds: PropTypes.arrayOf(PropTypes.string),
-    createdAt: PropTypes.string,
   }).isRequired,
   onAddToPlaylistClick: PropTypes.func.isRequired,
 };

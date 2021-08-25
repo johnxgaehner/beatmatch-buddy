@@ -6,14 +6,14 @@ import "./AddTrackOnTheFlyItem.css";
 
 export default function AddTrackOnTheFlyItem({
   trackInfo,
-  playlist,
+  playlistTrackIds,
   onAddToPlaylistClick,
 }) {
   function handleOnAddToPlaylistClick() {
     onAddToPlaylistClick(trackInfo.id);
   }
 
-  const transition = useTransition(playlist.trackIds.includes(trackInfo.id), {
+  const transition = useTransition(playlistTrackIds.includes(trackInfo.id), {
     initial: { position: "absolute" },
     from: { position: "absolute", opacity: 0 },
     enter: { opacity: 1 },
@@ -55,14 +55,7 @@ AddTrackOnTheFlyItem.propTypes = {
     trackTitle: PropTypes.string,
     artistName: PropTypes.string,
     recordTitle: PropTypes.string,
-    createdAt: PropTypes.string,
   }).isRequired,
-  playlist: PropTypes.shape({
-    id: PropTypes.string,
-    playlistName: PropTypes.string,
-    playlistDescription: PropTypes.string,
-    trackIds: PropTypes.arrayOf(PropTypes.string),
-    createdAt: PropTypes.string,
-  }).isRequired,
+  playlistTrackIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   onAddToPlaylistClick: PropTypes.func.isRequired,
 };
