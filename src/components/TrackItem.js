@@ -1,6 +1,7 @@
+import PropTypes from "prop-types";
+import { Draggable } from "react-beautiful-dnd";
 import { ReactComponent as IconGrab } from "../assets/icon_grab.svg";
 import { ReactComponent as IconMinusCircle } from "../assets/icon_minus_circle_filled.svg";
-import { Draggable } from "react-beautiful-dnd";
 import "./TrackItem.css";
 
 export default function TrackItem({
@@ -59,3 +60,17 @@ export default function TrackItem({
     </Draggable>
   );
 }
+
+TrackItem.propTypes = {
+  trackInfo: PropTypes.shape({
+    id: PropTypes.string,
+    bpm: PropTypes.number,
+    trackTitle: PropTypes.string,
+    artistName: PropTypes.string,
+    recordTitle: PropTypes.string,
+    createdAt: PropTypes.string,
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+  editMode: PropTypes.bool.isRequired,
+  onDeleteTrackClick: PropTypes.func.isRequired,
+};
