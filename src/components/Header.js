@@ -8,6 +8,8 @@ export default function Header() {
   const history = useHistory();
 
   const [headerIsHidden, setHeaderIsHidden] = useState(false);
+  const [menuIsVisible, setMenuIsVisible] = useState(false);
+
   const MIN_SCROLL = 63;
   const TIMEOUT_DELAY = 300;
 
@@ -20,25 +22,23 @@ export default function Header() {
     }, TIMEOUT_DELAY);
   });
 
-  function getHeaderClass() {
-    return headerIsHidden ? "--hidden" : "";
+  function getHeaderState() {
+    return headerIsHidden ? "Header--hidden" : "";
   }
 
-  const [menuIsHidden, setMenuIsHidden] = useState(true);
-
   function toggleMenu() {
-    setMenuIsHidden(false);
+    setMenuIsVisible(true);
     document.body.style.overflow = "hidden";
   }
 
   return (
     <>
       <Menu
-        menuIsHidden={menuIsHidden}
-        setMenuIsHidden={setMenuIsHidden}
+        menuIsVisible={menuIsVisible}
+        setMenuIsVisible={setMenuIsVisible}
         toggleMenu={toggleMenu}
       />
-      <header className={`Header ${getHeaderClass()}`}>
+      <header className={`Header ${getHeaderState()}`}>
         <Switch>
           <Route path="/analyse">
             <h1>Analyse</h1>

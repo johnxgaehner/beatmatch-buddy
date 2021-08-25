@@ -1,22 +1,22 @@
-import "./Menu.css";
 import Navigation from "./Navigation";
+import "./Menu.css";
 
-export default function Menu({ menuIsHidden, toggleMenu, setMenuIsHidden }) {
+export default function Menu({ menuIsVisible, setMenuIsVisible }) {
   function getMenuState() {
-    return menuIsHidden ? "" : "Menu--isToggled";
+    return menuIsVisible ? "Menu--visible" : "";
   }
 
-  function handleMenuToggle(event) {
-    setMenuIsHidden(true);
+  function toggleMenu(event) {
+    setMenuIsVisible(false);
     event.stopPropagation();
     document.body.style.overflow = "auto";
   }
 
   return (
-    <section onClick={handleMenuToggle} className={`Menu ${getMenuState()}`}>
+    <section onClick={toggleMenu} className={`Menu ${getMenuState()}`}>
       <div className="Menu__Header">
         <h1>Menu</h1>
-        <p onClick={handleMenuToggle}>Close</p>
+        <p onClick={toggleMenu}>Close</p>
       </div>
       <Navigation />
     </section>

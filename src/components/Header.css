@@ -15,7 +15,7 @@
   background-color: var(--color-background);
 }
 
-.Header.--hidden {
+.Header--hidden {
   transform: translateY(-110%);
 }
 

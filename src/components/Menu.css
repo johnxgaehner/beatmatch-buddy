@@ -7,12 +7,12 @@
   width: 100vw;
   padding: 0 1rem;
   background-color: var(--color-background);
+  transform: translate3d(-110vw, 0, 0);
+  transition: transform 0.3s ease-in-out;
   overflow: scroll;
-  transform: translate3d(-100vw, 0, 0);
-  transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
 }
 
-.Menu--isToggled {
+.Menu--visible {
   transform: translate3d(0vw, 0, 0);
 }
 
