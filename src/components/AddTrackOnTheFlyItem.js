@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useTransition, animated } from "react-spring";
 import { ReactComponent as IconSelectionEmpty } from "../assets/icon_circle_empty.svg";
 import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_filled.svg";
@@ -46,3 +47,22 @@ export default function AddTrackOnTheFlyItem({
     </div>
   );
 }
+
+AddTrackOnTheFlyItem.propTypes = {
+  trackInfo: PropTypes.shape({
+    id: PropTypes.string,
+    bpm: PropTypes.number,
+    trackTitle: PropTypes.string,
+    artistName: PropTypes.string,
+    recordTitle: PropTypes.string,
+    createdAt: PropTypes.string,
+  }).isRequired,
+  playlist: PropTypes.shape({
+    id: PropTypes.string,
+    playlistName: PropTypes.string,
+    playlistDescription: PropTypes.string,
+    trackIds: PropTypes.arrayOf(PropTypes.string),
+    createdAt: PropTypes.string,
+  }).isRequired,
+  onAddToPlaylistClick: PropTypes.func.isRequired,
+};
