@@ -8,7 +8,7 @@ export default function PlaylistsPage() {
   function renderPlaylistItems() {
     if (playlists && playlists.length > 0) {
       const playlistItems = playlists.map((playlist) => {
-        return <PlaylistItem key={playlist.id} data={playlist} />;
+        return <PlaylistItem key={playlist.id} playlistInfo={playlist} />;
       });
       return playlistItems;
     }
