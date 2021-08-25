@@ -65,7 +65,7 @@ export default function CollectionPage() {
           return track.bpm >= minTempoFilter && track.bpm <= maxTempoFilter;
         })
         .map((track) => {
-          return <CollectionItem key={track.id} data={track} />;
+          return <CollectionItem key={track.id} trackInfo={track} />;
         });
       if (collectionItems.length > 0) {
         return collectionItems;

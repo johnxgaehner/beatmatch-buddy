@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import PropTypes from "prop-types";
 import useOutsideClick from "../hooks/useOutsideClick";
 import SortCollectionByItem from "./SortCollectionByItem";
 import { ReactComponent as ArrowIcon } from "../assets/icon_arrow.svg";
@@ -55,8 +56,8 @@ export default function CollectionFilterSection({
           key={index}
           text={item.text}
           sortValue={item.sortValue}
-          onSortSelection={onSortSelection}
           currentSortValue={currentSortValue}
+          onSortSelection={onSortSelection}
         />
       );
     });
@@ -123,3 +124,11 @@ export default function CollectionFilterSection({
     </section>
   );
 }
+
+CollectionFilterSection.propTypes = {
+  onSearchInput: PropTypes.func.isRequired,
+  onMinTempoChange: PropTypes.func.isRequired,
+  onMaxTempoChange: PropTypes.func.isRequired,
+  onSortValueSelection: PropTypes.func.isRequired,
+  currentSortValue: PropTypes.string.isRequired,
+};

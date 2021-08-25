@@ -81,7 +81,7 @@ export default function PlaylistDetailPage() {
         <AddTrackOnTheFlyItem
           key={track.id}
           trackInfo={track}
-          playlist={playlist}
+          playlistTrackIds={playlist.trackIds}
           onAddToPlaylistClick={onAddToPlaylistClick}
         />
       );

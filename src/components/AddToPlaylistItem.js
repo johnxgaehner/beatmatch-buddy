@@ -1,18 +1,19 @@
+import PropTypes from "prop-types";
 import { useTransition, animated } from "react-spring";
 import { ReactComponent as IconSelectionEmpty } from "../assets/icon_circle_empty.svg";
 import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_filled.svg";
 import "./AddToPlaylistItem.css";
 
 export default function PlaylistItem({
-  playlist,
+  playlistInfo,
   trackId,
   onAddToPlaylistClick,
 }) {
   function handleAddToPlaylistClick() {
-    onAddToPlaylistClick(playlist.id);
+    onAddToPlaylistClick(playlistInfo.id);
   }
 
-  const transition = useTransition(playlist.trackIds.includes(trackId), {
+  const transition = useTransition(playlistInfo.trackIds.includes(trackId), {
     initial: { position: "absolute" },
     from: { position: "absolute", opacity: 0 },
     enter: { opacity: 1 },
@@ -41,8 +42,18 @@ export default function PlaylistItem({
         )}
       </div>
       <p className="AddToPlaylistItem__SelectionName">
-        {playlist.playlistName}
+        {playlistInfo.playlistName}
       </p>
     </div>
   );
 }
+
+PlaylistItem.propTypes = {
+  trackId: PropTypes.string.isRequired,
+  playlistInfo: PropTypes.shape({
+    id: PropTypes.string,
+    playlistName: PropTypes.string,
+    trackIds: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+  onAddToPlaylistClick: PropTypes.func.isRequired,
+};

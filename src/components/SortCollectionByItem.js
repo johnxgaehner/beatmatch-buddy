@@ -1,12 +1,13 @@
+import PropTypes from "prop-types";
 import { ReactComponent as IconSelectionEmpty } from "../assets/icon_circle_empty.svg";
 import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_filled.svg";
 import "./SortCollectionByItem.css";
 
 export default function SortCollectionByItem({
-  onSortSelection,
-  currentSortValue,
-  sortValue,
   text,
+  sortValue,
+  currentSortValue,
+  onSortSelection,
 }) {
   function handleSortValueSelection() {
     onSortSelection(sortValue);
@@ -27,3 +28,10 @@ export default function SortCollectionByItem({
     </li>
   );
 }
+
+SortCollectionByItem.propTypes = {
+  text: PropTypes.string.isRequired,
+  sortValue: PropTypes.string.isRequired,
+  currentSortValue: PropTypes.string.isRequired,
+  onSortSelection: PropTypes.func.isRequired,
+};
