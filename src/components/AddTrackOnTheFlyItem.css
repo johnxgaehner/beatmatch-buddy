@@ -4,7 +4,7 @@
   border-bottom: 1px solid black;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .AddTrackOnTheFlyItem:last-child {
@@ -16,6 +16,11 @@
   display: flex;
   font-size: 0.9rem;
   line-height: 0.9rem;
+}
+
+.AddTrackOnTheFlyItem__SelectionIconContainer {
+  display: flex;
+  align-items: center;
 }
 
 .AddTrackOnTheFlyItem__SelectionIcon {

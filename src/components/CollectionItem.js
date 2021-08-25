@@ -9,7 +9,7 @@ export default function CollectionItem({ data }) {
       <div className="CollectionItem--left">
         <RecordPlaceholder className="CollectionItem__RecordPlaceholder" />
         <div>
-          <ul>
+          <ul className="CollectionItem__DetailSection">
             <li className="CollectionItem__TrackTitle">{data.trackTitle}</li>
             <li className="CollectionItem__ArtistName">{data.artistName}</li>
             <li className="CollectionItem__RecordTitle">{data.recordTitle}</li>

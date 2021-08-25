@@ -30,7 +30,7 @@ button:focus {
 }
 
 .Row--flat {
-  padding: 0 1rem;
+  padding: 0.6rem 1rem;
   min-height: 42px;
   border-bottom: 1px solid black;
   display: flex;

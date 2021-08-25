@@ -68,7 +68,9 @@ export default function AddToPlaylistPage() {
 
       const patchedPlaylistCollection = [...playlists];
       patchedPlaylistCollection.forEach((playlist) => {
-        playlist.trackIds.splice(playlist.trackIds.indexOf(id), 1);
+        if (playlist.trackIds.includes(id)) {
+          playlist.trackIds.splice(playlist.trackIds.indexOf(id), 1);
+        }
       });
       setPlaylists(patchedPlaylistCollection);
 

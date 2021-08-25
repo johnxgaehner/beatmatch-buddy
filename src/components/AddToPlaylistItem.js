@@ -1,3 +1,4 @@
+import { useTransition, animated } from "react-spring";
 import { ReactComponent as IconSelectionEmpty } from "../assets/icon_circle_empty.svg";
 import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_filled.svg";
 import "./AddToPlaylistItem.css";
@@ -11,17 +12,37 @@ export default function PlaylistItem({
     onAddToPlaylistClick(playlist.id);
   }
 
+  const transition = useTransition(playlist.trackIds.includes(trackId), {
+    initial: { position: "absolute" },
+    from: { position: "absolute", opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    config: {
+      duration: 150,
+    },
+  });
+
   return (
     <div
       className="Row--flat AddToPlaylistItem"
       onClick={handleAddToPlaylistClick}
     >
-      {playlist.trackIds.includes(trackId) ? (
-        <IconSelectionFilled className="AddToPlaylistItem__SelectionIcon" />
-      ) : (
-        <IconSelectionEmpty className="AddToPlaylistItem__SelectionIcon" />
-      )}
-      <p>{playlist.playlistName}</p>
+      <div className="AddToPlaylistItem__SelectionIconContainer">
+        {transition((style, item) =>
+          item ? (
+            <animated.div style={style}>
+              <IconSelectionFilled className="AddToPlaylistItem__SelectionIcon" />
+            </animated.div>
+          ) : (
+            <animated.div style={style}>
+              <IconSelectionEmpty className="AddToPlaylistItem__SelectionIcon" />
+            </animated.div>
+          )
+        )}
+      </div>
+      <p className="AddToPlaylistItem__SelectionName">
+        {playlist.playlistName}
+      </p>
     </div>
   );
 }
