@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import PropTypes from "prop-types";
 import { ReactComponent as IconRecDot } from "../assets/icon_recording_dot.svg";
 
 export default function TapTempo({ BPM, setBPM, beatCounter }) {
@@ -7,9 +8,10 @@ export default function TapTempo({ BPM, setBPM, beatCounter }) {
 
   function tapTempo() {
     tapTiming.current = Date.now();
-    const bpm = (1 / ((tapTiming.current - lastTapTiming.current) / 1000)) * 60;
+    const singleBpmValue =
+      (1 / ((tapTiming.current - lastTapTiming.current) / 1000)) * 60;
     lastTapTiming.current = tapTiming.current;
-    beatCounter.current.push(bpm);
+    beatCounter.current.push(singleBpmValue);
     const currentBPM = average(beatCounter.current);
     setBPM(currentBPM.toFixed(0));
   }
@@ -39,3 +41,11 @@ export default function TapTempo({ BPM, setBPM, beatCounter }) {
     </>
   );
 }
+
+TapTempo.propTypes = {
+  BPM: PropTypes.string.isRequired,
+  setBPM: PropTypes.func.isRequired,
+  beatCounter: PropTypes.shape({
+    current: PropTypes.arrayOf(PropTypes.number),
+  }).isRequired,
+};
