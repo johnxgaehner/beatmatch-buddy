@@ -1,5 +1,25 @@
 .Menu {
+  z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
+  height: 100%;
+  width: 100vw;
+  padding: 0 1rem;
+  background-color: var(--color-background);
+  transform: translate3d(-100vw, 0, 0);
+  transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
+}
+
+.Menu--isToggled {
+  transform: translate3d(0vw, 0, 0);
+}
+
+.Menu__Header {
+  height: 63px;
+  padding: 1.5rem 1rem 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  font-style: italic;
 }
