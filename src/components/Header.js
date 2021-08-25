@@ -28,6 +28,7 @@ export default function Header() {
 
   function toggleMenu() {
     setMenuIsHidden(false);
+    document.body.style.overflow = "hidden";
   }
 
   return (

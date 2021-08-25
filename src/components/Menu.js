@@ -6,12 +6,14 @@ export default function Menu({ menuIsHidden, toggleMenu, setMenuIsHidden }) {
     return menuIsHidden ? "" : "Menu--isToggled";
   }
 
-  function handleMenuToggle() {
+  function handleMenuToggle(event) {
     setMenuIsHidden(true);
+    event.stopPropagation();
+    document.body.style.overflow = "auto";
   }
 
   return (
-    <section className={`Menu ${getMenuState()}`}>
+    <section onClick={handleMenuToggle} className={`Menu ${getMenuState()}`}>
       <div className="Menu__Header">
         <h1>Menu</h1>
         <p onClick={handleMenuToggle}>Close</p>
