@@ -19,10 +19,10 @@ export default function AddToPlaylistPage() {
         .map((playlist) => {
           return (
             <AddToPlaylistItem
-              onAddToPlaylistClick={onAddToPlaylistClick}
               key={playlist.id}
-              playlist={playlist}
               trackId={id}
+              playlist={playlist}
+              onAddToPlaylistClick={onAddToPlaylistClick}
             />
           );
         });
