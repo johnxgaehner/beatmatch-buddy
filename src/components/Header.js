@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Switch, Route, Link, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import useScroll from "../hooks/useScroll";
 import "./Header.css";
 import Menu from "./Menu";
@@ -52,15 +52,11 @@ export default function Header() {
           </Route>
           <Route path="/collection">
             <h1>Collection</h1>
-            <Link to="/">
-              <p>Menu</p>
-            </Link>
+            <p onClick={toggleMenu}>Menu</p>
           </Route>
           <Route path="/playlists">
             <h1>Playlists</h1>
-            <Link to="/">
-              <p>Menu</p>
-            </Link>
+            <p onClick={toggleMenu}>Menu</p>
           </Route>
           <Route path="/playlist/:playlistId">
             <p></p>
@@ -76,15 +72,11 @@ export default function Header() {
           </Route>
           <Route path="/how-to-use">
             <h1>How To Use</h1>
-            <Link to="/">
-              <p>Menu</p>
-            </Link>
+            <p onClick={toggleMenu}>Menu</p>
           </Route>
           <Route path="/project-info">
             <h1>Project Info</h1>
-            <Link to="/">
-              <p>Menu</p>
-            </Link>
+            <p onClick={toggleMenu}>Menu</p>
           </Route>
           <Route path="/">
             <h1>Home</h1>
