@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
+import Menu from "./Menu";
 import useScroll from "../hooks/useScroll";
 import "./Header.css";
-import Menu from "./Menu";
 
 export default function Header() {
   const history = useHistory();

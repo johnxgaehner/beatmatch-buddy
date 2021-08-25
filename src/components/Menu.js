@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Navigation from "./Navigation";
 import "./Menu.css";
 
@@ -24,3 +25,8 @@ export default function Menu({ menuIsVisible, setMenuIsVisible }) {
     </section>
   );
 }
+
+Menu.propTypes = {
+  menuIsVisible: PropTypes.bool.isRequired,
+  setMenuIsVisible: PropTypes.func.isRequired,
+};
