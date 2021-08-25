@@ -41,45 +41,55 @@ export default function Header() {
       <header className={`Header ${getHeaderState()}`}>
         <Switch>
           <Route path="/analyse">
-            <h1>Analyse</h1>
-            <p onClick={toggleMenu}>Menu</p>
+            <h1 className="Header__PageTitle">Analyse</h1>
+            <p onClick={toggleMenu} className="Header__Link">
+              Menu
+            </p>
           </Route>
           <Route path="/collection/add-to-playlist/:id">
-            <h1>Add To Playlist</h1>
-            <p onClick={history.goBack} className="Header__ReturnLink">
+            <h1 className="Header__PageTitle">Add To Playlist</h1>
+            <p onClick={history.goBack} className="Header__Link">
               Return
             </p>
           </Route>
           <Route path="/collection">
-            <h1>Collection</h1>
-            <p onClick={toggleMenu}>Menu</p>
+            <h1 className="Header__PageTitle">Collection</h1>
+            <p onClick={toggleMenu} className="Header__Link">
+              Menu
+            </p>
           </Route>
           <Route path="/playlists">
-            <h1>Playlists</h1>
-            <p onClick={toggleMenu}>Menu</p>
+            <h1 className="Header__PageTitle">Playlists</h1>
+            <p onClick={toggleMenu} className="Header__Link">
+              Menu
+            </p>
           </Route>
           <Route path="/playlist/:playlistId">
             <p></p>
-            <p onClick={history.goBack} className="Header__ReturnLink">
+            <p onClick={history.goBack} className="Header__Link">
               Return
             </p>
           </Route>
           <Route path="/create-new-playlist">
-            <h1>Create New Playlist</h1>
-            <p onClick={history.goBack} className="Header__ReturnLink">
+            <h1 className="Header__PageTitle">Create New Playlist</h1>
+            <p onClick={history.goBack} className="Header__Link">
               Return
             </p>
           </Route>
           <Route path="/how-to-use">
-            <h1>How To Use</h1>
-            <p onClick={toggleMenu}>Menu</p>
+            <h1 className="Header__PageTitle">How To Use</h1>
+            <p onClick={toggleMenu} className="Header__Link">
+              Menu
+            </p>
           </Route>
           <Route path="/project-info">
-            <h1>Project Info</h1>
-            <p onClick={toggleMenu}>Menu</p>
+            <h1 className="Header__PageTitle">Project Info</h1>
+            <p onClick={toggleMenu} className="Header__Link">
+              Menu
+            </p>
           </Route>
           <Route path="/">
-            <h1>Home</h1>
+            <h1 className="Header__PageTitle">Home</h1>
           </Route>
         </Switch>
       </header>

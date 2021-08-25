@@ -3,25 +3,32 @@
 }
 
 .PDP__PlaylistName {
+  z-index: 2000;
+  height: 63px;
   position: fixed;
   top: 0;
-  padding-top: 1.5rem;
-  padding-left: 1rem;
-  font-style: italic;
+  left: 1rem;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
   transform: translateY(0);
-  transition: transform 0.3s ease;
+  font-size: 1.2rem;
 }
 
 .PDP__PlaylistName--edit {
+  z-index: 2000;
+  height: 63px;
   position: fixed;
   top: 0;
-  padding-top: 1.5rem;
-  padding-left: 1rem;
-  font-style: italic;
+  left: 1rem;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
   opacity: 0.6;
   width: 320px;
+  font-size: 1.2rem;
+  font-weight: 700;
   transform: translateY(0);
-  transition: transform 0.3s ease;
 }
 
 .PDP__PlaylistName--edit.--hidden,
