@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
 
 export default function useOutsideClick(reference, initialState) {
-  const [dropdown, setDropdown] = useState(initialState);
+  const [isVisible, setIsVisible] = useState(initialState);
 
   useEffect(() => {
     const pageClickEvent = (e) => {
       if (reference.current !== null && !reference.current.contains(e.target)) {
-        setDropdown(!dropdown);
+        setIsVisible(!isVisible);
       }
     };
-    if (dropdown) {
+    if (isVisible) {
       window.addEventListener("click", pageClickEvent);
     }
     return () => {
       window.removeEventListener("click", pageClickEvent);
     };
-  }, [dropdown, reference]);
+  }, [isVisible, reference]);
 
-  return [dropdown, setDropdown];
+  return [isVisible, setIsVisible];
 }

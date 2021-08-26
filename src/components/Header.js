@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
-import Menu from "./Menu";
 import useScroll from "../hooks/useScroll";
+import useOutsideClick from "../hooks/useOutsideClick";
+import Menu from "./Menu";
 import "./Header.css";
-import { useRef } from "react";
-import useOutsideOnClick from "../services/useOutsideOnClick";
 
 export default function Header() {
   const history = useHistory();
+
+  const menuRef = useRef();
+  const [menuIsVisible, setMenuIsVisible] = useOutsideClick(menuRef, false);
 
   const [headerIsHidden, setHeaderIsHidden] = useState(false);
 
@@ -26,11 +28,6 @@ export default function Header() {
   function getHeaderState() {
     return headerIsHidden ? "Header--hidden" : "";
   }
-
-  const menuRef = useRef();
-  const [menuIsVisible, setMenuIsVisible] = useState(false);
-
-  useOutsideOnClick(menuRef, () => setMenuIsVisible(false));
 
   function toggleMenu() {
     setMenuIsVisible(!menuIsVisible);
