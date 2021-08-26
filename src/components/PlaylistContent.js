@@ -1,46 +1,45 @@
 import PropTypes from "prop-types";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import AddTrackOnTheFlyItem from "./AddTrackOnTheFlyItem";
 import TrackItem from "./TrackItem";
+import AddTrackOnTheFlyItem from "./AddTrackOnTheFlyItem";
+import getTracksFromPlaylist from "../services/getTracksFromPlaylist";
 
 export default function PlaylistContent({
   addTracksMode,
   handleOnDragEnd,
   playlistTrackIds,
-  tracks,
+  trackCollection,
   editMode,
   onAddToPlaylistClick,
   onDeleteTrackClick,
 }) {
   function renderTracksFromPlaylist() {
-    if (tracks) {
-      if (playlistTrackIds.length === 0 || tracks.length === 0) {
-        return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
-      }
-      const includedTracks = playlistTrackIds.map((trackId) => {
-        const includedTrack = tracks.find((element) => element.id === trackId);
-        return includedTrack;
-      });
-      const trackItems = includedTracks.map((track, index) => {
-        return (
-          <TrackItem
-            index={index}
-            key={track.id}
-            trackInfo={track}
-            editMode={editMode}
-            onDeleteTrackClick={onDeleteTrackClick}
-          />
-        );
-      });
-      return trackItems;
+    if (playlistTrackIds.length === 0) {
+      return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
     }
+    const includedTracks = getTracksFromPlaylist(
+      playlistTrackIds,
+      trackCollection
+    );
+    const trackItems = includedTracks.map((track, index) => {
+      return (
+        <TrackItem
+          index={index}
+          key={track.id}
+          trackInfo={track}
+          editMode={editMode}
+          onDeleteTrackClick={onDeleteTrackClick}
+        />
+      );
+    });
+    return trackItems;
   }
 
   function renderCollection() {
-    if (tracks.length === 0) {
+    if (trackCollection.length === 0) {
       return <div className="Row--flat">YOUR COLLECTION IS EMPTY...</div>;
     }
-    const addTrackOnTheFlyItems = tracks.map((track) => {
+    const addTrackOnTheFlyItems = trackCollection.map((track) => {
       return (
         <AddTrackOnTheFlyItem
           key={track.id}
@@ -80,7 +79,7 @@ PlaylistContent.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.string,
   ]).isRequired,
-  tracks: PropTypes.arrayOf(
+  trackCollection: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       bpm: PropTypes.number,

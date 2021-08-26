@@ -42,13 +42,10 @@ export default function PlaylistDetailPage() {
 
   function onAddToPlaylistClick(clickedTrackId) {
     const patchedTrackIds = [...playlist.trackIds];
-
     patchedTrackIds.includes(clickedTrackId)
       ? patchedTrackIds.splice(patchedTrackIds.indexOf(clickedTrackId), 1)
       : patchedTrackIds.push(clickedTrackId);
-
     const patchedPlaylist = { ...playlist, trackIds: patchedTrackIds };
-
     const updatedPlaylists = updatePlaylists(
       playlists,
       playlistId,
@@ -63,7 +60,6 @@ export default function PlaylistDetailPage() {
     const key = input.name;
 
     const patchedPlaylist = { ...playlist, [key]: value };
-
     const updatedPlaylists = updatePlaylists(
       playlists,
       playlistId,
@@ -77,10 +73,10 @@ export default function PlaylistDetailPage() {
       "Do you really want to delete this playlist?"
     );
     if (confirmation) {
-      const playlistsWithoutCurrentPlaylist = playlists.filter((playlist) => {
+      const playlistsWithoutDeletedPlaylist = playlists.filter((playlist) => {
         return playlist.id !== playlistId;
       });
-      setPlaylists(playlistsWithoutCurrentPlaylist);
+      setPlaylists(playlistsWithoutDeletedPlaylist);
       history.goBack();
     }
   }
@@ -88,9 +84,7 @@ export default function PlaylistDetailPage() {
   function onDeleteTrackClick(trackId) {
     const newTrackIds = [...playlist.trackIds];
     newTrackIds.splice(newTrackIds.indexOf(trackId), 1);
-
     const patchedPlaylist = { ...playlist, trackIds: newTrackIds };
-
     const updatedPlaylists = updatePlaylists(
       playlists,
       playlistId,
@@ -104,9 +98,7 @@ export default function PlaylistDetailPage() {
       const trackOrder = [...playlist.trackIds];
       const [reorderedTracks] = trackOrder.splice(result.source.index, 1);
       trackOrder.splice(result.destination.index, 0, reorderedTracks);
-
       const patchedPlaylist = { ...playlist, trackIds: trackOrder };
-
       const updatedPlaylists = updatePlaylists(
         playlists,
         playlistId,
@@ -115,6 +107,7 @@ export default function PlaylistDetailPage() {
       setPlaylists(updatedPlaylists);
     }
   }
+
   return (
     <section>
       {playlist && (
@@ -140,7 +133,7 @@ export default function PlaylistDetailPage() {
           addTracksMode={addTracksMode}
           handleOnDragEnd={handleOnDragEnd}
           playlistTrackIds={playlist.trackIds}
-          tracks={tracks}
+          trackCollection={tracks}
           editMode={editMode}
           onAddToPlaylistClick={onAddToPlaylistClick}
           onDeleteTrackClick={onDeleteTrackClick}
