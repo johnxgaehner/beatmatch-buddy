@@ -26,7 +26,7 @@ export default function Header() {
   });
 
   function getHeaderState() {
-    return headerIsHidden ? "Header--hidden" : "";
+    return headerIsHidden && "Header--hidden";
   }
 
   function toggleMenu() {

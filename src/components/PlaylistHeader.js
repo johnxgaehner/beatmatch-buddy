@@ -9,7 +9,7 @@ export default function PlaylistHeader({
   onPlaylistNameChange,
 }) {
   function getHeaderClass() {
-    return headerIsHidden ? "--hidden" : "";
+    return headerIsHidden && "--hidden";
   }
   function handlePlaylistNameChange(event) {
     onPlaylistNameChange(event);
