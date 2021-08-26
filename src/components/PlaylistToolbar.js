@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export default function PlaylistToolbar({
   editMode,
   setEditMode,
@@ -38,3 +40,11 @@ export default function PlaylistToolbar({
     </section>
   );
 }
+
+PlaylistToolbar.propTypes = {
+  editMode: PropTypes.bool.isRequired,
+  setEditMode: PropTypes.func.isRequired,
+  addTracksMode: PropTypes.bool.isRequired,
+  setAddTracksMode: PropTypes.func.isRequired,
+  onDeletePlaylistClick: PropTypes.func.isRequired,
+};

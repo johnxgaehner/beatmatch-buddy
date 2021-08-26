@@ -1,30 +1,31 @@
+import PropTypes from "prop-types";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import AddTrackOnTheFlyItem from "./AddTrackOnTheFlyItem";
 import TrackItem from "./TrackItem";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 export default function PlaylistContent({
   addTracksMode,
   handleOnDragEnd,
-  playlist,
+  playlistTrackIds,
   tracks,
   editMode,
   onAddToPlaylistClick,
   onDeleteTrackClick,
 }) {
   function renderTracksFromPlaylist() {
-    if (tracks && playlist) {
-      if (playlist.trackIds.length === 0 || tracks.length === 0) {
+    if (tracks && playlistTrackIds) {
+      if (playlistTrackIds.length === 0 || tracks.length === 0) {
         return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
       }
-      const includedTracks = playlist.trackIds.map((trackId) => {
+      const includedTracks = playlistTrackIds.map((trackId) => {
         const includedTrack = tracks.find((element) => element.id === trackId);
         return includedTrack;
       });
       const trackItems = includedTracks.map((track, index) => {
         return (
           <TrackItem
-            key={track.id}
             index={index}
+            key={track.id}
             trackInfo={track}
             editMode={editMode}
             onDeleteTrackClick={onDeleteTrackClick}
@@ -44,7 +45,7 @@ export default function PlaylistContent({
         <AddTrackOnTheFlyItem
           key={track.id}
           trackInfo={track}
-          playlistTrackIds={playlist.trackIds}
+          playlistTrackIds={playlistTrackIds}
           onAddToPlaylistClick={onAddToPlaylistClick}
         />
       );
@@ -75,3 +76,21 @@ export default function PlaylistContent({
     </div>
   );
 }
+
+PlaylistContent.propTypes = {
+  addTracksMode: PropTypes.bool.isRequired,
+  handleOnDragEnd: PropTypes.func.isRequired,
+  playlistTrackIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  tracks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      bpm: PropTypes.number,
+      trackTitle: PropTypes.string,
+      artistName: PropTypes.string,
+      recordTitle: PropTypes.string,
+    })
+  ).isRequired,
+  editMode: PropTypes.bool.isRequired,
+  onAddToPlaylistClick: PropTypes.func.isRequired,
+  onDeleteTrackClick: PropTypes.func.isRequired,
+};

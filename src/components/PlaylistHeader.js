@@ -54,7 +54,9 @@ export default function PlaylistHeader({
 }
 
 PlaylistHeader.propTypes = {
+  editMode: PropTypes.bool.isRequired,
   headerIsHidden: PropTypes.bool.isRequired,
   playlistName: PropTypes.string.isRequired,
   playlistDescription: PropTypes.string.isRequired,
+  onPlaylistNameChange: PropTypes.func.isRequired,
 };

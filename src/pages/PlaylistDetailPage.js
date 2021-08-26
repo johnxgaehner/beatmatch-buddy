@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
-import updatePlaylists from "../services/updatePlaylists";
-import useLocalStorage from "../hooks/useLocalStorage";
-import useScroll from "../hooks/useScroll";
-import "./PlaylistDetailPage.css";
 import PlaylistHeader from "../components/PlaylistHeader";
 import PlaylistToolbar from "../components/PlaylistToolbar";
 import PlaylistContent from "../components/PlaylistContent";
+
+import useScroll from "../hooks/useScroll";
+import useLocalStorage from "../hooks/useLocalStorage";
+import updatePlaylists from "../services/updatePlaylists";
+
+import "./PlaylistDetailPage.css";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
@@ -140,7 +142,7 @@ export default function PlaylistDetailPage() {
         <PlaylistContent
           addTracksMode={addTracksMode}
           handleOnDragEnd={handleOnDragEnd}
-          playlist={playlist}
+          playlistTrackIds={playlist.trackIds}
           tracks={tracks}
           editMode={editMode}
           onAddToPlaylistClick={onAddToPlaylistClick}
