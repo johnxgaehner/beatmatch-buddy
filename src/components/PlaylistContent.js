@@ -13,7 +13,7 @@ export default function PlaylistContent({
   onDeleteTrackClick,
 }) {
   function renderTracksFromPlaylist() {
-    if (tracks && playlistTrackIds) {
+    if (tracks) {
       if (playlistTrackIds.length === 0 || tracks.length === 0) {
         return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
       }
@@ -59,11 +59,7 @@ export default function PlaylistContent({
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="tracks">
             {(provided) => (
-              <ul
-                className="DND__List"
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
+              <ul {...provided.droppableProps} ref={provided.innerRef}>
                 {renderTracksFromPlaylist()}
                 {provided.placeholder}
               </ul>
@@ -80,7 +76,10 @@ export default function PlaylistContent({
 PlaylistContent.propTypes = {
   addTracksMode: PropTypes.bool.isRequired,
   handleOnDragEnd: PropTypes.func.isRequired,
-  playlistTrackIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  playlistTrackIds: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+  ]).isRequired,
   tracks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

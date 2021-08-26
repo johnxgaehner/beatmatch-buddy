@@ -1,8 +1,4 @@
-.PDP__DeleteButton {
-  color: var(--color-alert-01);
-}
-
-.PDP__PlaylistName {
+.PlaylistHeader__PlaylistName {
   z-index: 2000;
   height: 63px;
   position: fixed;
@@ -15,7 +11,7 @@
   transition: transform 300ms cubic-bezier(0.52, 0.16, 0.24, 1);
 }
 
-.PDP__PlaylistName--edit {
+.PlaylistHeader__PlaylistName--edit {
   z-index: 2000;
   height: 63px;
   position: fixed;
@@ -31,21 +27,35 @@
   transition: transform 300ms cubic-bezier(0.52, 0.16, 0.24, 1);
 }
 
-.PDP__PlaylistName--edit.--hidden,
-.PDP__PlaylistName.--hidden {
+.PlaylistHeader__PlaylistName--hidden,
+.PlaylistHeader__PlaylistName--edit--hidden {
   transform: translateY(-110%);
 }
 
-.PDP__PlaylistName--edit:focus {
+.PlaylistHeader__PlaylistName--edit:focus {
   opacity: 1;
   color: black;
 }
 
-.PDP__PlaylistDescriptionChangeInput {
-  opacity: 0.6;
+.PlaylistHeader__PlaylistDescription {
+  padding: 0.6rem 1rem;
+  min-height: 42px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
   color: var(--color-accent-01);
 }
 
-.PDP__PlaylistDescriptionChangeInput:focus {
+.PlaylistHeader__PlaylistDescriptionChangeInput {
+  opacity: 0.6;
+  padding-left: 1rem;
+  min-height: 42px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  color: var(--color-accent-01);
+}
+
+.PlaylistHeader__PlaylistDescriptionChangeInput:focus {
   opacity: 1;
 }

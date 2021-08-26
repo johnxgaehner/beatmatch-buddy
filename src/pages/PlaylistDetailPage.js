@@ -9,8 +9,6 @@ import useScroll from "../hooks/useScroll";
 import useLocalStorage from "../hooks/useLocalStorage";
 import updatePlaylists from "../services/updatePlaylists";
 
-import "./PlaylistDetailPage.css";
-
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
   const history = useHistory();
@@ -117,7 +115,6 @@ export default function PlaylistDetailPage() {
       setPlaylists(updatedPlaylists);
     }
   }
-
   return (
     <section>
       {playlist && (

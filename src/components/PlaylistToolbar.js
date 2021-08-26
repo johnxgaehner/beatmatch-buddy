@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import "./PlaylistToolbar.css";
 
 export default function PlaylistToolbar({
   editMode,
@@ -27,7 +28,7 @@ export default function PlaylistToolbar({
       ) : (
         <button
           onClick={handleDeletePlaylistClick}
-          className="PDP__DeleteButton"
+          className="PlaylistToolbar__DeleteButton"
         >
           Delete Playlist
         </button>

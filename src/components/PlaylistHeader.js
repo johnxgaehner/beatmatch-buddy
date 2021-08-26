@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import "./PlaylistHeader.css";
 
 export default function PlaylistHeader({
   editMode,
@@ -16,32 +17,36 @@ export default function PlaylistHeader({
 
   return (
     <section>
-      {editMode ? (
+      {!editMode ? (
         <>
-          <h1 className={`PDP__PlaylistName ${getHeaderClass()}`}>
+          <h1
+            className={`PlaylistHeader__PlaylistName PlaylistHeader__PlaylistName${getHeaderClass()}`}
+          >
             {playlistName}
           </h1>
-          <div className="Row--flat --accented">{playlistDescription}</div>
+          <p className="PlaylistHeader__PlaylistDescription">
+            {playlistDescription}
+          </p>
         </>
       ) : (
         <>
-          <div>
+          <div
+            className={`PlaylistHeader__PlaylistName--edit PlaylistHeader__PlaylistName--edit${getHeaderClass()}`}
+          >
             <input
               onChange={handlePlaylistNameChange}
               name="playlistName"
               id="playlistName"
-              className={`PDP__PlaylistName--edit ${getHeaderClass()}`}
               type="text"
               placeholder={playlistName}
               value={playlistName}
             />
           </div>
-          <div className="Row--flat">
+          <div className="PlaylistHeader__PlaylistDescriptionChangeInput">
             <input
               onChange={handlePlaylistNameChange}
               name="playlistDescription"
               id="playlistDescription"
-              className="PDP__PlaylistDescriptionChangeInput"
               type="text"
               placeholder={playlistDescription}
               value={playlistDescription}
