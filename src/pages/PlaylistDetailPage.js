@@ -7,6 +7,8 @@ import updatePlaylists from "../services/updatePlaylists";
 import useLocalStorage from "../hooks/useLocalStorage";
 import useScroll from "../hooks/useScroll";
 import "./PlaylistDetailPage.css";
+import PlaylistHeader from "../components/PlaylistHeader";
+import PlaylistHeaderEditMode from "../components/PlaylistHeaderEditMode";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
@@ -31,10 +33,6 @@ export default function PlaylistDetailPage() {
       setHeaderIsHidden(isScrolledDown && isMinimumScrolled);
     }, TIMEOUT_DELAY);
   });
-
-  function getHeaderClass() {
-    return headerIsHidden ? "--hidden" : "";
-  }
 
   useEffect(() => {
     const requestedPlaylist = playlists.find((playlist) => {
@@ -111,7 +109,7 @@ export default function PlaylistDetailPage() {
     setEditMode(!editMode);
   }
 
-  function handlePlaylistNameChange(event) {
+  function onPlaylistNameChange(event) {
     const input = event.target;
     const value = input.value;
     const key = input.name;
@@ -175,39 +173,18 @@ export default function PlaylistDetailPage() {
       {!playlist || playlist === [] ? (
         <p>loading...</p>
       ) : !editMode ? (
-        <>
-          <h1 className={`PDP__PlaylistName ${getHeaderClass()}`}>
-            {playlist.playlistName}
-          </h1>
-          <div className="Row--flat --accented">
-            {playlist.playlistDescription}
-          </div>
-        </>
+        <PlaylistHeader
+          headerIsHidden={headerIsHidden}
+          playlistName={playlist.playlistName}
+          playlistDescription={playlist.playlistDescription}
+        />
       ) : (
-        <>
-          <div>
-            <input
-              onChange={handlePlaylistNameChange}
-              name="playlistName"
-              id="playlistName"
-              className={`PDP__PlaylistName--edit ${getHeaderClass()}`}
-              type="text"
-              placeholder={playlist.playlistName}
-              value={playlist.playlistName}
-            />
-          </div>
-          <div className="Row--flat">
-            <input
-              onChange={handlePlaylistNameChange}
-              name="playlistDescription"
-              id="playlistDescription"
-              className="PDP__PlaylistDescriptionChangeInput"
-              type="text"
-              placeholder={playlist.playlistDescription}
-              value={playlist.playlistDescription}
-            />
-          </div>
-        </>
+        <PlaylistHeaderEditMode
+          headerIsHidden={headerIsHidden}
+          onPlaylistNameChange={onPlaylistNameChange}
+          playlistName={playlist.playlistName}
+          playlistDescription={playlist.playlistDescription}
+        />
       )}
 
       <div className="Row--flat --accented --space-between">
