@@ -6,11 +6,6 @@
   box-sizing: border-box;
 }
 
-h1 {
-  font-size: 16px;
-  font-weight: normal;
-}
-
 input {
   all: unset;
   width: 100%;
@@ -60,10 +55,3 @@ button:focus {
   -webkit-user-select: none; /* Chrome, Safari, and Opera */
   -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
 }
-
-/* @media (hover: hover) {
-  .Row--flat:hover,
-  .Row--high:hover {
-    padding: 0 1.5rem;
-  }
-} */

@@ -6,8 +6,8 @@ export default function HowToUsePage() {
     <section className="HowToUsePage">
       <p>
         Beatmatch Buddy calculates the tempo for you. All you have to do is to
-        tap the "Tap Here" field in your analyse page repeatedly on the beat and
-        you will see the calculated tempo one row below.
+        tap the "Tap Here" field in your analyse page along with the beat of the
+        song. The tempo will be shown one row below as you tap.
       </p>
       <p>Add track title, artist name, record title and submit your track!</p>
       <p>

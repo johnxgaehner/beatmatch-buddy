@@ -1,0 +1,19 @@
+.Navigation {
+  display: flex;
+  flex-direction: column;
+}
+
+.Navigation__Item {
+  padding: 0.6rem 1rem;
+  min-height: 42px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: black;
+}
+
+.Navigation__Item:last-child {
+  border-bottom: none;
+}
