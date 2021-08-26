@@ -9,6 +9,7 @@ import useScroll from "../hooks/useScroll";
 import "./PlaylistDetailPage.css";
 import PlaylistHeader from "../components/PlaylistHeader";
 import PlaylistHeaderEditMode from "../components/PlaylistHeaderEditMode";
+import PlaylistToolbar from "../components/PlaylistToolbar";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
@@ -19,7 +20,7 @@ export default function PlaylistDetailPage() {
   const [playlist, setPlaylist] = useState();
 
   const [editMode, setEditMode] = useState(false);
-  const [addTracksMode, setaddTracksMode] = useState(false);
+  const [addTracksMode, setAddTracksMode] = useState(false);
 
   const [headerIsHidden, setHeaderIsHidden] = useState(false);
   const MIN_SCROLL = 63;
@@ -66,9 +67,6 @@ export default function PlaylistDetailPage() {
   }
 
   // --- ADD TRACKS MODE
-  function toggleAddTracksMode() {
-    setaddTracksMode(!addTracksMode);
-  }
 
   function renderCollection() {
     if (tracks.length === 0) {
@@ -105,9 +103,6 @@ export default function PlaylistDetailPage() {
   }
 
   // --- EDIT PLAYLIST MODE
-  function toggleEditMode() {
-    setEditMode(!editMode);
-  }
 
   function onPlaylistNameChange(event) {
     const input = event.target;
@@ -124,7 +119,7 @@ export default function PlaylistDetailPage() {
     setPlaylists(updatedPlaylists);
   }
 
-  function handleDeletePlaylistClick() {
+  function onDeletePlaylistClick() {
     const confirmation = window.confirm(
       "Do you really want to delete this playlist?"
     );
@@ -187,26 +182,13 @@ export default function PlaylistDetailPage() {
         />
       )}
 
-      <div className="Row--flat --accented --space-between">
-        {!editMode ? (
-          <button onClick={toggleAddTracksMode}>
-            {!addTracksMode ? "Add Tracks" : "Save"}
-          </button>
-        ) : (
-          <button
-            onClick={handleDeletePlaylistClick}
-            className="PDP__DeleteButton"
-          >
-            Delete Playlist
-          </button>
-        )}
-
-        {!addTracksMode && (
-          <button onClick={toggleEditMode}>
-            {!editMode ? "Edit Playlist" : "Save"}
-          </button>
-        )}
-      </div>
+      <PlaylistToolbar
+        editMode={editMode}
+        setEditMode={setEditMode}
+        addTracksMode={addTracksMode}
+        setAddTracksMode={setAddTracksMode}
+        onDeletePlaylistClick={onDeletePlaylistClick}
+      />
 
       {!addTracksMode ? (
         <DragDropContext onDragEnd={handleOnDragEnd}>
