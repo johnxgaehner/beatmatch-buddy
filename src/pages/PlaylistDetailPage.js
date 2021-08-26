@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import AddTrackOnTheFlyItem from "../components/AddTrackOnTheFlyItem";
-import TrackItem from "../components/TrackItem";
+
 import updatePlaylists from "../services/updatePlaylists";
 import useLocalStorage from "../hooks/useLocalStorage";
 import useScroll from "../hooks/useScroll";
 import "./PlaylistDetailPage.css";
 import PlaylistHeader from "../components/PlaylistHeader";
-import PlaylistHeaderEditMode from "../components/PlaylistHeaderEditMode";
 import PlaylistToolbar from "../components/PlaylistToolbar";
+import PlaylistContent from "../components/PlaylistContent";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
@@ -42,49 +40,6 @@ export default function PlaylistDetailPage() {
     setPlaylist(requestedPlaylist);
   }, [playlists, playlistId]);
 
-  function renderTracksFromPlaylist() {
-    if (tracks && playlist) {
-      if (playlist.trackIds.length === 0 || tracks.length === 0) {
-        return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
-      }
-      const includedTracks = playlist.trackIds.map((trackId) => {
-        const includedTrack = tracks.find((element) => element.id === trackId);
-        return includedTrack;
-      });
-      const trackItems = includedTracks.map((track, index) => {
-        return (
-          <TrackItem
-            key={track.id}
-            index={index}
-            trackInfo={track}
-            editMode={editMode}
-            onDeleteTrackClick={onDeleteTrackClick}
-          />
-        );
-      });
-      return trackItems;
-    }
-  }
-
-  // --- ADD TRACKS MODE
-
-  function renderCollection() {
-    if (tracks.length === 0) {
-      return <div className="Row--flat">YOUR COLLECTION IS EMPTY...</div>;
-    }
-    const addTrackOnTheFlyItems = tracks.map((track) => {
-      return (
-        <AddTrackOnTheFlyItem
-          key={track.id}
-          trackInfo={track}
-          playlistTrackIds={playlist.trackIds}
-          onAddToPlaylistClick={onAddToPlaylistClick}
-        />
-      );
-    });
-    return addTrackOnTheFlyItems;
-  }
-
   function onAddToPlaylistClick(clickedTrackId) {
     const patchedTrackIds = [...playlist.trackIds];
 
@@ -101,8 +56,6 @@ export default function PlaylistDetailPage() {
     );
     setPlaylists(updatedPlaylists);
   }
-
-  // --- EDIT PLAYLIST MODE
 
   function onPlaylistNameChange(event) {
     const input = event.target;
@@ -165,20 +118,13 @@ export default function PlaylistDetailPage() {
 
   return (
     <section>
-      {!playlist || playlist === [] ? (
-        <p>loading...</p>
-      ) : !editMode ? (
+      {playlist && (
         <PlaylistHeader
+          editMode={editMode}
           headerIsHidden={headerIsHidden}
           playlistName={playlist.playlistName}
           playlistDescription={playlist.playlistDescription}
-        />
-      ) : (
-        <PlaylistHeaderEditMode
-          headerIsHidden={headerIsHidden}
           onPlaylistNameChange={onPlaylistNameChange}
-          playlistName={playlist.playlistName}
-          playlistDescription={playlist.playlistDescription}
         />
       )}
 
@@ -190,23 +136,16 @@ export default function PlaylistDetailPage() {
         onDeletePlaylistClick={onDeletePlaylistClick}
       />
 
-      {!addTracksMode ? (
-        <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="tracks">
-            {(provided) => (
-              <ul
-                className="DND__List"
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {renderTracksFromPlaylist()}
-                {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
-        </DragDropContext>
-      ) : (
-        renderCollection()
+      {playlist && tracks && (
+        <PlaylistContent
+          addTracksMode={addTracksMode}
+          handleOnDragEnd={handleOnDragEnd}
+          playlist={playlist}
+          tracks={tracks}
+          editMode={editMode}
+          onAddToPlaylistClick={onAddToPlaylistClick}
+          onDeleteTrackClick={onDeleteTrackClick}
+        />
       )}
     </section>
   );
