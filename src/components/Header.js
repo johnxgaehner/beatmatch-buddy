@@ -74,7 +74,7 @@ export default function Header() {
           <Route path="/playlist/:playlistId">
             <p></p>
             <p onClick={history.goBack} className="Header__Link">
-              {menuIsVisible ? "Close" : "Menu"}
+              Return
             </p>
           </Route>
           <Route path="/create-new-playlist">

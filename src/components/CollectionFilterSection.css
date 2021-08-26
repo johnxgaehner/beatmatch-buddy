@@ -22,8 +22,7 @@
 .CollectionFilterSection__SortDropdownMenu {
   position: absolute;
   background-color: var(--color-background);
-  left: 1rem;
-  right: 1rem;
+  width: 100%;
   padding: 1rem;
   border-bottom: 1px solid black;
   text-transform: none;
