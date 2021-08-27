@@ -3,6 +3,8 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import TrackItem from "./TrackItem";
 import AddTrackOnTheFlyItem from "./AddTrackOnTheFlyItem";
 import getTracksFromPlaylist from "../services/getTracksFromPlaylist";
+import sortCollection from "../services/sortCollection";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function PlaylistContent({
   addTracksMode,
@@ -13,6 +15,11 @@ export default function PlaylistContent({
   onAddToPlaylistClick,
   onDeleteTrackClick,
 }) {
+  const [currentSortValue] = useLocalStorage(
+    "sortCollectionValue",
+    "date_9to0"
+  );
+
   function renderTracksFromPlaylist() {
     if (playlistTrackIds.length > 0) {
       const includedTracks = getTracksFromPlaylist(
@@ -37,7 +44,9 @@ export default function PlaylistContent({
 
   function renderCollection() {
     if (trackCollection.length > 0) {
-      const addTrackOnTheFlyItems = trackCollection.map((track) => {
+      const allTracks = [...trackCollection];
+      sortCollection(allTracks, currentSortValue);
+      const addTrackOnTheFlyItems = allTracks.map((track) => {
         return (
           <AddTrackOnTheFlyItem
             key={track.id}
