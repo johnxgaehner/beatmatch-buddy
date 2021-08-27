@@ -53,17 +53,21 @@ export default function CollectionPage() {
         }
       });
 
+      function byKeyword(track) {
+        return (
+          track.trackTitle.toUpperCase().includes(searchFilter) ||
+          track.artistName.toUpperCase().includes(searchFilter) ||
+          track.recordTitle.toUpperCase().includes(searchFilter)
+        );
+      }
+
+      function byTempo(track) {
+        return track.bpm >= minTempoFilter && track.bpm <= maxTempoFilter;
+      }
+
       const collectionItems = sortedCollectionItems
-        .filter((track) => {
-          return (
-            track.trackTitle.toUpperCase().includes(searchFilter) ||
-            track.artistName.toUpperCase().includes(searchFilter) ||
-            track.recordTitle.toUpperCase().includes(searchFilter)
-          );
-        })
-        .filter((track) => {
-          return track.bpm >= minTempoFilter && track.bpm <= maxTempoFilter;
-        })
+        .filter(byKeyword)
+        .filter(byTempo)
         .map((track) => {
           return <CollectionItem key={track.id} trackInfo={track} />;
         });

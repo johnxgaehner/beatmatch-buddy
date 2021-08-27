@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { throttle } from "lodash";
 
 export default function useScroll(callback) {
-  const [, setScrollPosition] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  const [_, setScrollPosition] = useState(0);
   let previousScrollTop = 0;
 
   function handleScroll() {

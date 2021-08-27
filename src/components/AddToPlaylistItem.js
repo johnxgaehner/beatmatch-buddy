@@ -56,7 +56,10 @@ PlaylistItem.propTypes = {
   playlistInfo: PropTypes.shape({
     id: PropTypes.string,
     playlistName: PropTypes.string,
-    trackIds: PropTypes.arrayOf(PropTypes.string),
+    trackIds: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.string),
+      PropTypes.string,
+    ]),
   }).isRequired,
   onAddToPlaylistClick: PropTypes.func.isRequired,
 };

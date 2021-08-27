@@ -14,42 +14,42 @@ export default function PlaylistContent({
   onDeleteTrackClick,
 }) {
   function renderTracksFromPlaylist() {
-    if (playlistTrackIds.length === 0) {
-      return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
-    }
-    const includedTracks = getTracksFromPlaylist(
-      playlistTrackIds,
-      trackCollection
-    );
-    const trackItems = includedTracks.map((track, index) => {
-      return (
-        <TrackItem
-          index={index}
-          key={track.id}
-          trackInfo={track}
-          editMode={editMode}
-          onDeleteTrackClick={onDeleteTrackClick}
-        />
+    if (playlistTrackIds.length > 0) {
+      const includedTracks = getTracksFromPlaylist(
+        playlistTrackIds,
+        trackCollection
       );
-    });
-    return trackItems;
+      const trackItems = includedTracks.map((track, index) => {
+        return (
+          <TrackItem
+            index={index}
+            key={track.id}
+            trackInfo={track}
+            editMode={editMode}
+            onDeleteTrackClick={onDeleteTrackClick}
+          />
+        );
+      });
+      return trackItems;
+    }
+    return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
   }
 
   function renderCollection() {
-    if (trackCollection.length === 0) {
-      return <div className="Row--flat">YOUR COLLECTION IS EMPTY...</div>;
+    if (trackCollection.length > 0) {
+      const addTrackOnTheFlyItems = trackCollection.map((track) => {
+        return (
+          <AddTrackOnTheFlyItem
+            key={track.id}
+            trackInfo={track}
+            playlistTrackIds={playlistTrackIds}
+            onAddToPlaylistClick={onAddToPlaylistClick}
+          />
+        );
+      });
+      return addTrackOnTheFlyItems;
     }
-    const addTrackOnTheFlyItems = trackCollection.map((track) => {
-      return (
-        <AddTrackOnTheFlyItem
-          key={track.id}
-          trackInfo={track}
-          playlistTrackIds={playlistTrackIds}
-          onAddToPlaylistClick={onAddToPlaylistClick}
-        />
-      );
-    });
-    return addTrackOnTheFlyItems;
+    return <div className="Row--flat">YOUR COLLECTION IS EMPTY...</div>;
   }
 
   return (

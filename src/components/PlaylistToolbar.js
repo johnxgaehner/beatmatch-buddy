@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import PropTypes from "prop-types";
 import "./PlaylistToolbar.css";
 

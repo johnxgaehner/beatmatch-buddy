@@ -11,8 +11,9 @@ export default function AddToPlaylistPage() {
   const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
 
   function renderAddToPlaylistItems() {
-    if (playlists && playlists.length > 0) {
-      const playlistItems = playlists
+    if (playlists.length > 0) {
+      const playlistItems = [...playlists];
+      return playlistItems
         .sort(function (a, b) {
           return new Date(a.createdAt) - new Date(b.createdAt);
         })
@@ -26,7 +27,6 @@ export default function AddToPlaylistPage() {
             />
           );
         });
-      return playlistItems;
     }
     return <div className="Row--flat">NO PLAYLIST CREATED YET...</div>;
   }
@@ -37,7 +37,6 @@ export default function AddToPlaylistPage() {
     });
 
     const patchedTrackIds = [...clickedPlaylist.trackIds];
-
     patchedTrackIds.includes(id)
       ? patchedTrackIds.splice(patchedTrackIds.indexOf(id), 1)
       : patchedTrackIds.push(id);
