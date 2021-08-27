@@ -13,20 +13,23 @@ export default function AddTrackOnTheFlyItem({
     onAddToPlaylistClick(trackInfo.id);
   }
 
-  const transition = useTransition(playlistTrackIds.includes(trackInfo.id), {
-    initial: { position: "absolute" },
-    from: { position: "absolute", opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    config: {
-      duration: 150,
-    },
-  });
+  const iconTransition = useTransition(
+    playlistTrackIds.includes(trackInfo.id),
+    {
+      initial: { position: "absolute" },
+      from: { position: "absolute", opacity: 0 },
+      enter: { opacity: 1 },
+      leave: { opacity: 0 },
+      config: {
+        duration: 150,
+      },
+    }
+  );
 
   return (
     <div onClick={handleOnAddToPlaylistClick} className="AddTrackOnTheFlyItem">
       <div className="AddTrackOnTheFlyItem__SelectionIconContainer">
-        {transition((style, item) =>
+        {iconTransition((style, item) =>
           item ? (
             <animated.div style={style}>
               <IconSelectionFilled className="AddTrackOnTheFlyItem__SelectionIcon" />
