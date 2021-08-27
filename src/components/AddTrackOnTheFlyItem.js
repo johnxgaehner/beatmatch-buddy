@@ -56,6 +56,9 @@ AddTrackOnTheFlyItem.propTypes = {
     artistName: PropTypes.string,
     recordTitle: PropTypes.string,
   }).isRequired,
-  playlistTrackIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  playlistTrackIds: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
+  ]).isRequired,
   onAddToPlaylistClick: PropTypes.func.isRequired,
 };

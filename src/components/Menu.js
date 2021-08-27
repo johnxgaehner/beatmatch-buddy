@@ -4,7 +4,7 @@ import "./Menu.css";
 
 export default function Menu({ menuIsVisible, setMenuIsVisible }) {
   function getMenuState() {
-    return menuIsVisible ? "Menu--visible" : "";
+    return menuIsVisible && "Menu--visible";
   }
 
   function toggleMenu(event) {
