@@ -32,7 +32,7 @@ export default function PlaylistContent({
       });
       return trackItems;
     }
-    return <div className="Row--flat">NO TRACKS IN HERE YET...</div>;
+    return <div className="Row--flat">No Tracks In Here Yet...</div>;
   }
 
   function renderCollection() {
@@ -49,7 +49,7 @@ export default function PlaylistContent({
       });
       return addTrackOnTheFlyItems;
     }
-    return <div className="Row--flat">YOUR COLLECTION IS EMPTY...</div>;
+    return <div className="Row--flat">Your Collection Is Empty...</div>;
   }
 
   return (

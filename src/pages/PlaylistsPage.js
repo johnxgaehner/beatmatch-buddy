@@ -18,13 +18,13 @@ export default function PlaylistsPage() {
       });
       return playlistItems;
     }
-    return <div className="Row--flat">NO PLAYLIST CREATED YET...</div>;
+    return <div className="Row--flat">No Playlist Created Yet...</div>;
   }
 
   return (
     <section className="PlaylistsPage">
       <Link to="/create-new-playlist" className="Row--flat --accented">
-        <p>CREATE NEW PLAYLIST</p>
+        <p>Create New Playlist</p>
       </Link>
       {renderPlaylistItems()}
     </section>

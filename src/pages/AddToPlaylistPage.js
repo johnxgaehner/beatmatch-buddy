@@ -28,7 +28,7 @@ export default function AddToPlaylistPage() {
           );
         });
     }
-    return <div className="Row--flat">NO PLAYLIST CREATED YET...</div>;
+    return <div className="Row--flat">No Playlist Created Yet...</div>;
   }
 
   function onAddToPlaylistClick(clickedPlaylistId) {

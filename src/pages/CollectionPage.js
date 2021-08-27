@@ -15,8 +15,9 @@ export default function CollectionPage() {
   const [maxTempoFilter, setMaxTempoFilter] = useState(999);
 
   function renderCollectionItems() {
-    if (collection && collection.length > 0) {
-      const sortedCollectionItems = collection.sort(function (a, b) {
+    if (collection.length > 0) {
+      const sortedCollectionItems = [...collection];
+      sortedCollectionItems.sort(function (a, b) {
         switch (currentSortValue) {
           case "trackTitle_AtoZ":
             return a.trackTitle.toUpperCase() > b.trackTitle.toUpperCase()
@@ -111,7 +112,7 @@ export default function CollectionPage() {
           {renderCollectionItems()}
         </>
       ) : (
-        <div className="Row--flat">YOUR COLLECTION IS EMPTY</div>
+        <div className="Row--flat">Your Collection Is Empty...</div>
       )}
     </section>
   );
