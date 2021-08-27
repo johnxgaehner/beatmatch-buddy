@@ -15,7 +15,11 @@ export default function ConfirmModal({
 
   return (
     <div className="ConfirmModal">
-      <p>Do you really want to delete this {text}?</p>
+      <p>
+        Do you really want
+        <br />
+        to delete this {text}?
+      </p>
       <div className="ConfirmModal__ButtonContainer">
         <button onClick={handleCancellation}>no</button>
         <button onClick={handleConfirmation}>yes</button>
