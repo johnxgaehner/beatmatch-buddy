@@ -10,7 +10,6 @@ export default function Menu({ menuIsVisible, setMenuIsVisible }) {
   function toggleMenu(event) {
     setMenuIsVisible(false);
     event.stopPropagation();
-    document.body.style.overflow = "auto";
   }
 
   return (

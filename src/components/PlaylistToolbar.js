@@ -19,25 +19,38 @@ export default function PlaylistToolbar({
     onDeletePlaylistClick();
   }
 
+  function renderToolbar() {
+    if (editMode) {
+      return (
+        <>
+          <button
+            onClick={handleDeletePlaylistClick}
+            className="PlaylistToolbar__DeleteButton"
+          >
+            Delete Playlist
+          </button>
+          <button onClick={toggleEditMode}>Save</button>
+        </>
+      );
+    }
+    if (addTracksMode) {
+      return (
+        <>
+          <button onClick={toggleAddTracksMode}>Save</button>
+        </>
+      );
+    }
+    return (
+      <>
+        <button onClick={toggleAddTracksMode}>Add Tracks</button>
+        <button onClick={toggleEditMode}>Edit Playlist</button>
+      </>
+    );
+  }
+
   return (
     <section className="Row--flat --accented --space-between">
-      {!editMode ? (
-        <button onClick={toggleAddTracksMode}>
-          {!addTracksMode ? "Add Tracks" : "Save"}
-        </button>
-      ) : (
-        <button
-          onClick={handleDeletePlaylistClick}
-          className="PlaylistToolbar__DeleteButton"
-        >
-          Delete Playlist
-        </button>
-      )}
-      {!addTracksMode && (
-        <button onClick={toggleEditMode}>
-          {!editMode ? "Edit Playlist" : "Save"}
-        </button>
-      )}
+      {renderToolbar()}
     </section>
   );
 }

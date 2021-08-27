@@ -4,6 +4,7 @@ import useScroll from "../hooks/useScroll";
 import useOutsideClick from "../hooks/useOutsideClick";
 import Menu from "./Menu";
 import "./Header.css";
+import { useEffect } from "react";
 
 export default function Header() {
   const history = useHistory();
@@ -31,10 +32,13 @@ export default function Header() {
 
   function toggleMenu() {
     setMenuIsVisible(!menuIsVisible);
-    menuIsVisible
-      ? (document.body.style.overflow = "auto")
-      : (document.body.style.overflow = "hidden");
   }
+
+  useEffect(() => {
+    menuIsVisible
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+  }, [menuIsVisible]);
 
   return (
     <>

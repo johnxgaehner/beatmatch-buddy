@@ -49,7 +49,6 @@ export default function CollectionFilterSection({
       { text: "Date, old to new", sortValue: "date_0to9" },
       { text: "Date, new to old", sortValue: "date_9to0" },
     ];
-
     const sortCollectionByItems = sortPossibilities.map((item, index) => {
       return (
         <SortCollectionByItem
@@ -61,7 +60,6 @@ export default function CollectionFilterSection({
         />
       );
     });
-
     return sortCollectionByItems;
   }
 

@@ -13,15 +13,18 @@ export default function PlaylistItem({
     onAddToPlaylistClick(playlistInfo.id);
   }
 
-  const transition = useTransition(playlistInfo.trackIds.includes(trackId), {
-    initial: { position: "absolute" },
-    from: { position: "absolute", opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    config: {
-      duration: 150,
-    },
-  });
+  const iconTransition = useTransition(
+    playlistInfo.trackIds.includes(trackId),
+    {
+      initial: { position: "absolute" },
+      from: { position: "absolute", opacity: 0 },
+      enter: { opacity: 1 },
+      leave: { opacity: 0 },
+      config: {
+        duration: 150,
+      },
+    }
+  );
 
   return (
     <div
@@ -29,7 +32,7 @@ export default function PlaylistItem({
       onClick={handleAddToPlaylistClick}
     >
       <div className="AddToPlaylistItem__SelectionIconContainer">
-        {transition((style, item) =>
+        {iconTransition((style, item) =>
           item ? (
             <animated.div style={style}>
               <IconSelectionFilled className="AddToPlaylistItem__SelectionIcon" />
@@ -53,7 +56,10 @@ PlaylistItem.propTypes = {
   playlistInfo: PropTypes.shape({
     id: PropTypes.string,
     playlistName: PropTypes.string,
-    trackIds: PropTypes.arrayOf(PropTypes.string),
+    trackIds: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.string),
+      PropTypes.string,
+    ]),
   }).isRequired,
   onAddToPlaylistClick: PropTypes.func.isRequired,
 };

@@ -6,7 +6,7 @@ export default function PlaylistsPage() {
   const [playlists] = useLocalStorage("savedPlaylists", []);
 
   function renderPlaylistItems() {
-    if (playlists && playlists.length > 0) {
+    if (playlists.length > 0) {
       const playlistItems = playlists.map((playlist) => {
         return (
           <PlaylistItem
@@ -18,19 +18,15 @@ export default function PlaylistsPage() {
       });
       return playlistItems;
     }
+    return <div className="Row--flat">No Playlist Created Yet...</div>;
   }
 
   return (
     <section className="PlaylistsPage">
       <Link to="/create-new-playlist" className="Row--flat --accented">
-        <p>CREATE NEW PLAYLIST</p>
+        <p>Create New Playlist</p>
       </Link>
-
-      {playlists.length > 0 ? (
-        renderPlaylistItems()
-      ) : (
-        <div className="Row--flat">NO PLAYLIST CREATED YET...</div>
-      )}
+      {renderPlaylistItems()}
     </section>
   );
 }
