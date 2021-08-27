@@ -9,6 +9,7 @@ import useScroll from "../hooks/useScroll";
 import useLocalStorage from "../hooks/useLocalStorage";
 import updatePlaylists from "../services/updatePlaylists";
 import useOutsideClick from "../hooks/useOutsideClick";
+import ConfirmModal from "../components/ConfirmModal";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
@@ -144,12 +145,12 @@ export default function PlaylistDetailPage() {
       )}
 
       {confirmIsOpen && (
-        <div ref={confirmModalRef} className="ConfirmDialog">
-          <p>Do you really want to delete this playlist?</p>
-          <div>
-            <button>no</button>
-            <button onClick={onDeletePlaylistClick}>yes</button>
-          </div>
+        <div ref={confirmModalRef}>
+          <ConfirmModal
+            text="playlist"
+            setConfirmIsOpen={setConfirmIsOpen}
+            onConfirmation={onDeletePlaylistClick}
+          />
         </div>
       )}
     </section>
