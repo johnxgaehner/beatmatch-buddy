@@ -2,6 +2,7 @@ import { useState } from "react";
 import CollectionFilterSection from "../components/CollectionFilterSection";
 import CollectionItem from "../components/CollectionItem";
 import useLocalStorage from "../hooks/useLocalStorage";
+import sortCollection from "../services/sortCollection";
 import "./CollectionPage.css";
 
 export default function CollectionPage() {
@@ -14,59 +15,23 @@ export default function CollectionPage() {
   const [minTempoFilter, setMinTempoFilter] = useState(0);
   const [maxTempoFilter, setMaxTempoFilter] = useState(999);
 
+  function byKeyword(track) {
+    return (
+      track.trackTitle.toUpperCase().includes(searchFilter) ||
+      track.artistName.toUpperCase().includes(searchFilter) ||
+      track.recordTitle.toUpperCase().includes(searchFilter)
+    );
+  }
+
+  function byTempo(track) {
+    return track.bpm >= minTempoFilter && track.bpm <= maxTempoFilter;
+  }
+
   function renderCollectionItems() {
     if (collection.length > 0) {
-      const sortedCollectionItems = [...collection];
-      sortedCollectionItems.sort(function (a, b) {
-        switch (currentSortValue) {
-          case "trackTitle_AtoZ":
-            return a.trackTitle.toUpperCase() > b.trackTitle.toUpperCase()
-              ? 1
-              : -1;
-          case "trackTitle_ZtoA":
-            return a.trackTitle.toUpperCase() < b.trackTitle.toUpperCase()
-              ? 1
-              : -1;
-          case "artistName_AtoZ":
-            return a.artistName.toUpperCase() > b.artistName.toUpperCase()
-              ? 1
-              : -1;
-          case "artistName_ZtoA":
-            return a.artistName.toUpperCase() < b.artistName.toUpperCase()
-              ? 1
-              : -1;
-          case "recordTitle_AtoZ":
-            return a.recordTitle.toUpperCase() > b.recordTitle.toUpperCase()
-              ? 1
-              : -1;
-          case "recordTitle_ZtoA":
-            return a.recordTitle.toUpperCase() < b.recordTitle.toUpperCase()
-              ? 1
-              : -1;
-          case "bpm_0to9":
-            return a.bpm - b.bpm;
-          case "bpm_9to0":
-            return b.bpm - a.bpm;
-          case "date_0to9":
-            return new Date(a.createdAt) - new Date(b.createdAt);
-          default:
-            return new Date(b.createdAt) - new Date(a.createdAt);
-        }
-      });
-
-      function byKeyword(track) {
-        return (
-          track.trackTitle.toUpperCase().includes(searchFilter) ||
-          track.artistName.toUpperCase().includes(searchFilter) ||
-          track.recordTitle.toUpperCase().includes(searchFilter)
-        );
-      }
-
-      function byTempo(track) {
-        return track.bpm >= minTempoFilter && track.bpm <= maxTempoFilter;
-      }
-
-      const collectionItems = sortedCollectionItems
+      const allTracks = [...collection];
+      sortCollection(allTracks, currentSortValue);
+      const collectionItems = allTracks
         .filter(byKeyword)
         .filter(byTempo)
         .map((track) => {
