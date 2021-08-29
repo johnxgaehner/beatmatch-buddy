@@ -1,3 +1,18 @@
+.PlaylistToolbar {
+  padding: 0.6rem 1rem;
+  min-height: 42px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  color: var(--color-accent-01);
+}
+
 .PlaylistToolbar__DeleteButton {
   color: var(--color-alert-01);
+}
+
+.PlaylistToolbar__SearchInput {
+  color: black;
 }

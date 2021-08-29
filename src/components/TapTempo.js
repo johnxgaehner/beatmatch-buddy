@@ -25,14 +25,18 @@ export default function TapTempo({ BPM, setBPM, beatCounter }) {
   }
 
   function renderBPM() {
-    return !BPM || isNaN(BPM) ? <p>BPM WILL APPEAR HERE</p> : <p>{BPM}BPM</p>;
+    return !BPM || isNaN(BPM) ? (
+      <p className="TapTempo__NoBPM">BPM WILL APPEAR HERE</p>
+    ) : (
+      <p>{BPM}BPM</p>
+    );
   }
 
   return (
     <>
       <div
         onClick={tapTempo}
-        className="Row--flat --space-between --disable-select TapTempo-Row"
+        className="Row--flat --space-between --disable-select TapTempo__Row"
       >
         <p>TAP HERE</p>
         <IconRecDot />

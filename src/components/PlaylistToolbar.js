@@ -35,7 +35,7 @@ export default function PlaylistToolbar({
           >
             Delete Playlist
           </button>
-          <button onClick={toggleEditMode}>Save</button>
+          <button onClick={toggleEditMode}>Save Changes</button>
         </>
       );
     }
@@ -44,12 +44,13 @@ export default function PlaylistToolbar({
         <>
           <input
             onChange={handleSearchInput}
+            className="PlaylistToolbar__SearchInput"
             type="text"
             name="SearchFilter"
             id="SearchFilter"
             placeholder="SEARCH:"
           />
-          <button onClick={toggleAddTracksMode}>Save</button>
+          <button onClick={toggleAddTracksMode}>Save Changes</button>
         </>
       );
     }
@@ -61,9 +62,7 @@ export default function PlaylistToolbar({
     );
   }
 
-  return (
-    <section className="Row--flat --space-between">{renderToolbar()}</section>
-  );
+  return <section className="PlaylistToolbar">{renderToolbar()}</section>;
 }
 
 PlaylistToolbar.propTypes = {
