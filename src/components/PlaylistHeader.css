@@ -43,7 +43,6 @@
   border-bottom: 1px solid black;
   display: flex;
   align-items: center;
-  color: var(--color-accent-01);
 }
 
 .PlaylistHeader__PlaylistDescriptionChangeInput {
@@ -53,7 +52,6 @@
   border-bottom: 1px solid black;
   display: flex;
   align-items: center;
-  color: var(--color-accent-01);
 }
 
 .PlaylistHeader__PlaylistDescriptionChangeInput:focus {

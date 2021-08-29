@@ -7,10 +7,16 @@ export default function PlaylistToolbar({
   addTracksMode,
   setAddTracksMode,
   setConfirmIsOpen,
+  onSearchInput,
 }) {
   function toggleAddTracksMode() {
     setAddTracksMode(!addTracksMode);
   }
+
+  function handleSearchInput(event) {
+    onSearchInput(event);
+  }
+
   function toggleEditMode() {
     setEditMode(!editMode);
   }
@@ -29,14 +35,22 @@ export default function PlaylistToolbar({
           >
             Delete Playlist
           </button>
-          <button onClick={toggleEditMode}>Save</button>
+          <button onClick={toggleEditMode}>Save Changes</button>
         </>
       );
     }
     if (addTracksMode) {
       return (
         <>
-          <button onClick={toggleAddTracksMode}>Save</button>
+          <input
+            onChange={handleSearchInput}
+            className="PlaylistToolbar__SearchInput"
+            type="text"
+            name="SearchFilter"
+            id="SearchFilter"
+            placeholder="SEARCH:"
+          />
+          <button onClick={toggleAddTracksMode}>Save Changes</button>
         </>
       );
     }
@@ -48,11 +62,7 @@ export default function PlaylistToolbar({
     );
   }
 
-  return (
-    <section className="Row--flat --accented --space-between">
-      {renderToolbar()}
-    </section>
-  );
+  return <section className="PlaylistToolbar">{renderToolbar()}</section>;
 }
 
 PlaylistToolbar.propTypes = {
@@ -60,4 +70,6 @@ PlaylistToolbar.propTypes = {
   setEditMode: PropTypes.func.isRequired,
   addTracksMode: PropTypes.bool.isRequired,
   setAddTracksMode: PropTypes.func.isRequired,
+  setConfirmIsOpen: PropTypes.func.isRequired,
+  onSearchInput: PropTypes.func.isRequired,
 };

@@ -3,11 +3,15 @@
   flex-direction: column;
 }
 
-.TapTempo-Row:active {
+.TapTempo__Row:active {
   background-color: black;
   color: white;
 }
 
-.TapTempo-Row p::selection {
+.TapTempo__Row p::selection {
   background: none;
+}
+
+.TapTempo__NoBPM {
+  opacity: 0.4;
 }
