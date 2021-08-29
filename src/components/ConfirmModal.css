@@ -20,5 +20,8 @@
 .ConfirmModal__ButtonContainer {
   display: flex;
   gap: 3rem;
-  text-decoration: underline;
+}
+
+.ConfirmModal__ConfirmButton {
+  color: var(--color-alert-01);
 }

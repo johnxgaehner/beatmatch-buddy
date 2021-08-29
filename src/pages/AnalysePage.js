@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import TapTempo from "../components/TapTempo";
 import saveInLocalStorage from "../services/saveInLocalStorage";
-import showToastSaved from "../services/showToastSaved";
+import showToast from "../services/showToast";
 import "./AnalysePage.css";
 
 export default function AnalysePage() {
@@ -50,7 +50,7 @@ export default function AnalysePage() {
     }
 
     saveInLocalStorage("savedTracks", newTrack);
-    showToastSaved("SAVED IN YOUR COLLECTION!");
+    showToast("SAVED IN YOUR COLLECTION!");
     resetForm();
   }
 

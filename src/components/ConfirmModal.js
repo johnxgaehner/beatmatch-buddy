@@ -1,3 +1,4 @@
+import showToast from "../services/showToast";
 import "./ConfirmModal.css";
 
 export default function ConfirmModal({
@@ -7,6 +8,7 @@ export default function ConfirmModal({
 }) {
   function handleConfirmation() {
     onConfirmation();
+    showToast(`${text.toUpperCase()} DELETED.`);
   }
 
   function handleCancellation() {
@@ -21,8 +23,18 @@ export default function ConfirmModal({
         to delete this {text}?
       </p>
       <div className="ConfirmModal__ButtonContainer">
-        <button onClick={handleCancellation}>no</button>
-        <button onClick={handleConfirmation}>yes</button>
+        <button
+          onClick={handleCancellation}
+          className="ConfirmModal__CancelButton"
+        >
+          no
+        </button>
+        <button
+          onClick={handleConfirmation}
+          className="ConfirmModal__ConfirmButton"
+        >
+          yes
+        </button>
       </div>
     </div>
   );

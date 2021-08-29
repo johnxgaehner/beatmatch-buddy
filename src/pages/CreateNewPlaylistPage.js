@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import saveInLocalStorage from "../services/saveInLocalStorage";
-import showToastSaved from "../services/showToastSaved";
+import showToast from "../services/showToast";
 import "./CreateNewPlaylistPage.css";
 
 export default function CreateNewPlaylistPage() {
@@ -40,7 +40,7 @@ export default function CreateNewPlaylistPage() {
     }
 
     saveInLocalStorage("savedPlaylists", newPlaylist);
-    showToastSaved("PLAYLIST SAVED");
+    showToast("PLAYLIST SAVED");
     resetForm();
     history.goBack();
   }
