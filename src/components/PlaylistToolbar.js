@@ -62,9 +62,7 @@ export default function PlaylistToolbar({
   }
 
   return (
-    <section className="Row--flat --accented --space-between">
-      {renderToolbar()}
-    </section>
+    <section className="Row--flat --space-between">{renderToolbar()}</section>
   );
 }
 
