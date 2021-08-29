@@ -1,0 +1,27 @@
+.ConfirmModal {
+  position: fixed;
+  width: 300px;
+  height: 150px;
+  top: 50%;
+  left: 50%;
+  margin-top: -75px; /* Negative half of height. */
+  margin-left: -150px; /* Negative half of width. */
+  background-color: lightgrey;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.5rem;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.8);
+}
+
+.ConfirmModal__ButtonContainer {
+  display: flex;
+  gap: 3rem;
+}
+
+.ConfirmModal__ConfirmButton {
+  color: var(--color-alert-01);
+}

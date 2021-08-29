@@ -6,7 +6,7 @@ export default function PlaylistToolbar({
   setEditMode,
   addTracksMode,
   setAddTracksMode,
-  onDeletePlaylistClick,
+  setConfirmIsOpen,
 }) {
   function toggleAddTracksMode() {
     setAddTracksMode(!addTracksMode);
@@ -16,7 +16,7 @@ export default function PlaylistToolbar({
   }
 
   function handleDeletePlaylistClick() {
-    onDeletePlaylistClick();
+    setConfirmIsOpen(true);
   }
 
   function renderToolbar() {
@@ -60,5 +60,4 @@ PlaylistToolbar.propTypes = {
   setEditMode: PropTypes.func.isRequired,
   addTracksMode: PropTypes.bool.isRequired,
   setAddTracksMode: PropTypes.func.isRequired,
-  onDeletePlaylistClick: PropTypes.func.isRequired,
 };

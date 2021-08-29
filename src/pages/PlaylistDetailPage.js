@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 import PlaylistHeader from "../components/PlaylistHeader";
@@ -8,6 +8,8 @@ import PlaylistContent from "../components/PlaylistContent";
 import useScroll from "../hooks/useScroll";
 import useLocalStorage from "../hooks/useLocalStorage";
 import updatePlaylists from "../services/updatePlaylists";
+import useOutsideClick from "../hooks/useOutsideClick";
+import ConfirmModal from "../components/ConfirmModal";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
@@ -19,6 +21,12 @@ export default function PlaylistDetailPage() {
 
   const [editMode, setEditMode] = useState(false);
   const [addTracksMode, setAddTracksMode] = useState(false);
+
+  const confirmModalRef = useRef();
+  const [confirmIsOpen, setConfirmIsOpen] = useOutsideClick(
+    confirmModalRef,
+    false
+  );
 
   const [headerIsHidden, setHeaderIsHidden] = useState(false);
   const MIN_SCROLL = 63;
@@ -69,16 +77,11 @@ export default function PlaylistDetailPage() {
   }
 
   function onDeletePlaylistClick() {
-    const confirmation = window.confirm(
-      "Do you really want to delete this playlist?"
-    );
-    if (confirmation) {
-      const playlistsWithoutDeletedPlaylist = playlists.filter((playlist) => {
-        return playlist.id !== playlistId;
-      });
-      setPlaylists(playlistsWithoutDeletedPlaylist);
-      history.goBack();
-    }
+    const playlistsWithoutDeletedPlaylist = playlists.filter((playlist) => {
+      return playlist.id !== playlistId;
+    });
+    setPlaylists(playlistsWithoutDeletedPlaylist);
+    history.goBack();
   }
 
   function onDeleteTrackClick(trackId) {
@@ -125,7 +128,8 @@ export default function PlaylistDetailPage() {
         setEditMode={setEditMode}
         addTracksMode={addTracksMode}
         setAddTracksMode={setAddTracksMode}
-        onDeletePlaylistClick={onDeletePlaylistClick}
+        confirmIsOpen={confirmIsOpen}
+        setConfirmIsOpen={setConfirmIsOpen}
       />
 
       {playlist && tracks && (
@@ -138,6 +142,16 @@ export default function PlaylistDetailPage() {
           onAddToPlaylistClick={onAddToPlaylistClick}
           onDeleteTrackClick={onDeleteTrackClick}
         />
+      )}
+
+      {confirmIsOpen && (
+        <div ref={confirmModalRef}>
+          <ConfirmModal
+            text="playlist"
+            setConfirmIsOpen={setConfirmIsOpen}
+            onConfirmation={onDeletePlaylistClick}
+          />
+        </div>
       )}
     </section>
   );
