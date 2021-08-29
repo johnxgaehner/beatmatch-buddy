@@ -114,4 +114,5 @@ PlaylistContent.propTypes = {
   editMode: PropTypes.bool.isRequired,
   onAddToPlaylistClick: PropTypes.func.isRequired,
   onDeleteTrackClick: PropTypes.func.isRequired,
+  searchFilter: PropTypes.string.isRequired,
 };

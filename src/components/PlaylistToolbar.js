@@ -73,4 +73,6 @@ PlaylistToolbar.propTypes = {
   setEditMode: PropTypes.func.isRequired,
   addTracksMode: PropTypes.bool.isRequired,
   setAddTracksMode: PropTypes.func.isRequired,
+  setConfirmIsOpen: PropTypes.func.isRequired,
+  onSearchInput: PropTypes.func.isRequired,
 };
