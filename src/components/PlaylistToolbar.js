@@ -7,10 +7,16 @@ export default function PlaylistToolbar({
   addTracksMode,
   setAddTracksMode,
   setConfirmIsOpen,
+  onSearchInput,
 }) {
   function toggleAddTracksMode() {
     setAddTracksMode(!addTracksMode);
   }
+
+  function handleSearchInput(event) {
+    onSearchInput(event);
+  }
+
   function toggleEditMode() {
     setEditMode(!editMode);
   }
@@ -36,6 +42,13 @@ export default function PlaylistToolbar({
     if (addTracksMode) {
       return (
         <>
+          <input
+            onChange={handleSearchInput}
+            type="text"
+            name="SearchFilter"
+            id="SearchFilter"
+            placeholder="SEARCH:"
+          />
           <button onClick={toggleAddTracksMode}>Save</button>
         </>
       );

@@ -14,11 +14,20 @@ export default function PlaylistContent({
   editMode,
   onAddToPlaylistClick,
   onDeleteTrackClick,
+  searchFilter,
 }) {
   const [currentSortValue] = useLocalStorage(
     "sortCollectionValue",
     "date_9to0"
   );
+
+  function filterTracksByKeyword(track) {
+    return (
+      track.trackTitle.toUpperCase().includes(searchFilter) ||
+      track.artistName.toUpperCase().includes(searchFilter) ||
+      track.recordTitle.toUpperCase().includes(searchFilter)
+    );
+  }
 
   function renderTracksFromPlaylist() {
     if (playlistTrackIds.length > 0) {
@@ -46,17 +55,22 @@ export default function PlaylistContent({
     if (trackCollection.length > 0) {
       const allTracks = [...trackCollection];
       sortCollection(allTracks, currentSortValue);
-      const addTrackOnTheFlyItems = allTracks.map((track) => {
-        return (
-          <AddTrackOnTheFlyItem
-            key={track.id}
-            trackInfo={track}
-            playlistTrackIds={playlistTrackIds}
-            onAddToPlaylistClick={onAddToPlaylistClick}
-          />
-        );
-      });
-      return addTrackOnTheFlyItems;
+      const addTrackOnTheFlyItems = allTracks
+        .filter(filterTracksByKeyword)
+        .map((track) => {
+          return (
+            <AddTrackOnTheFlyItem
+              key={track.id}
+              trackInfo={track}
+              playlistTrackIds={playlistTrackIds}
+              onAddToPlaylistClick={onAddToPlaylistClick}
+            />
+          );
+        });
+      if (addTrackOnTheFlyItems.length > 0) {
+        return addTrackOnTheFlyItems;
+      }
+      return <div className="Row--flat">There's No Matching Track...</div>;
     }
     return <div className="Row--flat">Your Collection Is Empty...</div>;
   }

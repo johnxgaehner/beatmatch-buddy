@@ -21,6 +21,7 @@ export default function PlaylistDetailPage() {
 
   const [editMode, setEditMode] = useState(false);
   const [addTracksMode, setAddTracksMode] = useState(false);
+  const [searchFilter, setSearchFilter] = useState("");
 
   const confirmModalRef = useRef();
   const [confirmIsOpen, setConfirmIsOpen] = useOutsideClick(
@@ -47,6 +48,10 @@ export default function PlaylistDetailPage() {
     });
     setPlaylist(requestedPlaylist);
   }, [playlists, playlistId]);
+
+  function onSearchInput(event) {
+    setSearchFilter(event.target.value.toUpperCase());
+  }
 
   function onAddToPlaylistClick(clickedTrackId) {
     const patchedTrackIds = [...playlist.trackIds];
@@ -130,6 +135,7 @@ export default function PlaylistDetailPage() {
         setAddTracksMode={setAddTracksMode}
         confirmIsOpen={confirmIsOpen}
         setConfirmIsOpen={setConfirmIsOpen}
+        onSearchInput={onSearchInput}
       />
 
       {playlist && tracks && (
@@ -141,6 +147,7 @@ export default function PlaylistDetailPage() {
           editMode={editMode}
           onAddToPlaylistClick={onAddToPlaylistClick}
           onDeleteTrackClick={onDeleteTrackClick}
+          searchFilter={searchFilter}
         />
       )}
 

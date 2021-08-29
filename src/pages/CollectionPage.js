@@ -15,7 +15,7 @@ export default function CollectionPage() {
   const [minTempoFilter, setMinTempoFilter] = useState(0);
   const [maxTempoFilter, setMaxTempoFilter] = useState(999);
 
-  function byKeyword(track) {
+  function filterTracksByKeyword(track) {
     return (
       track.trackTitle.toUpperCase().includes(searchFilter) ||
       track.artistName.toUpperCase().includes(searchFilter) ||
@@ -23,7 +23,7 @@ export default function CollectionPage() {
     );
   }
 
-  function byTempo(track) {
+  function filterTracksByTempo(track) {
     return track.bpm >= minTempoFilter && track.bpm <= maxTempoFilter;
   }
 
@@ -32,8 +32,8 @@ export default function CollectionPage() {
       const allTracks = [...collection];
       sortCollection(allTracks, currentSortValue);
       const collectionItems = allTracks
-        .filter(byKeyword)
-        .filter(byTempo)
+        .filter(filterTracksByKeyword)
+        .filter(filterTracksByTempo)
         .map((track) => {
           return <CollectionItem key={track.id} trackInfo={track} />;
         });
