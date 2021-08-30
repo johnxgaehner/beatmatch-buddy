@@ -12,14 +12,10 @@
   background: none;
 }
 
-.TapTempo__NoBPM {
-  opacity: 0.4;
-}
-
 .TapTempo__CountIconContainer {
   display: flex;
   flex-direction: row-reverse;
-  gap: 0.25rem;
+  gap: 0.3rem;
 }
 
 .TapTempo__CountIcon {

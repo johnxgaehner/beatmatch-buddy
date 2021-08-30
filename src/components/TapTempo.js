@@ -77,7 +77,7 @@ export default function TapTempo({ BPM, setBPM, beatCounter }) {
 
   function renderBPM() {
     return !BPM || isNaN(BPM) || beatCounter.current.length < 4 ? (
-      <p className="TapTempo__NoBPM">BPM WILL APPEAR HERE</p>
+      <p>BPM WILL APPEAR HERE</p>
     ) : (
       <p>{BPM}BPM</p>
     );
