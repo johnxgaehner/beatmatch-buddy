@@ -57,7 +57,8 @@ export default function AnalysePage() {
       },
     })
       .then((res) => res.json())
-      .then((json) => json.access_token);
+      .then((json) => json.access_token)
+      .catch((error) => console.error(error));
 
     const artwork = await fetch(searchUrl, {
       method: "get",
@@ -67,7 +68,8 @@ export default function AnalysePage() {
       },
     })
       .then((res) => res.json())
-      .then((data) => data.tracks.items[0].album.images[2].url);
+      .then((data) => data.tracks.items[0].album.images[2].url)
+      .catch((error) => console.error(error));
 
     console.log(artwork);
     return artwork;
