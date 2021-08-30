@@ -12,6 +12,14 @@
   background: none;
 }
 
-.TapTempo__NoBPM {
-  opacity: 0.4;
+.TapTempo__CountIconContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.3rem;
+}
+
+.TapTempo__CountIcon {
+  height: 15px;
+  width: auto;
+  fill: black;
 }

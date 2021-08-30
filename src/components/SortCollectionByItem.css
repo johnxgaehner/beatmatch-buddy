@@ -13,5 +13,6 @@
 .SortCollectionByItem__SelectionIcon {
   height: 12px;
   width: auto;
+  fill: black;
   pointer-events: none;
 }
