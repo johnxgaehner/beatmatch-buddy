@@ -35,14 +35,17 @@ export default function AnalysePage() {
   // --------------------------------------------
 
   // pls don't make me regret to make this public for you
-  const apiEndpoint = "https://api.spotify.com/v1/search";
+
   const authEndpoint = "https://accounts.spotify.com/api/token";
   const clientId = "55b9f829a2e7449da28119bc679d6b70";
   const clientSecret = "5d3899109bb040f5b708ff630c8630be";
-
-  const searchUrl = `${apiEndpoint}?q=${newTrack.artistName}%20${newTrack.trackTitle}&type=track&limit=1`;
   const authString = `${clientId}:${clientSecret}`;
   const authorization = Buffer.from(authString).toString("base64");
+
+  const apiEndpoint = "https://api.spotify.com/v1/search";
+  const artistSearchParam = newTrack.artistName.replace(" ", "%20");
+  const trackSearchParam = newTrack.trackTitle.replace(" ", "%20");
+  const searchUrl = `${apiEndpoint}?q=${artistSearchParam}%20${trackSearchParam}&type=track&limit=1`;
 
   async function getArtwork() {
     const authToken = await fetch(authEndpoint, {
