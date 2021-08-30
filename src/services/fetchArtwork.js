@@ -14,7 +14,7 @@ export default async function fetchArtwork(newTrack) {
     },
   })
     .then((res) => res.json())
-    .then((json) => json.access_token)
+    .then((data) => data.access_token)
     .catch((error) => console.dir(error));
 
   const apiEndpoint = "https://api.spotify.com/v1/search";
