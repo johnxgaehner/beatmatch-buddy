@@ -33,8 +33,9 @@
   font-size: 0.9rem;
 }
 
-.CollectionItem__RecordPlaceholder {
+.CollectionItem__Artwork {
   height: 55px;
+  width: auto;
   flex-shrink: 0;
 }
 

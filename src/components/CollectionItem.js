@@ -8,7 +8,15 @@ export default function CollectionItem({ trackInfo }) {
   return (
     <div className="CollectionItem">
       <div className="CollectionItem--left">
-        <RecordPlaceholder className="CollectionItem__RecordPlaceholder" />
+        {trackInfo.artworkUrl ? (
+          <img
+            className="CollectionItem__Artwork"
+            src={trackInfo.artworkUrl}
+            alt={`${trackInfo.trackTitle} artwork`}
+          />
+        ) : (
+          <RecordPlaceholder className="CollectionItem__Artwork" />
+        )}
         <div>
           <ul className="CollectionItem__DetailSection">
             <li className="CollectionItem__TrackTitle">
