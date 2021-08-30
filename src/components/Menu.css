@@ -6,7 +6,7 @@
   width: 100vw;
   background-color: var(--color-background);
   transform: translateY(-100vh);
-  transition: transform 400ms cubic-bezier(0.52, 0.16, 0.24, 1);
+  transition: transform 400ms var(--transition-speed-curve);
   overflow: scroll;
   border-bottom: 1px solid black;
 }

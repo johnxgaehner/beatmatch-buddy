@@ -8,7 +8,7 @@
   align-items: center;
   transform: translateY(0);
   font-size: 1.2rem;
-  transition: transform 300ms cubic-bezier(0.52, 0.16, 0.24, 1);
+  transition: transform 300ms var(--transition-speed-curve);
 }
 
 .PlaylistHeader__PlaylistName--edit {
@@ -24,7 +24,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   transform: translateY(0);
-  transition: transform 300ms cubic-bezier(0.52, 0.16, 0.24, 1);
+  transition: transform 300ms var(--transition-speed-curve);
 }
 
 .PlaylistHeader__PlaylistName--hidden,
