@@ -6,7 +6,7 @@
   left: 50%;
   margin-top: -75px; /* Negative half of height. */
   margin-left: -150px; /* Negative half of width. */
-  background-color: lightgrey;
+  background-color: var(--color-accent-03);
   border: 1px solid black;
   display: flex;
   flex-direction: column;
