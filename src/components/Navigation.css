@@ -17,3 +17,7 @@
 .Navigation__Item:last-child {
   border-bottom: none;
 }
+
+.Navigation__Item.active {
+  background-color: var(--color-accent-03);
+}

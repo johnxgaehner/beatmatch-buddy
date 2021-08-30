@@ -30,8 +30,8 @@
   border: 1px solid black;
   border-radius: 25px;
   padding: 0.25rem 0.5rem;
-  background-color: lightgrey;
-  transition: background-color 300ms cubic-bezier(0.52, 0.16, 0.24, 1);
+  background-color: var(--color-accent-03);
+  transition: background-color 300ms var(--transition-speed-curve);
 }
 
 .Header__Link:active {

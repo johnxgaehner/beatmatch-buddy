@@ -2,5 +2,7 @@
   --color-alert-01: #ff0a00;
   --color-accent-01: #000aff;
   --color-accent-02: #74ff43;
+  --color-accent-03: #e0e0e0;
   --color-background: #f8f8f8;
+  --transition-speed-curve: cubic-bezier(0.52, 0.16, 0.24, 1);
 }
