@@ -30,12 +30,7 @@ export default function AnalysePage() {
     setNewTrack(newTrackData);
   }
 
-  // --------------------------------------------
-  // ---------- FETCH ARTWORKS SECTION ----------
-  // --------------------------------------------
-
   // pls don't make me regret to make this public for you
-
   const authEndpoint = "https://accounts.spotify.com/api/token";
   const clientId = "55b9f829a2e7449da28119bc679d6b70";
   const clientSecret = "5d3899109bb040f5b708ff630c8630be";
@@ -60,7 +55,7 @@ export default function AnalysePage() {
       .then((json) => json.access_token)
       .catch((error) => console.error(error));
 
-    const artwork = await fetch(searchUrl, {
+    const artworkUrl = await fetch(searchUrl, {
       method: "get",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -69,15 +64,10 @@ export default function AnalysePage() {
     })
       .then((res) => res.json())
       .then((data) => data.tracks.items[0].album.images[2].url)
-      .catch((error) => console.error(error));
+      .catch((error) => console.dir(error));
 
-    console.log(artwork);
-    return artwork;
+    return artworkUrl;
   }
-
-  // --------------------------------------------
-  // ------------------ SUBMIT ------------------
-  // --------------------------------------------
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -99,9 +89,7 @@ export default function AnalysePage() {
     }
 
     const artworkUrl = await getArtwork();
-
     const newTrackWithArtwork = { ...newTrack, artworkUrl };
-
     saveInLocalStorage("savedTracks", newTrackWithArtwork);
     showToast("SAVED IN YOUR COLLECTION!");
     resetForm();
