@@ -30,7 +30,51 @@ export default function AnalysePage() {
     setNewTrack(newTrackData);
   }
 
-  function handleSubmit(event) {
+  // --------------------------------------------
+  // ---------- FETCH ARTWORKS SECTION ----------
+  // --------------------------------------------
+
+  // pls don't make me regret to make this public for you
+  const apiEndpoint = "https://api.spotify.com/v1/search";
+  const authEndpoint = "https://accounts.spotify.com/api/token";
+  const clientId = "55b9f829a2e7449da28119bc679d6b70";
+  const clientSecret = "5d3899109bb040f5b708ff630c8630be";
+
+  const searchUrl = `${apiEndpoint}?q=${newTrack.artistName}%20${newTrack.trackTitle}&type=track&limit=1`;
+  const authString = `${clientId}:${clientSecret}`;
+  const authorization = Buffer.from(authString).toString("base64");
+
+  async function getArtwork() {
+    const authToken = await fetch(authEndpoint, {
+      method: "post",
+      body: "grant_type=client_credentials",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${authorization}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => json.access_token);
+
+    const artwork = await fetch(searchUrl, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${authToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => data.tracks.items[0].album.images[2].url);
+
+    console.log(artwork);
+    return artwork;
+  }
+
+  // --------------------------------------------
+  // ------------------ SUBMIT ------------------
+  // --------------------------------------------
+
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (
@@ -49,7 +93,11 @@ export default function AnalysePage() {
       return;
     }
 
-    saveInLocalStorage("savedTracks", newTrack);
+    const artworkUrl = await getArtwork();
+
+    const newTrackWithArtwork = { ...newTrack, artworkUrl };
+
+    saveInLocalStorage("savedTracks", newTrackWithArtwork);
     showToast("SAVED IN YOUR COLLECTION!");
     resetForm();
   }
