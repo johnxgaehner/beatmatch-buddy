@@ -24,10 +24,7 @@ export default async function fetchArtwork(newTrack) {
   const trackSearchParam = newTrack.trackTitle
     .replace(/ +/g, "+")
     .replace(/[^a-zA-Z0-9+äÄöÖüÜß]/g, "");
-  const recordSearchParam = newTrack.recordTitle
-    .replace(/ +/g, "+")
-    .replace(/[^a-zA-Z0-9+äÄöÖüÜß]/g, "");
-  const searchUrl = `${apiEndpoint}?q=${artistSearchParam}+${trackSearchParam}+${recordSearchParam}&type=album,track&limit=1`;
+  const searchUrl = `${apiEndpoint}?q=${artistSearchParam}+${trackSearchParam}&type=album,track&limit=1`;
 
   const artworkUrl = await fetch(searchUrl, {
     method: "get",
