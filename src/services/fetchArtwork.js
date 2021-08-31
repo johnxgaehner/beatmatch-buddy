@@ -1,8 +1,7 @@
 export default async function fetchArtwork(newTrack) {
   const authEndpoint = "https://accounts.spotify.com/api/token";
-  const clientId = "55b9f829a2e7449da28119bc679d6b70";
-  const clientSecret = "5d3899109bb040f5b708ff630c8630be";
-  const authString = `${clientId}:${clientSecret}`;
+  const authString =
+    "55b9f829a2e7449da28119bc679d6b70:5d3899109bb040f5b708ff630c8630be";
   const authorization = Buffer.from(authString).toString("base64");
 
   const authToken = await fetch(authEndpoint, {
