@@ -10,13 +10,18 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import updatePlaylists from "../services/updatePlaylists";
 import useOutsideClick from "../hooks/useOutsideClick";
 import ConfirmModal from "../components/ConfirmModal";
+import getDemoCollection from "../demo/demoCollection";
+import getDemoPlaylists from "../demo/demoPlaylists";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
   const history = useHistory();
 
-  const [tracks] = useLocalStorage("savedTracks", []);
-  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
+  const [tracks] = useLocalStorage("savedTracks", getDemoCollection());
+  const [playlists, setPlaylists] = useLocalStorage(
+    "savedPlaylists",
+    getDemoPlaylists()
+  );
   const [playlist, setPlaylist] = useState();
 
   const [editMode, setEditMode] = useState(false);

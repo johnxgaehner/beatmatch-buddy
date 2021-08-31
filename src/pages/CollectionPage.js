@@ -1,12 +1,13 @@
 import { useState } from "react";
 import CollectionFilterSection from "../components/CollectionFilterSection";
 import CollectionItem from "../components/CollectionItem";
+import getDemoCollection from "../demo/demoCollection";
 import useLocalStorage from "../hooks/useLocalStorage";
 import sortCollection from "../services/sortCollection";
 import "./CollectionPage.css";
 
 export default function CollectionPage() {
-  const [collection] = useLocalStorage("savedTracks", []);
+  const [collection] = useLocalStorage("savedTracks", getDemoCollection());
   const [searchFilter, setSearchFilter] = useState("");
   const [currentSortValue, setCurrentSortValue] = useLocalStorage(
     "sortCollectionValue",

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import PlaylistItem from "../components/PlaylistItem";
+import getDemoPlaylists from "../demo/demoPlaylists";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function PlaylistsPage() {
-  const [playlists] = useLocalStorage("savedPlaylists", []);
+  const [playlists] = useLocalStorage("savedPlaylists", getDemoPlaylists());
 
   function renderPlaylistItems() {
     if (playlists.length > 0) {
