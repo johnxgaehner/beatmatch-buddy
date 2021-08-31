@@ -18,9 +18,16 @@ export default async function fetchArtwork(newTrack) {
     .catch((error) => console.dir(error));
 
   const apiEndpoint = "https://api.spotify.com/v1/search";
-  const artistSearchParam = newTrack.artistName.replace(" ", "%20");
-  const trackSearchParam = newTrack.trackTitle.replace(" ", "%20");
-  const searchUrl = `${apiEndpoint}?q=${artistSearchParam}%20${trackSearchParam}&type=track&limit=1`;
+  const artistSearchParam = newTrack.artistName
+    .replace(/ /g, "+")
+    .replace(/[^a-zA-Z0-9+äÄöÖüÜß]/g, "");
+  const trackSearchParam = newTrack.trackTitle
+    .replace(/ +/g, "+")
+    .replace(/[^a-zA-Z0-9+äÄöÖüÜß]/g, "");
+  const recordSearchParam = newTrack.recordTitle
+    .replace(/ +/g, "+")
+    .replace(/[^a-zA-Z0-9+äÄöÖüÜß]/g, "");
+  const searchUrl = `${apiEndpoint}?q=${artistSearchParam}+${trackSearchParam}+${recordSearchParam}&type=album,track&limit=1`;
 
   const artworkUrl = await fetch(searchUrl, {
     method: "get",
@@ -30,7 +37,11 @@ export default async function fetchArtwork(newTrack) {
     },
   })
     .then((res) => res.json())
-    .then((data) => data.tracks.items[0].album.images[2].url)
+    .then((data) =>
+      data.tracks.items[0].album.images[2].url
+        ? data.tracks.items[0].album.images[2].url
+        : data.albums.items[0].images[2].url
+    )
     .catch((error) => console.dir(error));
 
   return artworkUrl;
