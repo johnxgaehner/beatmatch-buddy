@@ -15,9 +15,3 @@
   width: auto;
   fill: black;
 }
-
-.AddToPlaylistItem__Artwork {
-  height: 55px;
-  width: auto;
-  flex-shrink: 0;
-}

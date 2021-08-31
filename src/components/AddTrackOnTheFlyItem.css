@@ -31,12 +31,5 @@
 
 .AddTrackOnTheFlyItem__SelectionIcon {
   height: 15px;
-  width: auto;
   fill: black;
-}
-
-.AddTrackOnTheFlyItem__Artwork {
-  height: 55px;
-  width: auto;
-  flex-shrink: 0;
 }

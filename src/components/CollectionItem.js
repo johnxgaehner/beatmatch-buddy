@@ -1,22 +1,17 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { ReactComponent as IconPlusCircle } from "../assets/icon_plus_circle_filled.svg";
-import { ReactComponent as RecordPlaceholder } from "../assets/record_placeholder.svg";
+import TrackArtwork from "./TrackArtwork";
 import "./CollectionItem.css";
 
 export default function CollectionItem({ trackInfo }) {
   return (
     <div className="CollectionItem">
       <div className="CollectionItem--left">
-        {trackInfo.artworkUrl ? (
-          <img
-            className="CollectionItem__Artwork"
-            src={trackInfo.artworkUrl}
-            alt={`${trackInfo.trackTitle} artwork`}
-          />
-        ) : (
-          <RecordPlaceholder className="CollectionItem__Artwork" />
-        )}
+        <TrackArtwork
+          artworkUrl={trackInfo.artworkUrl}
+          trackTitle={trackInfo.trackTitle}
+        />
         <div>
           <ul className="CollectionItem__DetailSection">
             <li className="CollectionItem__TrackTitle">

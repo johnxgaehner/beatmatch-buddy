@@ -29,12 +29,6 @@
   font-size: 0.9rem;
 }
 
-.CollectionItem__Artwork {
-  height: 55px;
-  width: auto;
-  flex-shrink: 0;
-}
-
 .CollectionItem__AddIcon {
   flex-shrink: 0;
   fill: black;
