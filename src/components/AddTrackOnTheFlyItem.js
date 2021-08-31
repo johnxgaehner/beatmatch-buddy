@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useTransition, animated } from "react-spring";
+import TrackArtwork from "./TrackArtwork";
 import { ReactComponent as IconSelectionEmpty } from "../assets/icon_circle_empty.svg";
 import { ReactComponent as IconSelectionFilled } from "../assets/icon_circle_filled.svg";
 import "./AddTrackOnTheFlyItem.css";
@@ -41,6 +42,10 @@ export default function AddTrackOnTheFlyItem({
           )
         )}
       </div>
+      <TrackArtwork
+        artworkUrl={trackInfo.artworkUrl}
+        trackTitle={trackInfo.trackTitle}
+      />
       <ul className="AddTrackOnTheFlyItem__SelectionTrack">
         <li>{trackInfo.trackTitle}</li>
         <li>{trackInfo.artistName}</li>

@@ -4,7 +4,7 @@
   border-bottom: 1px solid black;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .AddTrackOnTheFlyItem:last-child {
@@ -14,17 +14,22 @@
 .AddTrackOnTheFlyItem ul li {
   all: unset;
   display: flex;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 0.9rem;
+}
+
+.AddTrackOnTheFlyItem ul li:first-child {
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .AddTrackOnTheFlyItem__SelectionIconContainer {
   display: flex;
   align-items: center;
+  padding-right: 1rem;
 }
 
 .AddTrackOnTheFlyItem__SelectionIcon {
   height: 15px;
-  width: auto;
   fill: black;
 }

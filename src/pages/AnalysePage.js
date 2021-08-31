@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import TapTempo from "../components/TapTempo";
+import fetchArtwork from "../services/fetchArtwork";
 import saveInLocalStorage from "../services/saveInLocalStorage";
 import showToast from "../services/showToast";
 import "./AnalysePage.css";
@@ -30,7 +31,7 @@ export default function AnalysePage() {
     setNewTrack(newTrackData);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (
@@ -49,7 +50,10 @@ export default function AnalysePage() {
       return;
     }
 
-    saveInLocalStorage("savedTracks", newTrack);
+    const artworkUrl = await fetchArtwork(newTrack);
+
+    const newTrackWithArtwork = { ...newTrack, artworkUrl };
+    saveInLocalStorage("savedTracks", newTrackWithArtwork);
     showToast("SAVED IN YOUR COLLECTION!");
     resetForm();
   }
