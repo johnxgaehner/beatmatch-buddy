@@ -27,7 +27,10 @@ export default function CollectionItem({ trackInfo }) {
           </ul>
         </div>
       </div>
-      <Link to={`/collection/add-to-playlist/${trackInfo.id}`}>
+      <Link
+        className="CollectionItem__AddIconContainer"
+        to={`/collection/add-to-playlist/${trackInfo.id}`}
+      >
         <IconPlusCircle className="CollectionItem__AddIcon" />
       </Link>
     </div>
