@@ -74,7 +74,9 @@ export default function CollectionPage() {
             onSortValueSelection={onSortValueSelection}
             currentSortValue={currentSortValue}
           />
-          {renderCollectionItems()}
+          <div className="CollectionPage__Collection">
+            {renderCollectionItems()}
+          </div>
         </>
       ) : (
         <div className="Row--flat">Your Collection Is Empty...</div>

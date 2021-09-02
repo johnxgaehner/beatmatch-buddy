@@ -18,10 +18,13 @@
 }
 
 .CollectionItem ul li {
+  max-width: 350px;
   all: unset;
   display: flex;
   font-size: 0.8rem;
   line-height: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .CollectionItem ul li:first-child {
@@ -42,12 +45,23 @@
   fill: black;
 }
 
-@media only screen and (max-device-width: 450px) {
-  .CollectionItem ul li {
-    width: 220px;
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+@media only screen and (min-device-width: 700px) {
+  .CollectionItem:nth-child(2n) {
+    border-left: 1px solid black;
+  }
+
+  .CollectionItem:last-child {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+  }
+}
+
+@media only screen and (min-device-width: 1050px) {
+  .CollectionItem {
+    border-left: 1px solid black;
+  }
+
+  .CollectionItem:nth-child(3n + 1) {
+    border-left: none;
   }
 }

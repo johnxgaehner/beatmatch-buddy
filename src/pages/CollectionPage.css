@@ -1,6 +1,5 @@
 .CollectionPage {
-  display: flex;
-  flex-direction: column;
+  display: grid;
 }
 
 .CollectionPage__EmptyCollection {
@@ -9,4 +8,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.CollectionPage__Collection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+@media only screen and (min-device-width: 1050px) {
+  .CollectionPage__Collection {
+    grid-template-columns: repeat(3, minmax(350px, 1fr));
+  }
 }
