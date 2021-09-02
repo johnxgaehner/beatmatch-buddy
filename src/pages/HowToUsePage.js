@@ -1,31 +1,26 @@
 import "./HowToUsePage.css";
-import { ReactComponent as IconPlusCircle } from "../assets/icon_plus_circle_filled.svg";
 
 export default function HowToUsePage() {
   return (
     <section className="HowToUsePage">
       <p>
         Beatmatch Buddy calculates the tempo for you. All you have to do is to
-        tap the "Tap Here" field in your analyse page along with the beat of the
-        song. The tempo will be shown one row below as you tap.
-      </p>
-      <p>Add track title, artist name, record title and submit your track!</p>
-      <p>
-        All your saved tracks are stored in your collection. Search your
-        collection for a keyword, sort it or filter within a tempo range.
+        tap along with the beat of the track. The longer you tap, the more
+        accurate will be the bpm.
       </p>
       <p>
-        Click on the <IconPlusCircle className="IconPlusCircle" /> on the right
-        and you can add the track to a playlist. If you haven't yet, you can
-        create a new playlist on the fly.
+        Add track title, artist name, record title and save the track in your
+        collection.
       </p>
       <p>
-        To prepare your set, go to your playlists archive and navigate into the
-        playlist. You are now able to see which tracks you have added, change
-        the track order by drag & drop and if you missed some tracks, just click
-        "Add Tracks" and add as many more as you want.
+        Search your collection for keywords, sort it or filter within a tempo
+        range to find the track you want to add to your playlists.
       </p>
-      <p>A lot more functions are waiting for you!</p>
+      <p>
+        If you want to to prepare for a specific event it is more convenient to
+        open the playlist and scroll through your collection from there.
+      </p>
+      <p>Don’t forget to define the track order by drag & drop in the end!</p>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+import { nanoid } from "nanoid";
 import saveInLocalStorage from "../services/saveInLocalStorage";
 import showToast from "../services/showToast";
 import "./CreateNewPlaylistPage.css";
@@ -19,7 +19,7 @@ export default function CreateNewPlaylistPage() {
   function handleInputChange(event) {
     const key = event.target.name;
     const input = event.target.value;
-    const newPlaylistData = { ...newPlaylist, id: uuidv4(), [key]: input };
+    const newPlaylistData = { ...newPlaylist, id: nanoid(10), [key]: input };
     setNewPlaylist(newPlaylistData);
   }
 
@@ -40,7 +40,7 @@ export default function CreateNewPlaylistPage() {
     }
 
     saveInLocalStorage("savedPlaylists", newPlaylist);
-    showToast("PLAYLIST SAVED");
+    showToast("PLAYLIST WAS CREATED.");
     resetForm();
     history.goBack();
   }

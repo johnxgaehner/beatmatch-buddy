@@ -15,7 +15,7 @@ export default function Header() {
   const [headerIsHidden, setHeaderIsHidden] = useState(false);
 
   const MIN_SCROLL = 63;
-  const TIMEOUT_DELAY = 300;
+  const TIMEOUT_DELAY = 250;
 
   useScroll((callbackData) => {
     const { previousScrollTop, currentScrollTop } = callbackData;
@@ -84,7 +84,7 @@ export default function Header() {
           <Route path="/create-new-playlist">
             <h1 className="Header__PageTitle">Create New Playlist</h1>
             <p onClick={history.goBack} className="Header__Link">
-              {menuIsVisible ? "Close" : "Menu"}
+              Return
             </p>
           </Route>
           <Route path="/how-to-use">
