@@ -40,7 +40,7 @@ export default function CreateNewPlaylistPage() {
     }
 
     saveInLocalStorage("savedPlaylists", newPlaylist);
-    showToast("PLAYLIST SAVED");
+    showToast("PLAYLIST CREATED.");
     resetForm();
     history.goBack();
   }
