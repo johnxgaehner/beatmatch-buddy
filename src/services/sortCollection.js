@@ -17,6 +17,10 @@ export default function sortCollection(items, currentSortValue) {
         return a.recordTitle.toUpperCase() < b.recordTitle.toUpperCase()
           ? 1
           : -1;
+      case "bpm_0to9":
+        return a.bpm - b.bpm;
+      case "bpm_9to0":
+        return b.bpm - a.bpm;
       case "date_0to9":
         return new Date(a.createdAt) - new Date(b.createdAt);
       case "date_9to0":
