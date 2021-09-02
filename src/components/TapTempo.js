@@ -26,16 +26,17 @@ export default function TapTempo({ BPM, setBPM, beatCounter }) {
   }
 
   function renderDots() {
-    switch (beatCounter.current.length) {
-      case 0:
-        return (
-          <div className="TapTempo__CountIconContainer">
-            <IconCircleEmpty className="TapTempo__CountIcon" />
-            <IconCircleEmpty className="TapTempo__CountIcon" />
-            <IconCircleEmpty className="TapTempo__CountIcon" />
-            <IconCircleEmpty className="TapTempo__CountIcon" />
-          </div>
-        );
+    if (beatCounter.current.length === 0) {
+      return (
+        <div className="TapTempo__CountIconContainer">
+          <IconCircleEmpty className="TapTempo__CountIcon" />
+          <IconCircleEmpty className="TapTempo__CountIcon" />
+          <IconCircleEmpty className="TapTempo__CountIcon" />
+          <IconCircleEmpty className="TapTempo__CountIcon" />
+        </div>
+      );
+    }
+    switch (beatCounter.current.length % 4) {
       case 1:
         return (
           <div className="TapTempo__CountIconContainer">
