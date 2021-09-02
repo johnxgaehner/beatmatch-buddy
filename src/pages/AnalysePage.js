@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { nanoid } from "nanoid";
 import TapTempo from "../components/TapTempo";
 import fetchArtwork from "../services/fetchArtwork";
 import saveInLocalStorage from "../services/saveInLocalStorage";
@@ -23,7 +23,7 @@ export default function AnalysePage() {
     const input = event.target.value;
     const newTrackData = {
       ...newTrack,
-      id: uuidv4(),
+      id: nanoid(10),
       bpm: Number(BPM),
       [key]: input,
       createdAt: new Date(),
