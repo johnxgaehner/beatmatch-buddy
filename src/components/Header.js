@@ -15,7 +15,7 @@ export default function Header() {
   const [headerIsHidden, setHeaderIsHidden] = useState(false);
 
   const MIN_SCROLL = 63;
-  const TIMEOUT_DELAY = 300;
+  const TIMEOUT_DELAY = 250;
 
   useScroll((callbackData) => {
     const { previousScrollTop, currentScrollTop } = callbackData;
