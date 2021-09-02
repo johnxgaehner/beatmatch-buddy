@@ -4,12 +4,12 @@ import { useHistory, useParams } from "react-router-dom";
 import PlaylistHeader from "../components/PlaylistHeader";
 import PlaylistToolbar from "../components/PlaylistToolbar";
 import PlaylistContent from "../components/PlaylistContent";
+import ConfirmModal from "../components/ConfirmModal";
 
 import useScroll from "../hooks/useScroll";
 import useLocalStorage from "../hooks/useLocalStorage";
-import updatePlaylists from "../services/updatePlaylists";
 import useOutsideClick from "../hooks/useOutsideClick";
-import ConfirmModal from "../components/ConfirmModal";
+import updatePlaylists from "../services/updatePlaylists";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
