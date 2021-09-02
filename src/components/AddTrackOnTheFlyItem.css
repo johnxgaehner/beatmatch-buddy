@@ -11,6 +11,11 @@
   border-bottom: none;
 }
 
+.AddTrackOnTheFlyItem ul {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .AddTrackOnTheFlyItem ul li {
   all: unset;
   display: flex;

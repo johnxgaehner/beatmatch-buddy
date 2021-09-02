@@ -11,16 +11,15 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .CollectionItem ul li {
-  max-width: 350px;
   all: unset;
   display: flex;
   font-size: 0.8rem;
   line-height: 0.9rem;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .CollectionItem ul li:first-child {

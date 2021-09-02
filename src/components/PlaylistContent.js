@@ -5,7 +5,6 @@ import AddTrackOnTheFlyItem from "./AddTrackOnTheFlyItem";
 import getTracksFromPlaylist from "../services/getTracksFromPlaylist";
 import sortCollection from "../services/sortCollection";
 import useLocalStorage from "../hooks/useLocalStorage";
-import "./PlaylistContent.css";
 
 export default function PlaylistContent({
   addTracksMode,
@@ -90,9 +89,7 @@ export default function PlaylistContent({
           </Droppable>
         </DragDropContext>
       ) : (
-        <div className="PlaylistContent_CollectionContainer">
-          {renderCollection()}
-        </div>
+        <div className="Grid_Container_Max3C">{renderCollection()}</div>
       )}
     </div>
   );
