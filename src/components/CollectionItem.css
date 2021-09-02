@@ -40,7 +40,7 @@
   fill: black;
 }
 
-@media only screen and (min-device-width: 700px) {
+@media only screen and (min-width: 700px) {
   .CollectionItem:nth-child(2n) {
     border-left: 1px solid black;
   }
@@ -51,7 +51,7 @@
   }
 }
 
-@media only screen and (min-device-width: 1050px) {
+@media only screen and (min-width: 1050px) {
   .CollectionItem {
     border-left: 1px solid black;
   }

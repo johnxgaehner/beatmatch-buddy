@@ -39,7 +39,7 @@
   fill: black;
 }
 
-@media only screen and (min-device-width: 700px) {
+@media only screen and (min-width: 700px) {
   .AddTrackOnTheFlyItem:nth-child(2n) {
     border-left: 1px solid black;
   }
@@ -50,7 +50,7 @@
   }
 }
 
-@media only screen and (min-device-width: 1050px) {
+@media only screen and (min-width: 1050px) {
   .AddTrackOnTheFlyItem {
     border-left: 1px solid black;
   }

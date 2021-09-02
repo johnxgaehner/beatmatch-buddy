@@ -62,7 +62,7 @@ button:focus {
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
 
-@media only screen and (min-device-width: 1050px) {
+@media only screen and (min-width: 1050px) {
   .Grid_Container_Max2C {
     grid-template-columns: repeat(2, minmax(350px, 1fr));
   }

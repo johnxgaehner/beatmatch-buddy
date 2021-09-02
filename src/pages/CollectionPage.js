@@ -74,9 +74,7 @@ export default function CollectionPage() {
             onSortValueSelection={onSortValueSelection}
             currentSortValue={currentSortValue}
           />
-          <div className="CollectionPage__Collection">
-            {renderCollectionItems()}
-          </div>
+          <div className="Grid_Container_Max3C">{renderCollectionItems()}</div>
         </>
       ) : (
         <div className="Row--flat">Your Collection Is Empty...</div>
