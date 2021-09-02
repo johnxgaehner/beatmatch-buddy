@@ -30,7 +30,7 @@ export default function PlaylistsPage() {
       <Link to="/create-new-playlist" className="Row--flat --accented">
         <p>Create New Playlist</p>
       </Link>
-      {renderPlaylistItems()}
+      <div className="Grid_Container_Max2C">{renderPlaylistItems()}</div>
     </section>
   );
 }
