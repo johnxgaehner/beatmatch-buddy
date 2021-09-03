@@ -4,9 +4,10 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import sortCollection from "../services/sortCollection";
 import getRenderedCollectionItems from "../services/getRenderedCollectionItems";
 import "./CollectionPage.css";
+import getDemoTracks from "../demo/demoTracks";
 
 export default function CollectionPage() {
-  const [collection] = useLocalStorage("savedTracks", []);
+  const [collection] = useLocalStorage("savedTracks", getDemoTracks());
   const [searchFilter, setSearchFilter] = useState("");
   const [currentSortValue, setCurrentSortValue] = useLocalStorage(
     "sortCollectionValue",
