@@ -43,6 +43,6 @@ export default function ConfirmModal({
 
 ConfirmModal.propTypes = {
   onConfirmation: PropTypes.func.isRequired,
-  setConfirmIsOpen: PropTypes.bool.isRequired,
+  setConfirmIsOpen: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
 };
