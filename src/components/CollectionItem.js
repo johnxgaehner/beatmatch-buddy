@@ -4,9 +4,9 @@ import { ReactComponent as IconPlusCircle } from "../assets/icon_plus_circle_fil
 import TrackArtwork from "./TrackArtwork";
 import "./CollectionItem.css";
 
-export default function CollectionItem({ trackInfo }) {
+export default function CollectionItem({ trackInfo, className }) {
   return (
-    <div className="CollectionItem">
+    <div className={className}>
       <div className="CollectionItem--left">
         <TrackArtwork
           artworkUrl={trackInfo.artworkUrl}

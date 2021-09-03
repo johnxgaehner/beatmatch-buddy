@@ -7,6 +7,11 @@
   justify-content: space-between;
 }
 
+.--last {
+  border-right: 1px solid black;
+  margin-right: -1px;
+}
+
 .CollectionItem--left {
   display: flex;
   align-items: center;
@@ -43,11 +48,6 @@
 @media only screen and (min-width: 700px) {
   .CollectionItem:nth-child(2n) {
     border-left: 1px solid black;
-  }
-
-  .CollectionItem:last-child {
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
   }
 }
 
