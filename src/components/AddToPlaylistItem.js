@@ -8,6 +8,7 @@ export default function PlaylistItem({
   playlistInfo,
   trackId,
   onAddToPlaylistClick,
+  className,
 }) {
   function handleAddToPlaylistClick() {
     onAddToPlaylistClick(playlistInfo.id);
@@ -27,10 +28,7 @@ export default function PlaylistItem({
   );
 
   return (
-    <div
-      className="Row--flat AddToPlaylistItem"
-      onClick={handleAddToPlaylistClick}
-    >
+    <div className={className} onClick={handleAddToPlaylistClick}>
       <div className="AddToPlaylistItem__SelectionIconContainer">
         {iconTransition((style, item) =>
           item ? (
@@ -62,4 +60,5 @@ PlaylistItem.propTypes = {
     ]),
   }).isRequired,
   onAddToPlaylistClick: PropTypes.func.isRequired,
+  className: PropTypes.string.isRequired,
 };

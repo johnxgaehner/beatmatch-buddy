@@ -26,13 +26,37 @@ export default function AddToPlaylistPage() {
         .sort(function (a, b) {
           return new Date(a.createdAt) - new Date(b.createdAt);
         })
-        .map((playlist) => {
+        .map((playlist, index) => {
+          if (window.innerWidth >= 700 && playlistItems.length % 2 === 1) {
+            if (index < playlistItems.length - 1) {
+              return (
+                <AddToPlaylistItem
+                  key={playlist.id}
+                  trackId={id}
+                  playlistInfo={playlist}
+                  onAddToPlaylistClick={onAddToPlaylistClick}
+                  className="AddToPlaylistItem"
+                />
+              );
+            }
+            return (
+              <AddToPlaylistItem
+                key={playlist.id}
+                trackId={id}
+                playlistInfo={playlist}
+                onAddToPlaylistClick={onAddToPlaylistClick}
+                className="AddToPlaylistItem --lastAddToPlaylistItem"
+              />
+            );
+          }
+
           return (
             <AddToPlaylistItem
               key={playlist.id}
               trackId={id}
               playlistInfo={playlist}
               onAddToPlaylistClick={onAddToPlaylistClick}
+              className="AddToPlaylistItem"
             />
           );
         });
@@ -94,7 +118,7 @@ export default function AddToPlaylistPage() {
         <Link to="/create-new-playlist" className="Row--flat --accented">
           <p>CREATE NEW PLAYLIST</p>
         </Link>
-        {renderAddToPlaylistItems()}
+        <div className="Grid_Container_Max2C">{renderAddToPlaylistItems()}</div>
       </section>
       {confirmIsOpen && (
         <div ref={confirmModalRef}>

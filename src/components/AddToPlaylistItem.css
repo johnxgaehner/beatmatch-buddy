@@ -1,7 +1,16 @@
 .AddToPlaylistItem {
-  gap: 2rem;
+  padding: 0.6rem 1rem;
+  min-height: 42px;
+  border-bottom: 1px solid black;
+  gap: 1.5rem;
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
+
+.--lastAddToPlaylistItem {
+  border-right: 1px solid black;
+  margin-right: -1px;
 }
 
 .AddToPlaylistItem__SelectionIconContainer {
@@ -14,4 +23,10 @@
   height: 15px;
   width: auto;
   fill: black;
+}
+
+@media only screen and (min-width: 700px) {
+  .AddToPlaylistItem:nth-child(2n) {
+    border-left: 1px solid black;
+  }
 }
