@@ -70,4 +70,5 @@ AddTrackOnTheFlyItem.propTypes = {
     PropTypes.string,
   ]).isRequired,
   onAddToPlaylistClick: PropTypes.func.isRequired,
+  className: PropTypes.string.isRequired,
 };

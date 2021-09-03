@@ -45,4 +45,5 @@ CollectionItem.propTypes = {
     artistName: PropTypes.string,
     recordTitle: PropTypes.string,
   }).isRequired,
+  className: PropTypes.string.isRequired,
 };

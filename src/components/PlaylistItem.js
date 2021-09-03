@@ -15,4 +15,5 @@ export default function PlaylistItem({ playlistId, playlistName, className }) {
 PlaylistItem.propTypes = {
   playlistId: PropTypes.string.isRequired,
   playlistName: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
 };
