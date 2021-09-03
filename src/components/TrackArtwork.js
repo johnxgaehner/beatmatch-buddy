@@ -19,6 +19,6 @@ export default function TrackArtwork({ artworkUrl, trackTitle }) {
 }
 
 TrackArtwork.propTypes = {
-  artworkUrl: PropTypes.string.isRequired,
+  artworkUrl: PropTypes.string,
   trackTitle: PropTypes.string.isRequired,
 };
