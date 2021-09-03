@@ -36,4 +36,6 @@ The times where you have to write notes on record covers are over now!
 - React Spring
 - React Toast
 - Nano ID
+- PropTypes
+- Spotify API
 - localStorage

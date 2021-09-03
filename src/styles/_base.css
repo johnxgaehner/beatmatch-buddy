@@ -30,7 +30,6 @@ button:focus {
   border-bottom: 1px solid black;
   display: flex;
   align-items: center;
-  transition: 0.3s;
   text-decoration: none;
   color: black;
 }

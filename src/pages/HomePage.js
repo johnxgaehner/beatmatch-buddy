@@ -1,5 +1,4 @@
 import Navigation from "../components/Navigation";
-import "./HomePage.css";
 
 export default function HomePage() {
   return (
