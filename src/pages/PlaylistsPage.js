@@ -12,12 +12,33 @@ export default function PlaylistsPage() {
         .sort(function (a, b) {
           return new Date(b.createdAt) - new Date(a.createdAt);
         })
-        .map((playlist) => {
+        .map((playlist, index) => {
+          if (window.innerWidth >= 700 && playlistItems.length % 2 === 1) {
+            if (index < playlistItems.length - 1) {
+              return (
+                <PlaylistItem
+                  key={playlist.id}
+                  playlistId={playlist.id}
+                  playlistName={playlist.playlistName}
+                  className="PlaylistItem"
+                />
+              );
+            }
+            return (
+              <PlaylistItem
+                key={playlist.id}
+                playlistId={playlist.id}
+                playlistName={playlist.playlistName}
+                className="PlaylistItem --lastPlaylistItem"
+              />
+            );
+          }
           return (
             <PlaylistItem
               key={playlist.id}
               playlistId={playlist.id}
               playlistName={playlist.playlistName}
+              className="PlaylistItem"
             />
           );
         });
