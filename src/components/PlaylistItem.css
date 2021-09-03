@@ -1,0 +1,21 @@
+.PlaylistItem {
+  padding: 0.6rem 1rem;
+  min-height: 42px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: black;
+}
+
+.--lastPlaylistItem {
+  border-right: 1px solid black;
+  margin-right: -1px;
+}
+
+@media only screen and (min-width: 700px) {
+  .PlaylistItem:nth-child(2n) {
+    border-left: 1px solid black;
+  }
+}

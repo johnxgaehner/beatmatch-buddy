@@ -30,7 +30,6 @@ button:focus {
   border-bottom: 1px solid black;
   display: flex;
   align-items: center;
-  transition: 0.3s;
   text-decoration: none;
   color: black;
 }
@@ -54,4 +53,19 @@ button:focus {
   -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
   -webkit-user-select: none; /* Chrome, Safari, and Opera */
   -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+}
+
+.Grid_Container_Max2C,
+.Grid_Container_Max3C {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+@media only screen and (min-width: 1050px) {
+  .Grid_Container_Max2C {
+    grid-template-columns: repeat(2, minmax(350px, 1fr));
+  }
+  .Grid_Container_Max3C {
+    grid-template-columns: repeat(3, minmax(350px, 1fr));
+  }
 }

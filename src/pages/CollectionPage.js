@@ -1,8 +1,8 @@
 import { useState } from "react";
 import CollectionFilterSection from "../components/CollectionFilterSection";
-import CollectionItem from "../components/CollectionItem";
 import useLocalStorage from "../hooks/useLocalStorage";
 import sortCollection from "../services/sortCollection";
+import getRenderedCollectionItems from "../services/getRenderedCollectionItems";
 import "./CollectionPage.css";
 
 export default function CollectionPage() {
@@ -31,14 +31,14 @@ export default function CollectionPage() {
     if (collection.length > 0) {
       const allTracks = [...collection];
       sortCollection(allTracks, currentSortValue);
-      const collectionItems = allTracks
+      const filteredCollectionItems = allTracks
         .filter(filterTracksByKeyword)
-        .filter(filterTracksByTempo)
-        .map((track) => {
-          return <CollectionItem key={track.id} trackInfo={track} />;
-        });
-      if (collectionItems.length > 0) {
-        return collectionItems;
+        .filter(filterTracksByTempo);
+      const renderedCollectionItems = getRenderedCollectionItems(
+        filteredCollectionItems
+      );
+      if (renderedCollectionItems.length > 0) {
+        return renderedCollectionItems;
       }
       return <div className="Row--flat">There's No Matching Track...</div>;
     }
@@ -74,7 +74,7 @@ export default function CollectionPage() {
             onSortValueSelection={onSortValueSelection}
             currentSortValue={currentSortValue}
           />
-          {renderCollectionItems()}
+          <div className="Grid_Container_Max3C">{renderCollectionItems()}</div>
         </>
       ) : (
         <div className="Row--flat">Your Collection Is Empty...</div>

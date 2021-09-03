@@ -1,8 +1,3 @@
-.AnalysePage {
-  display: flex;
-  flex-direction: column;
-}
-
 .TapTempo__Row:active {
   background-color: black;
   color: white;

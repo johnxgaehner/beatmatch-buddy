@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import TrackItem from "./TrackItem";
-import AddTrackOnTheFlyItem from "./AddTrackOnTheFlyItem";
-import getTracksFromPlaylist from "../services/getTracksFromPlaylist";
-import sortCollection from "../services/sortCollection";
 import useLocalStorage from "../hooks/useLocalStorage";
+import sortCollection from "../services/sortCollection";
+import getTracksFromPlaylist from "../services/getTracksFromPlaylist";
+import getRenderedAddTracksOnTheFlyItems from "../services/getRenderedAddTracksOnTheFlyItems";
 
 export default function PlaylistContent({
   addTracksMode,
@@ -55,20 +55,17 @@ export default function PlaylistContent({
     if (trackCollection.length > 0) {
       const allTracks = [...trackCollection];
       sortCollection(allTracks, currentSortValue);
-      const addTrackOnTheFlyItems = allTracks
-        .filter(filterTracksByKeyword)
-        .map((track) => {
-          return (
-            <AddTrackOnTheFlyItem
-              key={track.id}
-              trackInfo={track}
-              playlistTrackIds={playlistTrackIds}
-              onAddToPlaylistClick={onAddToPlaylistClick}
-            />
-          );
-        });
-      if (addTrackOnTheFlyItems.length > 0) {
-        return addTrackOnTheFlyItems;
+      const filteredAddTrackOnTheFlyItems = allTracks.filter(
+        filterTracksByKeyword
+      );
+
+      const renderedAddTrackOnTheFlyItems = getRenderedAddTracksOnTheFlyItems(
+        filteredAddTrackOnTheFlyItems,
+        playlistTrackIds,
+        onAddToPlaylistClick
+      );
+      if (renderedAddTrackOnTheFlyItems.length > 0) {
+        return renderedAddTrackOnTheFlyItems;
       }
       return <div className="Row--flat">There's No Matching Track...</div>;
     }
@@ -89,7 +86,7 @@ export default function PlaylistContent({
           </Droppable>
         </DragDropContext>
       ) : (
-        renderCollection()
+        <div className="Grid_Container_Max3C">{renderCollection()}</div>
       )}
     </div>
   );

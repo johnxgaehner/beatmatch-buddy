@@ -2,6 +2,7 @@ import { useRef } from "react";
 import PropTypes from "prop-types";
 import { ReactComponent as IconCircleEmpty } from "../assets/icon_circle_empty.svg";
 import { ReactComponent as IconCircleFilled } from "../assets/icon_circle_filled.svg";
+import "./TapTempo.css";
 
 export default function TapTempo({ BPM, setBPM, beatCounter }) {
   let lastTapTiming = useRef(0);

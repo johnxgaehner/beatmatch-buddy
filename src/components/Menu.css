@@ -7,7 +7,6 @@
   background-color: var(--color-background);
   transform: translateY(-100vh);
   transition: transform 400ms var(--transition-speed-curve);
-  overflow: scroll;
   border-bottom: 1px solid black;
 }
 

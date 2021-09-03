@@ -7,8 +7,14 @@
   gap: 1rem;
 }
 
-.AddTrackOnTheFlyItem:last-child {
-  border-bottom: none;
+.--lastATOTFI {
+  border-right: 1px solid black;
+  margin-right: -1px;
+}
+
+.AddTrackOnTheFlyItem ul {
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .AddTrackOnTheFlyItem ul li {
@@ -32,4 +38,20 @@
 .AddTrackOnTheFlyItem__SelectionIcon {
   height: 15px;
   fill: black;
+}
+
+@media only screen and (min-width: 700px) {
+  .AddTrackOnTheFlyItem:nth-child(2n) {
+    border-left: 1px solid black;
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  .AddTrackOnTheFlyItem {
+    border-left: 1px solid black;
+  }
+
+  .AddTrackOnTheFlyItem:nth-child(3n + 1) {
+    border-left: none;
+  }
 }

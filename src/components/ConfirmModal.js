@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import showToast from "../services/showToast";
 import "./ConfirmModal.css";
 
@@ -39,3 +40,9 @@ export default function ConfirmModal({
     </div>
   );
 }
+
+ConfirmModal.propTypes = {
+  onConfirmation: PropTypes.func.isRequired,
+  setConfirmIsOpen: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+};

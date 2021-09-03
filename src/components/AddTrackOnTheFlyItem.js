@@ -9,6 +9,7 @@ export default function AddTrackOnTheFlyItem({
   trackInfo,
   playlistTrackIds,
   onAddToPlaylistClick,
+  className,
 }) {
   function handleOnAddToPlaylistClick() {
     onAddToPlaylistClick(trackInfo.id);
@@ -28,7 +29,7 @@ export default function AddTrackOnTheFlyItem({
   );
 
   return (
-    <div onClick={handleOnAddToPlaylistClick} className="AddTrackOnTheFlyItem">
+    <div onClick={handleOnAddToPlaylistClick} className={className}>
       <div className="AddTrackOnTheFlyItem__SelectionIconContainer">
         {iconTransition((style, item) =>
           item ? (
@@ -69,4 +70,5 @@ AddTrackOnTheFlyItem.propTypes = {
     PropTypes.string,
   ]).isRequired,
   onAddToPlaylistClick: PropTypes.func.isRequired,
+  className: PropTypes.string.isRequired,
 };

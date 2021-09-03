@@ -4,7 +4,6 @@ import TapTempo from "../components/TapTempo";
 import fetchArtwork from "../services/fetchArtwork";
 import saveInLocalStorage from "../services/saveInLocalStorage";
 import showToast from "../services/showToast";
-import "./AnalysePage.css";
 
 export default function AnalysePage() {
   let beatCounter = useRef([]);
