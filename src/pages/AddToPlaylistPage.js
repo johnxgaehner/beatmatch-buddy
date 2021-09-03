@@ -6,12 +6,17 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import "./AddToPlaylistPage.css";
 import ConfirmModal from "../components/ConfirmModal";
 import useOutsideClick from "../hooks/useOutsideClick";
+import getDemoTracks from "../demo/demoTracks";
+import getDemoPlaylists from "../demo/demoPlaylists";
 
 export default function AddToPlaylistPage() {
   const { id } = useParams();
   const history = useHistory();
-  const [tracks, setTracks] = useLocalStorage("savedTracks", []);
-  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
+  const [tracks, setTracks] = useLocalStorage("savedTracks", getDemoTracks());
+  const [playlists, setPlaylists] = useLocalStorage(
+    "savedPlaylists",
+    getDemoPlaylists()
+  );
 
   const confirmModalRef = useRef();
   const [confirmIsOpen, setConfirmIsOpen] = useOutsideClick(

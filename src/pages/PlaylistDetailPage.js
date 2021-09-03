@@ -10,13 +10,18 @@ import useScroll from "../hooks/useScroll";
 import useLocalStorage from "../hooks/useLocalStorage";
 import useOutsideClick from "../hooks/useOutsideClick";
 import updatePlaylists from "../services/updatePlaylists";
+import getDemoTracks from "../demo/demoTracks";
+import getDemoPlaylists from "../demo/demoPlaylists";
 
 export default function PlaylistDetailPage() {
   const { playlistId } = useParams();
   const history = useHistory();
 
-  const [tracks] = useLocalStorage("savedTracks", []);
-  const [playlists, setPlaylists] = useLocalStorage("savedPlaylists", []);
+  const [tracks] = useLocalStorage("savedTracks", getDemoTracks());
+  const [playlists, setPlaylists] = useLocalStorage(
+    "savedPlaylists",
+    getDemoPlaylists
+  );
   const [playlist, setPlaylist] = useState();
 
   const [editMode, setEditMode] = useState(false);
