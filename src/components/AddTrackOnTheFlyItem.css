@@ -7,8 +7,9 @@
   gap: 1rem;
 }
 
-.AddTrackOnTheFlyItem:last-child {
-  border-bottom: none;
+.--lastATOTFI {
+  border-right: 1px solid black;
+  margin-right: -1px;
 }
 
 .AddTrackOnTheFlyItem ul {
@@ -42,11 +43,6 @@
 @media only screen and (min-width: 700px) {
   .AddTrackOnTheFlyItem:nth-child(2n) {
     border-left: 1px solid black;
-  }
-
-  .AddTrackOnTheFlyItem:last-child {
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
   }
 }
 

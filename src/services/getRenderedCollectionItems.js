@@ -20,7 +20,7 @@ export default function getRenderedCollectionItems(filteredCollectionItems) {
         <CollectionItem
           key={track.id}
           trackInfo={track}
-          className="CollectionItem --last"
+          className="CollectionItem --lastCollectionItem"
         />
       );
     } else if (
@@ -40,7 +40,7 @@ export default function getRenderedCollectionItems(filteredCollectionItems) {
         <CollectionItem
           key={track.id}
           trackInfo={track}
-          className="CollectionItem --last"
+          className="CollectionItem --lastCollectionItem"
         />
       );
     }

@@ -7,7 +7,7 @@
   justify-content: space-between;
 }
 
-.--last {
+.--lastCollectionItem {
   border-right: 1px solid black;
   margin-right: -1px;
 }
